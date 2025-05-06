@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Outfit Matcher - Select Clothing{% endblock %}
+
+{% block content %}
+    <h2>Select Clothing Items</h2>
+    <p>Choose up to 3 items of each type: Top, Bottom, Dress</p>
+
+    <!-- Error Message -->
+    {% if error %}
+        <p style="color: #ef4444;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Clothing Grid -->
+    {% if clothing_items %}
+        <div class="clothing-grid" id="clothing-grid">
+            {% for item in clothing_items %}
+                <div class="clothing-item" data-item-id="{{ item.id }}" data-type="{{ item.item_type }}" data-selected="false">
+                    {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.item_type }}" class="clothing-image">
+                    {% else %}
+                        <div class="no-image">No Image</div>
+                    {% endif %}
+                    <p>{{ item.item_type|title }} - {{ item.color|title }} ({{ item.style|title }})</p>
+                </div>
+            {% endfor %}
+        </div>
+        <form id="outfit-form" method="POST" action="{% url 'outfit_matcher' %}">
+            {% csrf_token %}
+            <input type="hidden" name="selected_items" id="selected-items">
+            <button type="submit" style="padding: 10px 20px; background-color: #60a5fa; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Generate Outfits</button>
+        </form>
+    {% else %}
+        <p>No clothing items available. Add some in the admin panel.</p>
+    {% endif %}
+
+    <!-- Outfit Results -->
+    {% if outfits %}
+        <div id="results" style="margin-top: 20px;">
+            <h3>Generated Outfits</h3>
+            <div class="clothing-grid">
+                {% for outfit in outfits %}
+                    <div class="clothing-item">
+                        <div class="outfit-container">
+                            {% if outfit.top %}
+                                {% if outfit.top.image %}
+                                    <img src="{{ outfit.top.image.url }}" alt="{{ outfit.top.item_type }}" class="clothing-image">
+                                {% else %}
+                                    <div class="no-image">No Image</div>
+                                {% endif %}
+                            {% endif %}
+                            {% if outfit.bottom %}
+                                {% if outfit.bottom.image %}
+                                    <img src="{{ outfit.bottom.image.url }}" alt="{{ outfit.bottom.item_type }}" class="clothing-image">
+                                {% else %}
+                                    <div class="no-image">No Image</div>
+                                {% endif %}
+                            {% endif %}
+                            {% if outfit.dress %}
+                                {% if outfit.dress.image %}
+                                    <img src="{{ outfit.dress.image.url }}" alt="{{ outfit.dress.item_type }}" class="clothing-image">
+                                {% else %}
+                                    <div class="no-image">No Image</div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <p>
+                            {% if outfit.top and outfit.bottom %}
+                                {{ outfit.top.item_type|title }} ({{ outfit.top.color|title }}) + {{ outfit.bottom.item_type|title }} ({{ outfit.bottom.color|title }})
+                            {% elif outfit.top %}
+                                {{ outfit.top.item_type|title }} ({{ outfit.top.color|title }})
+                            {% elif outfit.bottom %}
+                                {{ outfit.bottom.item_type|title }} ({{ outfit.bottom.color|title }})
+                            {% elif outfit.dress %}
+                                {{ outfit.dress.item_type|title }} ({{ outfit.dress.color|title }})
+                            {% endif %}
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <link rel="stylesheet" href="{% static 'css/collection.css' %}">
+    <script>
+    const clothingItems = document.querySelectorAll('.clothing-item');
+    const selectedItemsInput = document.getElementById('selected-items');
+    let selectedCounts = { top: 0, bottom: 0, dress: 0 };
+
+    clothingItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const type = item.getAttribute('data-type').toLowerCase();
+            const isSelected = item.getAttribute('data-selected') === 'true';
+            const newSelected = !isSelected;
+
+            // Check selection limits
+            if (newSelected && selectedCounts[type] >= 3) {
+                alert(`You can only select up to 3 ${type}s.`);
+                return;
+            }
+
+            // Update selection state
+            item.setAttribute('data-selected', newSelected);
+            item.style.backgroundColor = newSelected ? '#d1e7dd' : '#f0f4f8';
+            selectedCounts[type] += newSelected ? 1 : -1;
+            updateSelectedItems();
+        });
+    });
+
+    function updateSelectedItems() {
+        const selectedIds = Array.from(clothingItems)
+            .filter(item => item.getAttribute('data-selected') === 'true')
+            .map(item => parseInt(item.getAttribute('data-item-id')));
+        selectedItemsInput.value = JSON.stringify(selectedIds);
+    }
+    </script>
+    <style>
+    .outfit-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .clothing-image, .no-image {
+        max-width: 200px;
+        max-height: 200px;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+    .clothing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
+    .clothing-item {
+        background-color: #f0f4f8;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    </style>
+{% endblock %}

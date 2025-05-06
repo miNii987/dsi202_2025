@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Outfit Matcher - Clothing Collection{% endblock %}
+
+{% block content %}
+    <h2>Clothing Collection</h2>
+    <p>Explore our curated selection of pastel and floral-inspired clothing.</p>
+
+    <!-- Search Bar -->
+    <form method="GET" action="{% url 'clothing_list' %}" style="margin-bottom: 20px;">
+        <input type="text" name="q" placeholder="Search by type, color, or style..." value="{{ query|default:'' }}" style="padding: 10px; width: 70%; border: 1px solid #d1d5db; border-radius: 5px;">
+        <button type="submit" style="padding: 10px 20px; background-color: #60a5fa; color: white; border: none; border-radius: 5px; cursor: pointer;">Search</button>
+    </form>
+
+    <!-- Clothing Grid -->
+    {% if clothing_items %}
+        <div class="clothing-grid">
+            {% for item in clothing_items %}
+                <div class="clothing-item">
+                    <a href="{% url 'clothing_detail' item.id %}">
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" alt="{{ item.item_type }}" class="clothing-image">
+                        {% else %}
+                            <div class="no-image">No Image</div>
+                        {% endif %}
+                        <p>{{ item.item_type|title }} - {{ item.color|title }} ({{ item.style|title }})</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No clothing items found. Try adjusting your search or add items in the admin panel.</p>
+    {% endif %}
+    <p style="margin-top: 20px;">
+        <a href="{% url 'outfit_matcher' %}" style="color: #60a5fa;">Go to Outfit Matcher</a>
+    </p>
+
+    <link rel="stylesheet" href="{% static 'css/collection.css' %}">
+{% endblock %}
