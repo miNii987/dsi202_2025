@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community - Outfitry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      margin: 0;
+      display: flex;
+      background: #fdfaf4;
+    }
+    .sidebar {
+      width: 230px;
+      background-color: #f8f8f8;
+      padding: 20px;
+      height: 100vh;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .sidebar a {
+      display: block;
+      color: #333;
+      padding: 12px 0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .sidebar a:hover {
+      color: #00c896;
+    }
+    .main {
+      flex: 1;
+      padding: 20px 40px;
+    }
+    .header {
+      background-color: #cbf5c9;
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .header h2 {
+      margin: 0;
+    }
+    .header img {
+      width: 40px;
+      border-radius: 50%;
+    }
+    .post {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .post img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .post .comment-box {
+      margin-top: 10px;
+    }
+    .post .comment-box input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .reaction {
+      margin-top: 10px;
+    }
+    .reaction span {
+      margin-right: 15px;
+      color: #888;
+      cursor: pointer;
+    }
+    .poll {
+      margin-top: 10px;
+    }
+    .poll div {
+      margin: 5px 0;
+      background: #e5f7f1;
+      padding: 8px;
+      border-radius: 8px;
+    }
+    .poll span {
+      font-weight: bold;
+    }
+    .poll button {
+      display: block;
+      margin: 6px 0;
+      padding: 8px 12px;
+      background: #e1f8f4;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .poll button:hover {
+      background: #c9f2e8;
+    }
+
+    #postButton {
+  background-color: #00c896;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+#postButton:hover {
+  background-color: #019e78;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a href="index.html">🏠 Home</a>
+    <a href="matching.html">👗 Matching</a>
+    <a href="content.html">📄 Content</a>
+    <a href="community.html">👥 Community</a>
+    <a href="custom.html">🧵 Custom Clothing</a>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="header">
+      <h2>Community</h2>
+      <img src="images/profile.jpg" alt="Profile">
+    </div>
+
+    <!-- โพสต์ของผู้ใช้ -->
+    <div class="post" style="background: #f2fff7;">
+      <strong>Your post</strong><br><br>
+      <textarea id="postText" placeholder="Show your confidence!..." style="width: 100%; height: 80px; padding: 10px; font-family: Prompt; border-radius: 10px; border: 1px solid #ccc;"></textarea>
+      <input type="file" id="postImage" accept="image/*" style="margin-top: 10px;">
+      <br>
+      <button id="postButton" onclick="submitPost()">post</button>
+
+    </div>
+
+    <!-- โพสต์ของผู้ใช้จะเพิ่มตรงนี้ -->
+    <div id="userPosts"></div>
+
+    <!-- โพสต์ตัวอย่าง -->
+    <div class="post">
+        <img src="images/mia.jpg" class="profile-pic">
+        <strong>Mia Collins</strong> · 5 minutes<br>
+        <div class="content">
+          <p style="background-color: #dff1fc; display:inline-block; padding:6px 12px; border-radius:10px;">
+            In the mood for something soft, minimal, and cute today 🌸🕊️👒 #SoftAesthetic #OutfitVibes #SimpleStyle
+          </p>
+          <br>
+          <img src="images/post.jpg" alt="fit-check" style="margin-top: 10px; max-width: 100%; border-radius: 8px;" />
+        </div>
+        <div class="reaction">
+          <span onclick="toggleLike('like1', this)">💗 <span id="like1">12</span></span>
+          <span onclick="toggleCommentBox('comment1')">💬</span>
+          <span>🔖</span>
+        </div>
+        <div class="comment-box" id="comment1" style="display:none;">
+          <input type="text" placeholder="comment..." onkeydown="if(event.key==='Enter') addComment(this, 'comment1')">
+          <div class="comment-list"></div>
+        </div>
+      </div>
+      
+      
+
+    <div class="post">
+      <img src="images/liam.jpg" class="profile-pic">
+      <strong>Liam Anderson</strong> · 8 minutes<br>
+      <div class="content">Clothes don’t make the man, <strong>but they sure help. 🕶️🧥🔥</strong> #MensStyle #DressWell #ConfidenceInStyle</div>
+      <div class="reaction">
+        <span>💗 5</span>
+        <span onclick="toggleCommentBox('comment2')">💬 1</span>
+        <span>🔖</span>
+      </div>
+      <div class="comment-box" id="comment2" style="display: none;">
+        <input type="text" placeholder="comment..." onkeydown="if(event.key === 'Enter') addComment(this, 'comment2')">
+        <div class="comment-list"></div>
+      </div>
+    </div>
+
+    <!-- โพสต์ Poll -->
+    <div class="post" id="pollPost">
+      <img src="images/olivia.jpg" class="profile-pic">
+      <strong>Olivia Reed</strong> · 15 minutes<br>
+      Which style should I go with today, guys? 🤔👖👕✨ #OutfitCheck #StyleMood #WhatToWear
+
+
+      <div class="poll" id="pollOptions">
+        <button onclick="votePoll('Old Money')">Old Money</button>
+        <button onclick="votePoll('Street')">Street</button>
+        <button onclick="votePoll('Y2K')">Y2K</button>
+        
+      </div>
+      <div id="pollResults" style="display:none; margin-top:10px;"></div>
+      <small id="pollVotes">10 votes · 15 minutes left</small>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let postCounter = 0;
+  
+    function submitPost() {
+      const text = document.getElementById("postText").value;
+      const fileInput = document.getElementById("postImage");
+      const file = fileInput.files[0];
+  
+      if (!text && !file) {
+        alert("please describe something or post a picture");
+        return;
+      }
+  
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        postCounter++;
+        const commentId = `userComment${postCounter}`;
+        const likeId = `likeCount${postCounter}`;
+        const imageTag = file ? `<img src="${e.target.result}" style="max-width: 100%; border-radius: 10px; margin-top: 10px;">` : '';
+        const postHTML = `
+  <div class="post" id="post${postCounter}" style="position: relative;">
+    <div style="position: absolute; top: 10px; right: 10px;">
+      <button onclick="editPost(${postCounter})" style="margin-right: 5px;">✏️</button>
+      <button onclick="deletePost(${postCounter})">🗑️</button>
+    </div>
+    <img src="images/profile.jpg" class="profile-pic">
+    <strong>You</strong> · Just posted<br>
+    <div class="content" id="content${postCounter}">${text}${imageTag}</div>
+    <div class="reaction">
+      <span onclick="toggleLike('${likeId}', this)">💗 <span id="${likeId}">0</span></span>
+      <span onclick="toggleCommentBox('${commentId}')">💬</span>
+      <span>🔖</span>
+    </div>
+    <div class="comment-box" id="${commentId}" style="display: none;">
+      <input type="text" placeholder="comment..." onkeydown="if(event.key === 'Enter') addComment(this, '${commentId}')">
+      <div class="comment-list"></div>
+    </div>
+  </div>
+`;
+
+
+        document.getElementById("userPosts").innerHTML = postHTML + document.getElementById("userPosts").innerHTML;
+        document.getElementById("postText").value = "";
+        fileInput.value = "";
+      };
+  
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        reader.onload({ target: { result: "" } });
+      }
+    }
+  
+    function toggleCommentBox(id) {
+      const box = document.getElementById(id);
+      box.style.display = box.style.display === "none" ? "block" : "none";
+    }
+  
+    function addComment(input, id) {
+      const text = input.value.trim();
+      if (text) {
+        const commentList = input.nextElementSibling;
+        const commentHTML = `<div style="margin-top: 5px;"><strong>คุณ:</strong> ${text}</div>`;
+        commentList.innerHTML += commentHTML;
+        input.value = "";
+      }
+    }
+  
+    function toggleLike(id, el) {
+      const countEl = document.getElementById(id);
+      let count = parseInt(countEl.innerText);
+      const isLiked = el.classList.toggle("liked");
+  
+      countEl.innerText = isLiked ? count + 1 : count - 1;
+      el.innerHTML = `💗 <span id="${id}">${countEl.innerText}</span>`;
+    }
+  
+    // ระบบโพล
+    let pollData = {
+      'Old Money': 6,
+      'Street': 2.5,
+      'Y2K': 1.5,
+    };
+    let hasVoted = false;
+  
+    function votePoll(option) {
+      if (hasVoted) return alert("You already voted");
+      pollData[option] += 1;
+      hasVoted = true;
+  
+      const total = pollData['Old Money'] + pollData['Street'] + pollData['Y2K'];
+      const resultHTML = Object.keys(pollData).map(key => {
+        const percent = ((pollData[key] / total) * 100).toFixed(1);
+        return `<div>${key}: <strong>${percent}%</strong></div>`;
+      }).join('');
+  
+      document.getElementById('pollResults').style.display = 'block';
+      document.getElementById('pollResults').innerHTML = resultHTML;
+      document.getElementById('pollOptions').style.display = 'none';
+      document.getElementById('pollVotes').innerText = `${Math.round(total)} vote · Thank you for voting!`;
+    }
+
+    function deletePost(postId) {
+  const postEl = document.getElementById(`post${postId}`);
+  if (confirm("Are you sure you want to delete this post?")) {
+    postEl.remove();
+  }
+}
+
+function editPost(postId) {
+  const contentDiv = document.getElementById(`content${postId}`);
+  const currentHTML = contentDiv.innerHTML;
+
+  const textMatch = currentHTML.match(/^(.*?)<img/);
+  const textOnly = textMatch ? textMatch[1].trim() : contentDiv.textContent.trim();
+
+  const newText = prompt("Edit your post:", textOnly);
+  if (newText !== null) {
+    const image = contentDiv.querySelector("img");
+    const imageHTML = image ? image.outerHTML : "";
+    contentDiv.innerHTML = `${newText}<br>${imageHTML}`;
+  }
+}
+
+  </script>
+  
+  
+</body>
+</html>

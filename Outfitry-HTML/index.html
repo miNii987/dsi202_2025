@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outfitry</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav class="topbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <strong>OUTFITRY</strong>
+      </div>
+      <div class="nav-center">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="matching.html"><i class="fas fa-tshirt"></i> Matching</a>
+  
+        <!-- Content with Dropdown -->
+        <div class="dropdown">
+          <a href="content.html" class="dropbtn"><i class="fas fa-file-alt"></i> Content</a>
+          <div class="dropdown-content">
+            <div class="nested-dropdown">
+              <a href="#">All ▸</a>
+              <div class="nested-content">
+                <a href="#">Fashion Tips</a>
+                <a href="#">Mental Health</a>
+                <a href="#">Environment</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <a href="community.html"><i class="fas fa-users"></i> Community</a>
+        <a href="custom.html"><i class="fas fa-cut"></i> Custom</a>
+
+        <a href="#"><i class="fas fa-building"></i> Company</a>
+        <a href="#"><i class="fas fa-dollar-sign"></i> Pricing</a>
+      </div>
+      <div class="nav-right">
+        <a href="login.html">Login</a>
+        <a href="#" class="cta">Get Outfitry Free</a>
+        <select class="lang-select">
+          <option>English</option>
+          <option>ไทย</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+  
+
+  <main class="main-content">
+    <section class="hero">
+      <video controls autoplay muted loop class="hero-video">
+        <source src="opening.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <section class="review-section">
+      <h2>REVIEW</h2>
+      <div class="review-carousel-wrapper">
+        <button class="arrow left" onclick="scrollSlide(-1)">&#10094;</button>
+    
+        <div class="review-carousel">
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/mila.jpg" alt="Mila Everly" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>Mila Everly</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p>This app helped me discover new ways to style my clothes—like having a whole new wardrobe without shopping!</p>
+          </div>
+    
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/praewa.jpg" alt="แพรวา บุญดี" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>แพรวา บุญดี</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p>รู้สึกเป็นตัวเองมากขึ้นเพราะ AI ช่วยแนะนำแนวการแต่งตัวใหม่ๆ ที่ไม่เคยลองมาก่อน</p>
+          </div>
+    
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/nont.jpg" alt="นนท์ ภูวเดช" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>นนท์ ภูวเดช</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p>ผมไม่ชอบเสียเวลาเลือกชุด แต่พอใช้ Outfitry แล้ว ทุกเช้ากลายเป็นเรื่องง่ายสุด ๆ</p>
+          </div>
+    
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/alex.jpg" alt="Alex Hayes" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>Alex Hayes</h4>
+                <p>⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p>I love how personalized the suggestions are! It's like a fashion friend who knows my closet better than I do.</p>
+          </div>
+        </div>
+    
+        <button class="arrow right" onclick="scrollSlide(1)">&#10095;</button>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>OUTFITRY</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <h4>Download</h4>
+            <p>iOS & Android</p>
+            <p>Mac & Windows</p>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <p>Help Centre</p>
+            <p>FAQ</p>
+            <p>Affiliates</p>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <p>About Us</p>
+            <p>Term & Privacy</p>
+            <p>Security</p>
+            <p>Careers</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    
+    
+    
+    <script>
+      let currentSlide = 0;
+      const carousel = document.querySelector('.review-carousel');
+      const cards = document.querySelectorAll('.review-card');
+    
+      function scrollSlide(direction) {
+        const totalSlides = cards.length;
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+    
+      // Auto slide (optional)
+      setInterval(() => scrollSlide(1), 5000);
+    </script>
+    
+    
+    
+  </main>
+</body>
+</html>
