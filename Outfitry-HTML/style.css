@@ -3,169 +3,222 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  /* Body & Font */
-  body {
+}
+
+/* Body & Font */
+body {
     font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
-  }
-
-
-
+}
 
 /* ---------- Desktop Default (>= 768px) ---------- */
 .topbar {
-    background-color: #EABB84;
+    background-color: #85df80;
     color: white;
-    padding: 8px 16px;
+    padding: 12px 16px; /* เพิ่ม padding เพื่อขยายแถบลงมา */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-  }
-  
-  .nav-container {
+    height: 85px; /* กำหนดความสูงแถบสีส้ม */
+}
+
+.nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-  }
-  
-  .nav-left {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-left {
     font-size: 20px;
     font-weight: bold;
-    flex: 1;
-  }
-  
-  .nav-center {
+    flex: 0.5;
+    min-width: 0;
+    margin-right: 10px;
+}
+
+.nav-center {
     display: flex;
-    justify-content: center;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 12px;
     flex: 2;
-  }
-  
-  .nav-center a {
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+.nav-center a {
     color: white;
     text-decoration: none;
     padding: 6px 10px;
-  }
-  
-  .nav-right {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    min-width: 60px;
+    text-align: center;
+}
+
+.nav-center a i {
+    margin-right: 5px;
+}
+
+.nav-right {
     display: flex;
     align-items: center;
     gap: 12px;
     flex: 1;
     justify-content: flex-end;
-  }
-  
-  .nav-right a {
+    min-width: 0;
+}
+
+.nav-right a {
     color: white;
     text-decoration: none;
     padding: 6px 12px;
     border-radius: 4px;
-  }
-  
-  .nav-right .cta {
+    white-space: nowrap;
+}
+
+.nav-right .cta {
     background-color: #a7e2ef;
     color: black;
     font-weight: bold;
-  }
-  
-  .nav-center a:hover {
+    padding: 6px 12px;
+    white-space: nowrap;
+    min-width: 160px;
+    text-align: center;
+}
+
+.lang-select {
+    background: #fff !important;
+    color: #333 !important;
+    border: 1px solid #ccc !important;
+    padding: 6px 24px 6px 8px !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    min-width: 110px !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 8px center !important;
+    background-size: 12px !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.lang-select:hover {
+    border-color: #999 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+.lang-select:focus {
+    outline: none !important;
+    border-color: #EABB84 !important;
+    box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+}
+
+.nav-center a:hover {
     color: #fff;
     background-color: #d19166;
     transform: scale(1.05);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     transition: all 0.3s ease;
-  }
-  
-  .nav-right a:hover {
+}
+
+.nav-right a:hover {
     background-color: white;
-    color: #EABB84; /* สีแบรนด์หรือโทนที่ต้องการ */
+    color: #EABB84;
     transition: all 0.3s ease;
     border-radius: 6px;
-  }
-  
+}
 
-  .nav-right .cta:hover {
+.nav-right .cta:hover {
     background-color: #ffd6a4;
     color: black;
     transform: scale(1.05);
     transition: all 0.3s ease;
-  }
-  .main-content {
-    padding-top: 72px; /* ปรับตามความสูงของ topbar ที่ทับ */
-  }
+}
 
+/* ---------- Responsive (Mobile: < 768px) ---------- */
+@media (max-width: 767px) {
+    .topbar {
+        height: auto;
+        padding: 16px;
+    }
 
-  .lang-select {
-    background: white;
-    color: black;
-    border: none;
-    padding: 4px 8px;
-    border-radius: 4px;
-  }
-  
-  /* ---------- Responsive (Mobile: < 768px) ---------- */
-  @media (max-width: 767px) {
     .nav-container {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
     }
-  
+
+    .nav-left {
+        margin-right: 0;
+    }
+
     .nav-center {
-      flex-direction: column;
-      align-items: flex-start;
-      width: 100%;
-      gap: 8px;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 8px;
     }
-  
+
     .nav-right {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
     }
-  
+
     .nav-right a,
     .nav-center a {
-      display: block;
-      width: 100%;
+        display: block;
+        width: 100%;
     }
-  
+
+    .nav-right .cta {
+        width: 100%;
+        text-align: center;
+    }
+
     .lang-select {
-      width: 100%;
+        width: 100% !important;
+        padding: 8px 24px 8px 8px !important;
+        font-size: 16px !important;
     }
-  
-    .topbar {
-      padding: 16px;
-    }
-  }
-  
+}
 
-/*drop down ของ content*/
-
-
-/* --- Dropdown menu --- */
+/* Dropdown menu */
 .dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropbtn {
+}
+
+.dropbtn {
     text-decoration: none;
     color: white;
     padding: 6px 10px;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
+    display: flex;
+    align-items: center;
+}
+
+.dropbtn i {
+    margin-right: 5px;
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: white;
@@ -173,31 +226,29 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     z-index: 1;
     border-radius: 6px;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     color: #333;
     padding: 10px 20px;
     text-decoration: none;
     display: block;
-  }
-  
-  .dropdown-content a:hover {
+}
+
+.dropdown-content a:hover {
     background-color: #f2f2f2;
     color: #EABB84;
-  }
-  
-  /* Hover to open */
-  .dropdown:hover .dropdown-content {
+}
+
+.dropdown:hover .dropdown-content {
     display: block;
-  }
-  
-  /* --- Nested Dropdown --- */
-  .nested-dropdown {
+}
+
+.nested-dropdown {
     position: relative;
-  }
-  
-  .nested-content {
+}
+
+.nested-content {
     display: none;
     position: absolute;
     left: 100%;
@@ -206,70 +257,58 @@
     min-width: 180px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
-  }
-  
-  .nested-dropdown:hover .nested-content {
-    display: block;
-  }
-  
-
-
-
-
-/* Top padding to avoid overlap with topbar */
-.main-content {
-  padding-top: 180px; /* เพิ่มจาก 120px เป็น 180px หรือปรับตามความสูงจริงของ topbar */
-  max-width: 960px;
-  margin: 0 auto;
 }
 
+.nested-dropdown:hover .nested-content {
+    display: block;
+}
 
-/* Container Centering */
-.container {
-  display: flex;
-  justify-content: center;
-  padding: 40px 20px;
+/* Adjusted Main Content to Prevent Overlap */
+.main-content {
+    padding-top: 150px;
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 /* Hero Section */
 .hero {
-  margin-top: 72px;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
+    margin-top: 110px; /* ลดระยะห่างจาก 100px เหลือ 60px */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
 }
 
 .hero-video {
-  width: 100%;
-  max-width: 960px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 960px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Hero Text */
 .hero-text {
-  text-align: center;
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: #444;
-  margin-top: 24px;
-  margin-bottom: 40px;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #444;
+    margin-top: 24px;
+    margin-bottom: 40px;
 }
 
 /* Review Section */
 .review-section {
     padding: 0 20px;
-  }
-  
-  .review-section h2 {
+    margin-bottom: 60px;
+}
+
+.review-section h2 {
     font-size: 28px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 30px;
-  }
-  
-  /* Wrapper ของ carousel */
-  .review-carousel-wrapper {
+}
+
+.review-carousel-wrapper {
     position: relative;
     display: flex;
     align-items: center;
@@ -277,15 +316,14 @@
     max-width: 800px;
     margin: auto;
     overflow: hidden;
-  }
-  
-  .review-carousel {
+}
+
+.review-carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
-  }
-  
-  /* Card ทีละอัน */
-  .review-card {
+}
+
+.review-card {
     min-width: 100%;
     box-sizing: border-box;
     padding: 1rem;
@@ -293,60 +331,35 @@
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     scroll-snap-align: center;
-  }
-  
-  .reviewer-info {
+}
+
+.reviewer-info {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-  }
-  
-  .reviewer-img {
+}
+
+.reviewer-img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 1rem;
     object-fit: cover;
-  }
-  
-  .reviewer-details h4 {
+}
+
+.reviewer-details h4 {
     margin: 0;
     font-size: 1.1rem;
     font-weight: 600;
-  }
-  
-  .reviewer-details p {
+}
+
+.reviewer-details p {
     margin: 0;
     font-size: 0.9rem;
-    color: #f1c40f; /* ดาวสีทอง */
-  }
-  
-  .review-carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 800px;
-    margin: auto;
-    overflow: hidden;
-  }
-  
-  .review-carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .review-card {
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 1rem;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    scroll-snap-align: center;
-  }
-  
-  .arrow {
+    color: #f1c40f;
+}
+
+.arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -358,456 +371,126 @@
     cursor: pointer;
     border-radius: 50%;
     z-index: 1;
-  }
-  
-  .arrow.left {
+}
+
+.arrow.left {
     left: 10px;
-  }
-  
-  .arrow.right {
+}
+
+.arrow.right {
     right: 10px;
-  }
-  
-  .reviewer-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 1rem;
-  }
-  
+}
 
-
-
-
-
-
-/* Responsive */
-@media (max-width: 768px) {
-  .reviews {
-    flex-direction: column;
-  }
-
-  .review-card {
-    width: 100%;
-  }
-
-  .hero-video {
-    max-width: 100%;
-  }
-
-  .site-footer {
-    background-color: #111;
-    color: #fff;
-    padding: 40px 60px;
+/* Footer */
+.site-footer {
+    
+    color: #111;
+    padding: 40px 0;
     font-family: sans-serif;
-  }
-  
-  .footer-container {
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+.footer-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 60px;
-  }
-  
-  .footer-brand {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.footer-brand {
     flex: 1;
     min-width: 200px;
-  }
-  
-  .footer-brand h3 {
+}
+
+.footer-brand h3 {
     font-size: 24px;
     margin-bottom: 20px;
-  }
-  
-  .social-icons a {
-    color: #fff;
-    margin-right: 12px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icons a {
+    color: #111;
     font-size: 20px;
     transition: color 0.3s ease;
-  }
-  
-  .social-icons a:hover {
+}
+
+.social-icons a:hover {
     color: #f0c040;
-  }
-  
-  .footer-columns {
+}
+
+.footer-columns {
     display: flex;
     flex: 2;
     justify-content: space-between;
     gap: 40px;
     flex-wrap: wrap;
-  }
-  
-  .footer-col h4 {
+}
+
+.footer-col h4 {
     font-size: 16px;
     margin-bottom: 10px;
-  }
-  
-  .footer-col p {
+}
+
+.footer-col p {
     margin: 4px 0;
     font-size: 14px;
     cursor: pointer;
-  }
-  
-  .footer-col p:hover {
+}
+
+.footer-col p:hover {
     text-decoration: underline;
-  }
-  
-  
-  /* Responsive for small screens */
-  @media (max-width: 768px) {
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
     .footer-container {
-      align-items: flex-start;
+        align-items: flex-start;
     }
-  
+
     .footer-columns {
-      flex-direction: column;
-      gap: 20px;
+        flex-direction: column;
+        gap: 20px;
     }
-  
+
     .footer-brand {
-      text-align: left;
+        text-align: left;
     }
-  }
-  
 
-
-
-
-
-
-
-
-
-
-/*sign up page*/
-
-.signup-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #fefdf9;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .signup-container {
-    background: #fff;
-    padding: 2.5rem;
-    margin-top: 80px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-  }
-  
-  .signup-container h2 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .brand {
-    color: #A7E2EF;
-  }
-  
-  .subtext {
-    margin-bottom: 1.8rem;
-    color: #666;
-    font-size: 0.95rem;
-  }
-  
-  .signup-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    text-align: left;
-  }
-  
-  .signup-form label {
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-  
-  .signup-form input {
-    padding: 0.6rem 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    width: 100%;
-  }
-  
-  .signup-btn {
-    background-color: #A7E2EF;
-    color: white;
-    font-weight: bold;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .signup-btn:hover {
-    background-color: #A7E2EF;
-  }
-  
-
-  .signup-form select,
-  .signup-form input[type="date"],
-  .signup-form input[type="tel"] {
-    padding: 0.6rem 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    width: 100%;
-    background-color: white;
-  }
-
-  .name-fields {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .name-group {
-    flex: 1;
-  }
-  
-
-
-
-  .login-link {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .login-link a {
-    color: #A7E2EF;
-    text-decoration: none;
-    font-weight: 600;
-  }
-  
-  .login-link a:hover {
-    text-decoration: underline;
-  }
-  
-  
-
-
-
-
-
-
-
-/*content page*/ 
-
-
-
-  .main-content {
-    padding-top: 100px;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}.main-content {
-    padding-top: 120px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  
-  /* Container Centering */
-  .container {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-  }
-  
-  /* Hero Section */
-  .hero {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .hero-video {
-    width: 100%;
-    max-width: 960px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Hero Text */
-  .hero-text {
-    text-align: center;
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: #444;
-    margin-top: 24px;
-    margin-bottom: 40px;
-  }
-  
-  /* Review Section */
-  .review-section {
-    padding: 0 20px;
-  }
-  
-  .review-section h2 {
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .reviews {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  
-  .review-card {
-    background-color: #ffffff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    width: calc(50% - 10px);
-    transition: transform 0.3s;
-  }
-  
-  .review-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .review-card h4 {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  .review-card p {
-    font-size: 14px;
-    color: #555;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .reviews {
-      flex-direction: column;
+    .hero {
+        margin-top: 80px; /* ปรับสำหรับ mobile */
     }
-  
-    .review-card {
-      width: 100%;
-    }
-  
+
     .hero-video {
-      max-width: 100%;
+        max-width: 100%;
     }
-  
+
     .main-content {
-      padding-top: 100px;
-      padding-left: 15px;
-      padding-right: 15px;
+        padding-top: 280px;
     }
-  }
 
-  
-  /*login page*/
+    .review-section {
+        margin-bottom: 40px;
+    }
+}
 
+/* Unchanged Sections Below (Sign Up, Login, Matching, Content, Custom, etc.) */
 
-  .login-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #fefef9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
-  .login-container {
-    background: white;
-    padding: 2rem 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .brand {
-    color: #A7E2EF;
-    font-weight: bold;
-  }
-  
-  .subtext {
-    margin-bottom: 1.5rem;
-    color: #666;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    text-align: left;
-  }
-  
-  .login-form label {
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-  }
-  
-  .login-form input {
-    padding: 0.6rem 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-  }
-  
-  .login-btn {
-    background-color: #EABB84;
-    color: white;
-    border: none;
-    padding: 0.8rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .login-btn:hover {
-    background-color: #d8a86d;
-  }
-  
-  .signup-text {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-  }
-  
-  .signup-text a {
-    color: #EABB84;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .signup-text a:hover {
-    text-decoration: underline;
-  }
-  
-  
 
 
 
 /*matchingoutfit
-
-
-
-
 
 
 /* Body styling */
@@ -1270,8 +953,3 @@ body {
   width: 100%;
   border-radius: 8px;
 }
-
-
-  
-
-

@@ -15,41 +15,39 @@
         <strong>OUTFITRY</strong>
       </div>
       <div class="nav-center">
-        <a href="index.html"><i class="fas fa-home"></i> Home</a>
-        <a href="matching.html"><i class="fas fa-tshirt"></i> Matching</a>
+        <a href="index.html" data-lang-key="home"><i class="fas fa-home"></i> Home</a>
+        <a href="matching.html" data-lang-key="matching"><i class="fas fa-tshirt"></i> Matching</a>
   
         <!-- Content with Dropdown -->
         <div class="dropdown">
-          <a href="content.html" class="dropbtn"><i class="fas fa-file-alt"></i> Content</a>
+          <a href="content.html" class="dropbtn" data-lang-key="content"><i class="fas fa-file-alt"></i> Content</a>
           <div class="dropdown-content">
             <div class="nested-dropdown">
-              <a href="#">All ▸</a>
+              <a href="#" data-lang-key="all">All ▸</a>
               <div class="nested-content">
-                <a href="#">Fashion Tips</a>
-                <a href="#">Mental Health</a>
-                <a href="#">Environment</a>
+                <a href="#" data-lang-key="fashion-tips">Fashion Tips</a>
+                <a href="#" data-lang-key="mental-health">Mental Health</a>
+                <a href="#" data-lang-key="environment">Environment</a>
               </div>
             </div>
           </div>
         </div>
   
-        <a href="community.html"><i class="fas fa-users"></i> Community</a>
-        <a href="custom.html"><i class="fas fa-cut"></i> Custom</a>
-
-        <a href="#"><i class="fas fa-building"></i> Company</a>
-        <a href="#"><i class="fas fa-dollar-sign"></i> Pricing</a>
+        <a href="community.html" data-lang-key="community"><i class="fas fa-users"></i> Community</a>
+        <a href="custom.html" data-lang-key="custom"><i class="fas fa-cut"></i> Custom</a>
+        <a href="#" data-lang-key="company"><i class="fas fa-building"></i> Company</a>
+        <a href="#" data-lang-key="pricing"><i class="fas fa-dollar-sign"></i> Pricing</a>
       </div>
       <div class="nav-right">
-        <a href="login.html">Login</a>
-        <a href="#" class="cta">Get Outfitry Free</a>
-        <select class="lang-select">
-          <option>English</option>
-          <option>ไทย</option>
+        <a href="login.html" data-lang-key="login">Login</a>
+        <a href="#" class="cta" data-lang-key="get-outfitry-free">Get Outfitry Free</a>
+        <select class="lang-select" onchange="changeLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="th">ไทย</option>
         </select>
       </div>
     </div>
   </nav>
-  
 
   <main class="main-content">
     <section class="hero">
@@ -60,9 +58,9 @@
     </section>
 
     <section class="review-section">
-      <h2>REVIEW</h2>
+      <h2 data-lang-key="review">REVIEW</h2>
       <div class="review-carousel-wrapper">
-        <button class="arrow left" onclick="scrollSlide(-1)">&#10094;</button>
+        <button class="arrow left" onclick="scrollSlide(-1)">❮</button>
     
         <div class="review-carousel">
           <div class="review-card">
@@ -73,7 +71,7 @@
                 <p>⭐⭐⭐⭐⭐</p>
               </div>
             </div>
-            <p>This app helped me discover new ways to style my clothes—like having a whole new wardrobe without shopping!</p>
+            <p data-lang-key="review-mila">This app helped me discover new ways to style my clothes—like having a whole new wardrobe without shopping!</p>
           </div>
     
           <div class="review-card">
@@ -84,7 +82,7 @@
                 <p>⭐⭐⭐⭐⭐</p>
               </div>
             </div>
-            <p>รู้สึกเป็นตัวเองมากขึ้นเพราะ AI ช่วยแนะนำแนวการแต่งตัวใหม่ๆ ที่ไม่เคยลองมาก่อน</p>
+            <p data-lang-key="review-praewa">รู้สึกเป็นตัวเองมากขึ้นเพราะ AI ช่วยแนะนำแนวการแต่งตัวใหม่ๆ ที่ไม่เคยลองมาก่อน</p>
           </div>
     
           <div class="review-card">
@@ -95,7 +93,7 @@
                 <p>⭐⭐⭐⭐⭐</p>
               </div>
             </div>
-            <p>ผมไม่ชอบเสียเวลาเลือกชุด แต่พอใช้ Outfitry แล้ว ทุกเช้ากลายเป็นเรื่องง่ายสุด ๆ</p>
+            <p data-lang-key="review-nont">ผมไม่ชอบเสียเวลาเลือกชุด แต่พอใช้ Outfitry แล้ว ทุกเช้ากลายเป็นเรื่องง่ายสุด ๆ</p>
           </div>
     
           <div class="review-card">
@@ -106,11 +104,11 @@
                 <p>⭐⭐⭐⭐</p>
               </div>
             </div>
-            <p>I love how personalized the suggestions are! It's like a fashion friend who knows my closet better than I do.</p>
+            <p data-lang-key="review-alex">I love how personalized the suggestions are! It's like a fashion friend who knows my closet better than I do.</p>
           </div>
         </div>
     
-        <button class="arrow right" onclick="scrollSlide(1)">&#10095;</button>
+        <button class="arrow right" onclick="scrollSlide(1)">❯</button>
       </div>
     </section>
 
@@ -128,47 +126,127 @@
         </div>
         <div class="footer-columns">
           <div class="footer-col">
-            <h4>Download</h4>
-            <p>iOS & Android</p>
-            <p>Mac & Windows</p>
+            <h4 data-lang-key="download">Download</h4>
+            <p data-lang-key="ios-android">iOS & Android</p>
+            <p data-lang-key="mac-windows">Mac & Windows</p>
           </div>
           <div class="footer-col">
-            <h4>Resources</h4>
-            <p>Help Centre</p>
-            <p>FAQ</p>
-            <p>Affiliates</p>
+            <h4 data-lang-key="resources">Resources</h4>
+            <p data-lang-key="help-centre">Help Centre</p>
+            <p data-lang-key="faq">FAQ</p>
+            <p data-lang-key="affiliates">Affiliates</p>
           </div>
           <div class="footer-col">
-            <h4>Company</h4>
-            <p>About Us</p>
-            <p>Term & Privacy</p>
-            <p>Security</p>
-            <p>Careers</p>
+            <h4 data-lang-key="company-footer">Company</h4>
+            <p data-lang-key="about-us">About Us</p>
+            <p data-lang-key="term-privacy">Term & Privacy</p>
+            <p data-lang-key="security">Security</p>
+            <p data-lang-key="careers">Careers</p>
           </div>
         </div>
       </div>
     </footer>
-    
-    
-    
-    
-    <script>
-      let currentSlide = 0;
-      const carousel = document.querySelector('.review-carousel');
-      const cards = document.querySelectorAll('.review-card');
-    
-      function scrollSlide(direction) {
-        const totalSlides = cards.length;
-        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-      }
-    
-      // Auto slide (optional)
-      setInterval(() => scrollSlide(1), 5000);
-    </script>
-    
-    
-    
   </main>
+
+  <script>
+    // Language dictionary
+    const translations = {
+      en: {
+        home: "Home",
+        matching: "Matching",
+        content: "Content",
+        all: "All",
+        "fashion-tips": "Fashion Tips",
+        "mental-health": "Mental Health",
+        environment: "Environment",
+        community: "Community",
+        custom: "Custom",
+        company: "Company",
+        pricing: "Pricing",
+        login: "Login",
+        "get-outfitry-free": "Get Outfitry Free",
+        review: "REVIEW",
+        "review-mila": "This app helped me discover new ways to style my clothes—like having a whole new wardrobe without shopping!",
+        "review-praewa": "This app helped me discover new ways to style my clothes—like having a whole new wardrobe without shopping!",
+        "review-nont": "I don’t like spending time choosing outfits, but with Outfitry, every morning has become super easy!",
+        "review-alex": "I love how personalized the suggestions are! It's like a fashion friend who knows my closet better than I do.",
+        download: "Download",
+        "ios-android": "iOS & Android",
+        "mac-windows": "Mac & Windows",
+        resources: "Resources",
+        "help-centre": "Help Centre",
+        faq: "FAQ",
+        affiliates: "Affiliates",
+        "company-footer": "Company",
+        "about-us": "About Us",
+        "term-privacy": "Term & Privacy",
+        security: "Security",
+        careers: "Careers"
+      },
+      th: {
+        home: "หน้าแรก",
+        matching: "จับคู่",
+        content: "เนื้อหา",
+        all: "ทั้งหมด",
+        "fashion-tips": "เคล็ดลับแฟชั่น",
+        "mental-health": "สุขภาพจิต",
+        environment: "สิ่งแวดล้อม",
+        community: "ชุมชน",
+        custom: "ปรับแต่ง",
+        company: "บริษัท",
+        pricing: "ราคา",
+        login: "เข้าสู่ระบบ",
+        "get-outfitry-free": "รับ Outfitry ฟรี",
+        review: "รีวิว",
+        "review-mila": "แอปนี้ช่วยฉันค้นพบวิธีใหม่ๆ ในการแต่งตัว—เหมือนมีตู้เสื้อผ้าใหม่โดยไม่ต้องช้อปปิ้ง!",
+        "review-praewa": "รู้สึกเป็นตัวเองมากขึ้นเพราะ AI ช่วยแนะนำแนวการแต่งตัวใหม่ๆ ที่ไม่เคยลองมาก่อน",
+        "review-nont": "ผมไม่ชอบเสียเวลาเลือกชุด แต่พอใช้ Outfitry แล้ว ทุกเช้ากลายเป็นเรื่องง่ายสุด ๆ",
+        "review-alex": "ฉันชอบที่คำแนะนำมันเป็นส่วนตัวมาก! เหมือนมีเพื่อนแฟชั่นที่รู้จักตู้เสื้อผ้าของฉันดีกว่าฉันเอง",
+        download: "ดาวน์โหลด",
+        "ios-android": "iOS และ Android",
+        "mac-windows": "Mac และ Windows",
+        resources: "แหล่งข้อมูล",
+        "help-centre": "ศูนย์ช่วยเหลือ",
+        faq: "คำถามที่พบบ่อย",
+        affiliates: "พันธมิตร",
+        "company-footer": "บริษัท",
+        "about-us": "เกี่ยวกับเรา",
+        "term-privacy": "ข้อกำหนดและความเป็นส่วนตัว",
+        security: "ความปลอดภัย",
+        careers: "อาชีพ"
+      }
+    };
+
+    // Function to change language
+    function changeLanguage(lang) {
+      document.querySelectorAll("[data-lang-key]").forEach(element => {
+        const key = element.getAttribute("data-lang-key");
+        element.textContent = translations[lang][key] || element.textContent;
+      });
+      // Update HTML lang attribute
+      document.documentElement.lang = lang;
+    }
+
+    // Carousel functionality
+    let currentSlide = 0;
+    const carousel = document.querySelector('.review-carousel');
+    const cards = document.querySelectorAll('.review-card');
+
+    function scrollSlide(direction) {
+      const totalSlides = cards.length;
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    // Auto slide
+    setInterval(() => scrollSlide(1), 5000);
+
+    // Set initial language based on browser or default to English
+    const userLang = navigator.language || navigator.userLanguage;
+    const defaultLang = userLang.startsWith("th") ? "th" : "en";
+    document.querySelector(".lang-select").value = defaultLang;
+    changeLanguage(defaultLang);
+  </script>
+
 </body>
 </html>
