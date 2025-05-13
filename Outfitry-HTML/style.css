@@ -589,39 +589,38 @@ body {
 }
 
   
-  
-/*content page*/
-
+ /*content page*/
 
 .content-body {
     font-family: 'Prompt', sans-serif;
     background: #fefef9;
     padding: 2rem;
-  }
-  
-  .content-container {
+    display: flex; /* รักษา flex layout */
+}
+
+.content-container {
     max-width: 1200px; /* ขยายให้เหมาะกับ desktop */
     margin: auto;
     padding: 0 1rem; /* กันขอบจอเล็ก */
-  }
-  
-  .content-title {
+}
+
+.content-title {
     font-size: 2.25rem;
     font-weight: 600;
     margin-bottom: 2rem;
     text-align: center;
     color: #333;
-  }
-  
-  .content-tabs {
+}
+
+.content-tabs {
     display: flex;
     justify-content: center;
     flex-wrap: wrap; /* ให้ responsive เมื่อจอแคบ */
     gap: 1rem;
     margin-bottom: 2rem;
-  }
-  
-  .content-tabs button {
+}
+
+.content-tabs button {
     background: none;
     border: none;
     font-weight: bold;
@@ -631,125 +630,159 @@ body {
     border-bottom: 3px solid transparent;
     color: #555;
     transition: all 0.2s ease;
-  }
-  
-  .content-tabs button:hover {
+}
+
+.content-tabs button:hover {
     color: #ff5c8a;
-  }
-  
-  .content-tabs .active {
+}
+
+.content-tabs .active {
     border-color: #ff8aa1;
     color: #ff5c8a;
-  }
-  
-  /* ปรับ grid ให้สมดุลบน desktop และ responsive */
-  .content-grid {
+}
+
+/* ปรับ grid ให้สมดุลบน desktop และ responsive */
+.content-grid {
     display: grid;
     gap: 1.5rem;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  }
-  
-  /* Card Styling */
-  .content-card {
+}
+
+/* Card Styling */
+.content-card {
     background: #eaf9ff;
     border-radius: 12px;
     overflow: hidden;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease;
-  }
-  
-  .content-card img {
+}
+
+.content-card img {
     width: 100%;
     height: 160px;
     object-fit: cover;
-  }
-  
-  .content-card p {
+}
+
+.content-card p {
     padding: 1rem;
     font-weight: 500;
     font-size: 1rem;
     color: #333;
-  }
-  
-  .content-card:hover {
+}
+
+.content-card:hover {
     transform: translateY(-5px);
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .content-title {
-      font-size: 1.5rem;
-    }
-  
-    .content-tabs button {
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-    }
-  
-    .content-grid {
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    }
-  
-    .content-card img {
-      height: 130px;
-    }
-  }
-  
+}
 
- /*ปุ่มไอคอน*/
-
- .logo-img {
+/* ปุ่มไอคอน */
+.logo-img {
     width: 120px;
     height: auto;
     margin: 20px auto;
     display: block;
     border-radius: 12px;
-  }
-  
+}
 
- /*side bar responsive*/
+/* Sidebar และ Layout (เพิ่มเติมจาก matching.html) */
+.content-body {
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #f8f8f8;
+    padding: 20px 15px;
+    height: 100vh;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    overflow-y: auto;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+}
+
+.sidebar a.active {
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    color: #333;
+}
+
+.main-content {
+    margin-left: 240px; /* เว้นที่สำหรับ sidebar */
+    padding: 30px;
+    flex: 1;
+}
 
 /* ทำให้ Sidebar และ Layout Responsive */
 @media (max-width: 768px) {
-    body {
-      flex-direction: column;
+    .content-body {
+        flex-direction: column;
     }
-  
-    .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      box-shadow: none;
-      border-bottom: 1px solid #ccc;
-    }
-  
-    .sidebar a {
-      flex: 1 1 auto;
-      text-align: center;
-      padding: 12px 5px;
-      margin: 0;
-      border-radius: 0;
-    }
-  
-    .logo-img {
-      width: 80px;
-      margin: 10px auto;
-    }
-  
-    .main-content {
-      margin-left: 0;
-      padding: 20px;
-    }
-  
-    .matching-container {
-      max-width: 100%;
-    }
-  }
 
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        box-shadow: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .sidebar a {
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 12px 5px;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .logo-img {
+        width: 80px;
+        margin: 10px auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .content-container {
+        max-width: 100%;
+    }
+
+    .content-title {
+        font-size: 1.5rem;
+    }
+
+    .content-tabs button {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+
+    .content-card img {
+        height: 130px;
+    }
+}
 
 /*custom*/ 
 
@@ -998,3 +1031,89 @@ body {
     color: white;
     border-radius: 8px;
 }
+
+/*login page*/
+ 
+ 
+  .login-body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fefef9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+ 
+  .login-container {
+    background: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+ 
+  .brand {
+    color: #A7E2EF;
+    font-weight: bold;
+  }
+ 
+  .subtext {
+    margin-bottom: 1.5rem;
+    color: #666;
+  }
+ 
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+  }
+ 
+  .login-form label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+ 
+  .login-form input {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+ 
+  .login-btn {
+    background-color: #EABB84;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+ 
+  .login-btn:hover {
+    background-color: #d8a86d;
+  }
+ 
+  .signup-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+ 
+  .signup-text a {
+    color: #EABB84;
+    text-decoration: none;
+    font-weight: bold;
+  }
+ 
+  .signup-text a:hover {
+    text-decoration: underline;
+  }
+
+
+  
