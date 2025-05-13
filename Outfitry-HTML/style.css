@@ -953,3 +953,48 @@ body {
   width: 100%;
   border-radius: 8px;
 }
+
+/* Adjust company-section to ensure flex layout works */
+.company-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    gap: 20px; /* Add spacing between text and image */
+}
+
+.company-text {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.company-image {
+    flex: 1;
+}
+
+.company-image img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .company-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .company-text {
+        padding-right: 0;
+        margin-bottom: 20px;
+    }
+    .company-image img {
+        max-width: 100%;
+    }
+}
+
+/* Ensure active link styling in nav */
+.nav-center a.active {
+    background-color: #85df80;
+    color: white;
+    border-radius: 8px;
+}
