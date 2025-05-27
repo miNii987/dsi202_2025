@@ -1,38 +1,38 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Content - Outfitry</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
 </head>
-
-  
-<body class="content-body">
-      <!-- Sidebar -->
+<body>
+  <!-- Sidebar -->
   <div class="sidebar">
     <a href="index.html">
       <img src="images/logo.jpg" alt="Logo" class="logo-img">
     </a>
-    <a href="index.html"><i class="fas fa-home"></i> Homepage</a>
-    <a href="matching.html"><i class="fas fa-tshirt"></i> Matching Outfit</a>
-    <a href="content.html"><i class="fas fa-file-alt"></i> Content</a>
-    <a href="community.html"><i class="fas fa-users"></i> Community</a>
-    <a href="custom.html"><i class="fas fa-cut"></i> Custom Clothing</a>
-    <a href="#"><i class="fas fa-building"></i> Company</a>
-    <a href="#"><i class="fas fa-dollar-sign"></i> Pricing</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="matching.html">👗 Matching</a>
+    <a href="content.html">📄 Content</a>
+    <a href="community.html">👥 Community</a>
+    <a href="custom.html">🧵 Custom Clothing</a>
+    <a href="company.html">🏢 Company</a>
+    <a href="#">💲 Pricing</a>
   </div>
-  <div class="content-container">
-    <h2 class="content-title">Content</h2>
-    <div class="content-tabs">
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-wrapper">
+      <h2 class="content-title">Content</h2>
+      <div class="content-tabs">
         <button class="tab-button active" data-category="all">All</button>
         <button class="tab-button" data-category="fashion">Fashion</button>
         <button class="tab-button" data-category="mind">Mental health</button>
         <button class="tab-button" data-category="eco">Environment</button>
       </div>
-      
+
       <div class="content-grid">
         <div class="content-card fashion">
           <img src="images/tone.jpg" alt="Color tones">
@@ -49,32 +49,33 @@
         <div class="content-card mind">
           <img src="images/power.jpg" alt="Power outfit">
           <p>Power Outfit to boost your confidence</p>
-        
         </div>
-        <script>
-            const buttons = document.querySelectorAll('.tab-button');
-            const cards = document.querySelectorAll('.content-card');
-          
-            buttons.forEach(btn => {
-              btn.addEventListener('click', () => {
-                // เปลี่ยน active
-                buttons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-          
-                const category = btn.dataset.category;
-          
-                cards.forEach(card => {
-                  if (category === 'all' || card.classList.contains(category)) {
-                    card.style.display = 'block';
-                  } else {
-                    card.style.display = 'none';
-                  }
-                });
-              });
-            });
-          </script>
       </div>
-      
+    </div>
   </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-button');
+    const cards = document.querySelectorAll('.content-card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // เปลี่ยน active
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const category = btn.dataset.category;
+
+        // ซ่อนหรือแสดง content-card
+        cards.forEach(card => {
+          if (category === 'all' || card.classList.contains(category)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

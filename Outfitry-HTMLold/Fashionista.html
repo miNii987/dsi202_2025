@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outfitry - Payment</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+      color: #333;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .sidebar {
+      width: 220px;
+      padding: 20px 15px;
+      background-color: #f8f8f8;
+      height: 100vh;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      position: fixed;
+      overflow-y: auto;
+    }
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      margin-bottom: 10px;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    .sidebar a:hover {
+      background-color: #e0e0e0;
+      border-radius: 8px;
+    }
+    .sidebar a.active {
+      background-color: #e0e0e0;
+      border-radius: 8px;
+      color: #333;
+    }
+    .logo-img {
+      width: 120px;
+      height: auto;
+      margin: 20px auto;
+      display: block;
+      border-radius: 12px;
+    }
+    .content {
+      flex: 1;
+      padding: 30px;
+      padding-top: 0; /* ลดจาก 80px เป็น 0 เนื่องจากลบ header */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 240px; /* เว้นระยะจาก sidebar */
+    }
+    .payment-form {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      width: 500px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    .payment-form h2 {
+      margin: 0 0 20px;
+      font-size: 1.5em;
+      color: #333;
+    }
+    .close-btn, .back-btn {
+      position: absolute;
+      top: 10px;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #666;
+    }
+    .close-btn {
+      right: 10px;
+    }
+    .back-btn {
+      left: 10px;
+    }
+    .close-btn:hover, .back-btn:hover {
+      color: #333;
+    }
+    .plan-summary {
+      background: #f8f9fa;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .plan-summary p {
+      margin: 5px 0;
+      color: #555;
+    }
+    .form-group, .card-details {
+      margin-bottom: 15px;
+    }
+    .form-group label, .card-details label {
+      display: block;
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .form-group input, .form-group select, .card-details input, .card-details select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      box-sizing: border-box;
+    }
+    .form-group input.error, .card-details input.error {
+      border-color: #dc3545;
+    }
+    .form-group .name-group, .card-details .card-info {
+      display: flex;
+      gap: 15px;
+    }
+    .form-group .name-group input {
+      flex: 1;
+    }
+    .card-details .card-info input:nth-child(1) {
+      flex: 2;
+    }
+    .card-details .card-info input:nth-child(2), .card-details .card-info input:nth-child(3) {
+      flex: 1;
+    }
+    .payment-methods {
+      margin-bottom: 15px;
+    }
+    .payment-methods label {
+      display: block;
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .payment-methods .options, .payment-methods .billing {
+      display: flex;
+      gap: 10px;
+    }
+    .payment-methods .options label, .payment-methods .billing label {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      flex: 1;
+      transition: border-color 0.3s;
+    }
+    .payment-methods input[type="radio"] {
+      margin-right: 10px;
+    }
+    .payment-methods .options label:hover, .payment-methods input[type="radio"]:checked + label {
+      border-color: #0066cc;
+    }
+    .security-note {
+      text-align: center;
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.9em;
+    }
+    .total {
+      text-align: right;
+      margin-bottom: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+    .upgrade-btn {
+      background: #28a745;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 100%;
+    }
+    .upgrade-btn:hover {
+      background: #218838;
+    }
+    .terms {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 10px;
+    }
+    .terms a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    .terms a:hover {
+      color: #004d99;
+    }
+    .error-message {
+      color: #dc3545;
+      font-size: 0.9em;
+      text-align: center;
+      margin-bottom: 10px;
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        padding: 20px;
+        padding-top: 20px;
+      }
+      .content {
+        padding-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ลบ header -->
+  <div class="container">
+    <div class="sidebar">
+      <a href="index.html">
+        <img src="images/logo.jpg" alt="Logo" class="logo-img">
+      </a>
+      <a href="index.html">🏠 Homepage</a>
+      <a href="matching.html">👗 Matching Outfit</a>
+      <a href="content.html">📄 Content</a>
+      <a href="community.html">👥 Community</a>
+      <a href="custom.html">🧵 Custom Clothing</a>
+      <a href="company.html">🏢 Company</a>
+      <a href="price.html" class="active">💲 Pricing</a>
+    </div>
+    <div class="content">
+      <div class="payment-form">
+        <span class="back-btn" onclick="window.location.href='pricing.html'"></span>
+        <span class="close-btn" onclick="window.location.href='pricing.html'"></span>
+        <h2>Upgrade to Fashionista 🚀</h2>
+        <div class="plan-summary">
+          <p><strong>Fashionista Plan 🌟</strong></p>
+          <p>Up to 7 outfits 👗 | No ads 🚫 | Access to Outfitry 2.0 🔓</p>
+        </div>
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" placeholder="Enter your first name" required>
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" placeholder="Enter your last name" required>
+        </div>
+        <div class="payment-methods">
+          <label>Payment Method 💳</label>
+          <div class="options">
+            <input type="radio" id="card" name="payment-method" value="card" checked>
+            <label for="card">Card 💳</label>
+            <input type="radio" id="cash-app" name="payment-method" value="cash-app">
+            <label for="cash-app">Cash App Pay 💵</label>
+            <input type="radio" id="mobile-banking" name="payment-method" value="mobile-banking">
+            <label for="mobile-banking">Mobile Banking 📱</label>
+          </div>
+        </div>
+        <div class="payment-methods">
+          <label>Billing Option 📅</label>
+          <div class="billing">
+            <input type="radio" id="monthly" name="billing" value="monthly" checked>
+            <label for="monthly">Pay Monthly 📅 129 ฿/month</label>
+          </div>
+        </div>
+        <div class="card-details">
+          <label for="card-number">Card Number 💳</label>
+          <input type="text" id="card-number" placeholder="1234 1234 1234 1234" required>
+          <label for="expiry-date">Expiration Date 📅</label>
+          <input type="text" id="expiry-date" placeholder="MM/YY" required>
+          <label for="cvc">Security Code 🔒</label>
+          <input type="text" id="cvc" placeholder="CVC" required>
+        </div>
+        <div class="card-details">
+          <label for="country">Country 🌍</label>
+          <select id="country" required>
+            <option value="Thailand">Thailand </option>
+            <option value="United States">United States </option>
+            <option value="United Kingdom">United Kingdom </option>
+            <option value="Australia">Australia </option>
+            <option value="Canada">Canada </option>
+            <option value="Japan">Japan </option>
+            <option value="Singapore">Singapore </option>
+            <option value="South Korea">South Korea </option>
+            <option value="Germany">Germany </option>
+            <option value="France">France </option>
+            <option value="Italy">Italy </option>
+            <option value="Spain">Spain </option>
+            <option value="Brazil">Brazil </option>
+            <option value="India">India </option>
+            <option value="China">China </option>
+            <option value="Malaysia">Malaysia </option>
+            <option value="Indonesia">Indonesia </option>
+            <option value="Philippines">Philippines </option>
+            <option value="Vietnam">Vietnam </option>
+            <option value="New Zealand">New Zealand </option>
+          </select>
+        </div>
+        <div class="security-note">🔒 Your payment is secure with SSL encryption</div>
+        <div class="error-message" id="error-message">Please fill in all required fields correctly.</div>
+        <div class="total">TOTAL: 129 ฿/month 💰</div>
+        <button class="upgrade-btn" onclick="validateForm()">Upgrade to Fashionista 🌟</button>
+        <div class="terms">
+          By upgrading, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function validateForm() {
+      const firstName = document.getElementById('first-name').value;
+      const lastName = document.getElementById('last-name').value;
+      const cardNumber = document.getElementById('card-number').value;
+      const expiryDate = document.getElementById('expiry-date').value;
+      const cvc = document.getElementById('cvc').value;
+      const errorMessage = document.getElementById('error-message');
+
+      let hasError = false;
+
+      // Reset error styles
+      document.getElementById('first-name').classList.remove('error');
+      document.getElementById('last-name').classList.remove('error');
+      document.getElementById('card-number').classList.remove('error');
+      document.getElementById('expiry-date').classList.remove('error');
+      document.getElementById('cvc').classList.remove('error');
+      errorMessage.style.display = 'none';
+
+      // Basic validation
+      if (!firstName) {
+        document.getElementById('first-name').classList.add('error');
+        hasError = true;
+      }
+      if (!lastName) {
+        document.getElementById('last-name').classList.add('error');
+        hasError = true;
+      }
+      if (!cardNumber || !/^\d{16}$/.test(cardNumber.replace(/\s/g, ''))) {
+        document.getElementById('card-number').classList.add('error');
+        hasError = true;
+      }
+      if (!expiryDate || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        document.getElementById('expiry-date').classList.add('error');
+        hasError = true;
+      }
+      if (!cvc || !/^\d{3,4}$/.test(cvc)) {
+        document.getElementById('cvc').classList.add('error');
+        hasError = true;
+      }
+
+      if (hasError) {
+        errorMessage.style.display = 'block';
+      } else {
+        // Proceed with payment (e.g., form submission)
+        alert('Payment successful! 🎉');
+        window.location.href = 'pricing.html';
+      }
+    }
+  </script>
+</body>
+</html>

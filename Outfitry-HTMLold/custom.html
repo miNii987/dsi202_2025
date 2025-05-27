@@ -16,29 +16,42 @@
     }
 
     .sidebar {
-      background-color: #ccf2e6;
+      background-color: #f8f8f8; /* ปรับให้เหมือน matching.html */
       width: 220px;
       padding: 20px 15px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+      height: 100vh; /* เพิ่มให้เหมือน matching.html */
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* เพิ่มให้เหมือน matching.html */
+      position: fixed; /* เพิ่มให้เหมือน matching.html */
+      overflow-y: auto; /* เพิ่มให้เหมือน matching.html */
     }
 
     .sidebar img.logo-img {
-      width: 100%;
-      margin-bottom: 10px;
+      width: 120px; /* ปรับให้เหมือน matching.html */
+      height: auto;
+      margin: 20px auto; /* ปรับให้เหมือน matching.html */
+      display: block;
+      border-radius: 12px; /* ปรับให้เหมือน matching.html */
     }
 
     .sidebar a {
+      display: block; /* เพิ่มให้เหมือน matching.html */
       text-decoration: none;
       color: #333;
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 8px; /* ปรับให้เหมือน matching.html */
+      margin-bottom: 10px; /* เพิ่มให้เหมือน matching.html */
+      font-weight: 500; /* เพิ่มให้เหมือน matching.html */
       transition: background 0.3s;
     }
 
     .sidebar a:hover {
-      background-color: #b2dfdb;
+      background-color: #e0e0e0; /* ปรับให้เหมือน matching.html */
+    }
+
+    .sidebar a.active {
+      background-color: #e0e0e0; /* เพิ่มให้เหมือน matching.html */
+      border-radius: 8px;
+      color: #333;
     }
 
     .sidebar i {
@@ -49,6 +62,7 @@
       flex: 1;
       background-color: #fff7f0;
       padding: 20px;
+      margin-left: 240px; /* เพิ่มเพื่อให้สอดคล้องกับ sidebar ที่ fixed */
     }
 
     .header {
@@ -127,20 +141,33 @@
       }
 
       .sidebar {
-        flex-direction: row;
         width: 100%;
-        overflow-x: auto;
-        padding: 10px;
+        height: auto; /* ปรับให้เหมือน matching.html */
+        position: relative; /* ปรับให้เหมือน matching.html */
+        display: flex;
+        flex-wrap: wrap;
         justify-content: space-around;
+        box-shadow: none; /* ปรับให้เหมือน matching.html */
+        border-bottom: 1px solid #ccc; /* ปรับให้เหมือน matching.html */
       }
 
       .sidebar a {
-        flex: none;
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 12px 5px; /* ปรับให้เหมือน matching.html */
+        margin: 0; /* ปรับให้เหมือน matching.html */
+        border-radius: 0; /* ปรับให้เหมือน matching.html */
         font-size: 14px;
+      }
+
+      .sidebar img.logo-img {
+        width: 80px; /* ปรับให้เหมือน matching.html */
+        margin: 10px auto; /* ปรับให้เหมือน matching.html */
       }
 
       .main-content {
         padding: 10px;
+        margin-left: 0; /* ปรับให้สอดคล้องกับ sidebar ที่เปลี่ยนไป */
       }
 
       .shop-card {
@@ -161,13 +188,13 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <a href="index.html"><img src="images/logo.jpg" alt="Logo" class="logo-img"></a>
-    <a href="index.html"><i class="fas fa-home"></i> Homepage</a>
-    <a href="matching.html"><i class="fas fa-tshirt"></i> Matching Outfit</a>
-    <a href="content.html"><i class="fas fa-file-alt"></i> Content</a>
-    <a href="community.html"><i class="fas fa-users"></i> Community</a>
-    <a href="custom.html"><i class="fas fa-cut"></i> Custom Clothing</a>
-    <a href="#"><i class="fas fa-building"></i> Company</a>
-    <a href="#"><i class="fas fa-dollar-sign"></i> Pricing</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="matching.html">👗 Matching</a>
+    <a href="content.html">📄 Content</a>
+    <a href="community.html">👥 Community</a>
+    <a href="custom.html">🧵 Custom Clothing</a>
+    <a href="company.html">🏢 Company</a>
+    <a href="price.html">💲Pricing</a>
   </div>
 
   <!-- Main Content -->

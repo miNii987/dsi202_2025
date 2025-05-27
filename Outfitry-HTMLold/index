@@ -36,7 +36,7 @@
         <a href="community.html"><i class="fas fa-users"></i> Community</a>
         <a href="custom.html"><i class="fas fa-cut"></i> Custom</a>
 
-        <a href="#"><i class="fas fa-building"></i> Company</a>
+        <a href="company.html"><i class="fas fa-building"></i> Company</a>
         <a href="#"><i class="fas fa-dollar-sign"></i> Pricing</a>
       </div>
       <div class="nav-right">

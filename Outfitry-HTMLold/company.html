@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company - Outfitry</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 220px;
+            background-color: #f8f8f8;
+            padding: 20px 15px;
+            height: 100vh;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #e0e0e0;
+            border-radius: 8px;
+        }
+
+        .sidebar a.active {
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            color: #333;
+        }
+
+        .logo-img {
+            width: 120px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .main-content {
+            margin-left: 240px;
+            padding-top: 40px;
+            max-width: 960px;
+            margin-right: auto;
+            margin-left: 260px;
+        }
+
+        .main-content h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .company-image img {
+            width: 100%;
+            max-width: 500px; /* เพิ่มขนาดภาพให้ใหญ่ขึ้น */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 10px 0; /* เพิ่มระยะห่างรอบภาพ */
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                box-shadow: none;
+                border-bottom: 1px solid #ccc;
+            }
+
+            .sidebar a {
+                flex: 1 1 auto;
+                text-align: center;
+                padding: 12px 5px;
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .logo-img {
+                width: 80px;
+                margin: 10px auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-right: 0;
+                padding-top: 20px;
+            }
+
+            .main-content h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .company-image img {
+                max-width: 100%; /* ปรับให้เต็มหน้าจอใน mobile */
+                margin: 5px 0; /* ปรับระยะห่างใน mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <a href="index.html">
+            <img src="images/logo.jpg" alt="Logo" class="logo-img">
+        </a>
+        <a href="index.html">🏠 Homepage</a>
+        <a href="matching.html">👗 Matching Outfit</a>
+        <a href="content.html">📄 Content</a>
+        <a href="community.html">👥 Community</a>
+        <a href="custom.html">🧵 Custom Clothing</a>
+        <a href="company.html" class="active">🏢 Company</a>
+        <a href="price.html">💲Pricing</a>
+    </div>
+
+    <main class="main-content">
+        <h1>Company</h1>
+        <section class="company-section">
+            <div class="company-text">
+                <h2>ABOUT US</h2>
+                <p>
+                    Discover the story behind our AI-powered fashion matching app. We are passionate about empowering individuals to express their unique style with confidence. Our cutting-edge technology seamlessly blends creativity with convenience, transforming everyday wardrobes into personal fashion experiences.
+                </p>
+                <br>
+                <p>
+                    Our mission is to make styling effortless and accessible for everyone. Whether you're looking to refresh your look or find new ways to wear your favorite pieces, our app is here to inspire and elevate your fashion journey.
+                </p>
+            </div>
+            <div class="company-image">
+                <img src="C:\Users\USER\dsi202_2025\dsi202_2025\dsi202_2025\Outfitry-HTML\images\about us.jpg" alt="About Us">
+            </div>
+        </section>
+
+        <section class="company-section">
+            <div class="company-text">
+                <h2>SECURITY</h2>
+                <p>
+                    Your security is our top priority. We implement advanced measures to safeguard your personal information. From encrypted data transfers to secure authentication protocols, we ensure that your data is protected at every step.
+                </p>
+                <br>
+                <p>
+                    Our team continuously monitors and updates our systems to prevent unauthorized access, ensuring a safe and seamless experience for all users.
+                </p>
+            </div>
+            <div class="company-image">
+                <img src="C:\Users\USER\dsi202_2025\dsi202_2025\dsi202_2025\Outfitry-HTML\images\security.jpg" alt="Security">
+            </div>
+        </section>
+
+        <section class="company-section">
+            <div class="company-text">
+                <h2>TERMS & PRIVACY</h2>
+                <p>
+                    We value your trust and prioritize your privacy. Our Terms & Privacy policy outlines the guidelines for using our app, the data we collect, and how we ensure your information is protected.
+                </p>
+                <br>
+                <p>
+                    We are committed to transparency and compliance with global data privacy standards. Learn more about how we handle your information responsibly.
+                </p>
+            </div>
+            <div class="company-image">
+                <img src="C:\Users\USER\dsi202_2025\dsi202_2025\dsi202_2025\Outfitry-HTML\images\terms.jpg" alt="Terms & Privacy">
+            </div>
+        </section>
+
+        <section class="company-section">
+            <div class="company-text">
+                <h2>CAREERS</h2>
+                <p>
+                    Join our journey to redefine the way people experience fashion. We are looking for passionate, creative, and innovative thinkers to join our team. Explore career opportunities with us and help shape the future of AI-driven fashion.
+                </p>
+                <br>
+                <p>
+                    We believe in nurturing talent, encouraging growth, and celebrating creativity. If you're ready to make an impact, we want to hear from you.
+                </p>
+            </div>
+            <div class="company-image">
+                <img src="C:\Users\USER\dsi202_2025\dsi202_2025\dsi202_2025\Outfitry-HTML\images\Career3.jpg" alt="Careers">
+            </div>
+        </section>
+    </main>
+</body>
+</html>
