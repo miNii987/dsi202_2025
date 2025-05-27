@@ -1,1 +1,0 @@
-# Empty __init__.py for matcher app
