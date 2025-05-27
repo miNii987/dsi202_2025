@@ -1,0 +1,727 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page-title">Matching Outfits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Body & Font */
+      body {
+        font-family: 'Prompt', sans-serif;
+        background: #fefef9;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* Topbar Navigation */
+      .topbar {
+        background-color: #85df80;
+        color: white;
+        padding: 12px 30px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        height: 80px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .nav-left {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        font-weight: 800;
+        margin-right: -12px;
+        min-width: 0;
+      }
+
+      .nav-logo {
+        width: 34px;
+        height: 34px;
+        margin-right: 16px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .nav-center {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex: 2;
+        min-width: 0;
+      }
+
+      .nav-center a {
+        color: white;
+        text-decoration: none;
+        padding: 12px;
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        font-size: 16px;
+        font-weight: 800;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      .nav-center a i {
+        margin-right: 8px;
+        font-size: 24px;
+        vertical-align: middle;
+        line-height: 1;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        justify-content: flex-end;
+        min-width: 0;
+      }
+
+      .nav-right a {
+        color: white;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 4px;
+        white-space: nowrap;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        background-color: #a7e2ef;
+        color: black;
+        font-weight: 800;
+        padding: 6px 16px;
+        white-space: nowrap;
+        min-width: 130px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      .lang-select {
+        background: #fff !important;
+        color: #333 !important;
+        border: 1px solid #ccc !important;
+        padding: 6px 26px 6px 10px !important;
+        border-radius: 4px !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        font-size: 15px !important;
+        font-weight: 800 !important;
+        cursor: pointer !important;
+        min-width: 90px !important;
+        appearance: none !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='16px' height='16px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 10px center !important;
+        background-size: 12px !important;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+      }
+
+      .lang-select:hover {
+        border-color: #999 !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .lang-select:focus {
+        outline: none !important;
+        border-color: #EABB84 !important;
+        box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+      }
+
+      .nav-center a:hover {
+        color: #EABB84;
+        background-color: white;
+        transform: scale(1.05);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-right a:hover {
+        background-color: white;
+        color: #EABB84;
+        transition: all 0.3s ease;
+        border-radius: 6px;
+      }
+
+      .nav-right .cta:hover {
+        background-color: #ffd6a4;
+        color: black;
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+      }
+
+      /* Responsive Navigation */
+      @media (max-width: 767px) {
+        .topbar {
+          height: auto;
+          padding: 10px 15px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav-container {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+          padding: 0;
+        }
+
+        .nav-left {
+          margin-bottom: 8px;
+          margin-left: 0;
+          font-size: 20px;
+        }
+
+        .nav-logo {
+          width: 30px;
+          height: 30px;
+          margin-right: 10px;
+        }
+
+        .nav-center {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          width: 100%;
+          gap: 6px;
+        }
+
+        .nav-center a {
+          padding: 6px 10px;
+          font-size: 15px;
+          font-weight: 800;
+        }
+
+        .nav-center a i {
+          font-size: 20px;
+          margin-right: 6px;
+        }
+
+        .nav-right {
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          gap: 8px;
+          width: 100%;
+        }
+
+        .nav-right a {
+          padding: 4px 8px;
+          font-size: 12px;
+          font-weight: 800;
+        }
+
+        .nav-right .cta {
+          min-width: 110px;
+          font-size: 12px;
+        }
+
+        .lang-select {
+          min-width: 80px !important;
+          padding: 4px 20px 4px 6px !important;
+          font-size: 12px !important;
+          font-weight: 800 !important;
+          background-size: 10px !important;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .nav-container {
+          max-width: 1000px;
+          padding: 0 15px;
+        }
+
+        .nav-left {
+          font-size: 22px;
+        }
+
+        .nav-logo {
+          width: 32px;
+          height: 32px;
+        }
+
+        .nav-center {
+          gap: 8px;
+        }
+
+        .nav-center a {
+          padding: 8px 12px;
+          font-size: 16px;
+          font-weight: 800;
+        }
+
+        .nav-center a i {
+          font-size: 22px;
+          margin-right: 8px;
+        }
+
+        .nav-right a {
+          padding: 4px 10px;
+          font-size: 13px;
+          font-weight: 800;
+        }
+
+        .nav-right .cta {
+          min-width: 120px;
+          font-size: 13px;
+        }
+
+        .lang-select {
+          min-width: 85px !important;
+          font-size: 13px !important;
+          font-weight: 800 !important;
+        }
+      }
+
+      /* Animations */
+      .fade-in {
+        animation: fadeIn 0.6s ease-in;
+      }
+      .slide-in {
+        animation: slideIn 0.5s ease-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes slideIn {
+        from { opacity: 0; transform: translateX(-10px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      /* Form Styling */
+      .upload-area {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-start; /* Align to left */
+        flex-wrap: wrap;
+      }
+      .upload-container {
+        position: relative;
+        width: 80px; /* Reduced size */
+        height: 80px; /* Reduced size */
+        border: 2px dashed #85df80; /* Green dashed border */
+        border-radius: 8px;
+      }
+      .upload-container input[type="file"] {
+        display: none;
+      }
+      .upload-container label {
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #e5e7eb;
+        border-radius: 8px;
+        text-align: center;
+        line-height: 80px; /* Adjusted for smaller size */
+        font-size: 0.75rem; /* Smaller font */
+        color: #4b5563;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+      .upload-container label:hover {
+        background-color: #d1d5db;
+      }
+      .upload-container label.image-label {
+        background: none;
+        line-height: normal;
+      }
+      .upload-container label.image-label img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+      }
+      .upload-container .remove-btn {
+        position: absolute;
+        top: -6px; /* Adjusted for smaller size */
+        right: -6px; /* Adjusted for smaller size */
+        background-color: #ef4444;
+        color: white;
+        width: 16px; /* Smaller remove button */
+        height: 16px; /* Smaller remove button */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px; /* Smaller font */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .upload-container .remove-btn:hover {
+        background-color: #dc2626;
+      }
+      .style-select, .style-text {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 14px;
+      }
+      .style-select:focus, .style-text:focus {
+        outline: none;
+        border-color: #EABB84;
+        box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3);
+      }
+      /* Styles for Content Layout */
+      .content-container {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .upload-note {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 8px;
+        display: block;
+        text-align: left; /* Align to left */
+      }
+      /* Header Styling */
+      .header {
+        background-color: #cbf5c9;
+        padding: 20px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 1.875rem; /* Match existing h1 size (text-3xl) */
+        font-weight: 600;
+        color: #1f2937; /* Match existing text-gray-800 */
+      }
+      .header img {
+        width: 40px;
+        border-radius: 50%;
+      }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="topbar">
+      <div class="nav-container">
+        <div class="nav-left">
+          <img src="{% static 'images/logo.jpg' %}" alt="Outfitry Brand Logo" class="nav-logo">
+          <span data-i18n="nav-title">OUTFITRY</span>
+        </div>
+        <div class="nav-center">
+          <a href="/" data-i18n="nav-home">🏠 Home</a>
+          <a href="/matching/" data-i18n="nav-matching">👗 Matching</a>
+          <a href="/content/" data-i18n="nav-content">📄 Content</a>
+          <a href="/community/" data-i18n="nav-community">👥 Community</a>
+          <a href="/custom/" data-i18n="nav-custom">🧵 Custom</a>
+          <a href="/price/" data-i18n="nav-pricing">💰 Pricing</a>
+        </div>
+        <div class="nav-right">
+          <a href="/login/" data-i18n="login">Login</a>
+          <a href="/signup/" class="cta" data-i18n="cta">Get Outfitry Free</a>
+          <select class="lang-select" id="lang-select">
+            <option value="en">English</option>
+            <option value="th">ไทย</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content-container mx-auto px-4 py-6 mt-20">
+      <div class="header slide-in">
+        <h1 data-i18n="page-title">👗 Matching Outfits</h1>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-8 mb-8 slide-in">
+        <!-- Style Selection -->
+        <div class="mb-8">
+          <h2 class="text-xl font-medium text-gray-800 mb-4" data-i18n="style-desc">Describe the style you want</h2>
+          <select id="style-select" class="style-select w-full p-3 border border-gray-300 rounded-lg text-base mb-4" data-i18n-placeholder="select-style">
+            <option value="" disabled selected data-i18n="select-style">Select your style</option>
+            <option value="casual">Casual</option>
+            <option value="work">Work</option>
+            <option value="beach">Beach</option>
+            <option value="date">Date</option>
+            <option value="sporty">Sporty</option>
+            <option value="streetwear">Streetwear</option>
+            <option value="elegant">Elegant</option>
+            <option value="bohemian">Bohemian</option>
+            <option value="vintage">Vintage</option>
+          </select>
+          <input type="text" id="style-text" class="style-text w-full p-3 border border-gray-300 rounded-lg text-base" placeholder="Describe your style in detail" data-i18n-placeholder="style-text-placeholder">
+        </div>
+
+        <!-- Top Upload -->
+        <div class="mb-8">
+          <h2 class="text-xl font-medium text-gray-800 mb-4" data-i18n="top">Top</h2>
+          <div class="upload-area">
+            <div class="upload-container">
+              <label for="top-upload-1" data-i18n="upload-button-1">Upload 1</label>
+              <input type="file" id="top-upload-1" accept="image/*">
+            </div>
+            <div class="upload-container">
+              <label for="top-upload-2" data-i18n="upload-button-2">Upload 2</label>
+              <input type="file" id="top-upload-2" accept="image/*">
+            </div>
+            <div class="upload-container">
+              <label for="top-upload-3" data-i18n="upload-button-3">Upload 3</label>
+              <input type="file" id="top-upload-3" accept="image/*">
+            </div>
+          </div>
+          <span class="upload-note" data-i18n="upload-top">You can upload up to 3 images</span>
+        </div>
+
+        <!-- Bottom Upload -->
+        <div class="mb-8">
+          <h2 class="text-xl font-medium text-gray-800 mb-4" data-i18n="bottom">Bottom</h2>
+          <div class="upload-area">
+            <div class="upload-container">
+              <label for="bottom-upload-1" data-i18n="upload-button-1">Upload 1</label>
+              <input type="file" id="bottom-upload-1" accept="image/*">
+            </div>
+            <div class="upload-container">
+              <label for="bottom-upload-2" data-i18n="upload-button-2">Upload 2</label>
+              <input type="file" id="bottom-upload-2" accept="image/*">
+            </div>
+            <div class="upload-container">
+              <label for="bottom-upload-3" data-i18n="upload-button-3">Upload 3</label>
+              <input type="file" id="bottom-upload-3" accept="image/*">
+            </div>
+          </div>
+          <span class="upload-note" data-i18n="upload-bottom">You can upload up to 3 images</span>
+        </div>
+
+        <!-- Dress Upload -->
+        <div class="mb-8">
+          <h2 class="text-xl font-medium text-gray-800 mb-4" data-i18n="dress">Dress</h2>
+          <div class="upload-area">
+            <div class="upload-container">
+              <label for="dress-upload-1" data-i18n="upload-button-1">Upload 1</label>
+              <input type="file" id="dress-upload-1" accept="image/*">
+            </div>
+            <div class="upload-container">
+              <label for="dress-upload-2" data-i18n="upload-button-2">Upload 2</label>
+              <input type="file" id="dress-upload-2" accept="image/*">
+            </div>
+            <div class="upload-container">
+              <label for="dress-upload-3" data-i18n="upload-button-3">Upload 3</label>
+              <input type="file" id="dress-upload-3" accept="image/*">
+            </div>
+          </div>
+          <span class="upload-note" data-i18n="upload-dress">You can upload up to 3 images</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button id="create-look" class="bg-cyan-400 text-white px-6 py-3 rounded-lg hover:bg-blue-700 text-base font-medium" data-i18n="create-look">Create Your Look</button>
+      </div>
+    </div>
+
+    <script>
+      const translations = {
+        en: {
+          "page-title": "Matching Outfits",
+          "nav-title": "OUTFITRY",
+          "nav-home": "🏠 Home",
+          "nav-matching": "👗 Matching",
+          "nav-content": "📄 Content",
+          "nav-community": "👥 Community",
+          "nav-custom": "🧵 Custom",
+          "nav-pricing": "💰 Pricing",
+          "login": "Login",
+          "cta": "Get Outfitry Free",
+          "style-desc": "Describe the style you want",
+          "select-style": "Select your style",
+          "style-text-placeholder": "Describe your style in detail",
+          "top": "Top",
+          "upload-top": "You can upload up to 3 images",
+          "bottom": "Bottom",
+          "upload-bottom": "You can upload up to 3 images",
+          "dress": "Dress",
+          "upload-dress": "You can upload up to 3 images",
+          "create-look": "Create Your Look",
+          "select-style-alert": "Please select a style!",
+          "upload-limit": "You can upload up to 3 images per category!",
+          "outfit-created": "Outfit created! Check the console for details.",
+          "upload-button-1": "Upload 1",
+          "upload-button-2": "Upload 2",
+          "upload-button-3": "Upload 3",
+          "upload-limit-single": "Please upload only one image per input!"
+        },
+        th: {
+          "page-title": "จับคู่ชุด",
+          "nav-title": "OUTFITRY",
+          "nav-home": "🏠 หน้าแรก",
+          "nav-matching": "👗 การจับคู่",
+          "nav-content": "📄 เนื้อหา",
+          "nav-community": "👥 ชุมชน",
+          "nav-custom": "🧵 ปรับแต่ง",
+          "nav-pricing": "💰 ราคา",
+          "login": "เข้าสู่ระบบ",
+          "cta": "รับ Outfitry ฟรี",
+          "style-desc": "อธิบายสไตล์ที่คุณต้องการ",
+          "select-style": "เลือกสไตล์ของคุณ",
+          "style-text-placeholder": "อธิบายสไตล์ของคุณโดยละเอียด",
+          "top": "เสื้อ",
+          "upload-top": "คุณสามารถอัปโหลดได้สูงสุด 3 รูป",
+          "bottom": "กางเกง/กระโปรง",
+          "upload-bottom": "คุณสามารถอัปโหลดได้สูงสุด 3 รูป",
+          "dress": "เดรส",
+          "upload-dress": "คุณสามารถอัปโหลดได้สูงสุด 3 รูป",
+          "create-look": "สร้างลุคของคุณ",
+          "select-style-alert": "กรุณาเลือกสไตล์!",
+          "upload-limit": "คุณสามารถอัปโหลดได้สูงสุด 3 รูปต่อหมวดหมู่!",
+          "outfit-created": "สร้างลุคเรียบร้อยแล้ว! ตรวจสอบคอนโซลสำหรับรายละเอียด.",
+          "upload-button-1": "อัปโหลด 1",
+          "upload-button-2": "อัปโหลด 2",
+          "upload-button-3": "อัปโหลด 3",
+          "upload-limit-single": "กรุณาอัปโหลดเพียงหนึ่งรูปต่อช่อง!"
+        }
+      };
+
+      function setLanguage(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+          const key = element.getAttribute('data-i18n');
+          element.textContent = translations[lang][key] || element.textContent;
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+          const key = element.getAttribute('data-i18n-placeholder');
+          element.placeholder = translations[lang][key] || element.placeholder;
+        });
+        // Reset upload labels to default text if no image
+        document.querySelectorAll('.upload-container label').forEach(label => {
+          if (!label.querySelector('img')) {
+            const inputId = label.getAttribute('for');
+            const buttonNumber = inputId.match(/\d$/)[0];
+            label.textContent = translations[lang][`upload-button-${buttonNumber}`] || `Upload ${buttonNumber}`;
+            label.classList.remove('image-label');
+          }
+        });
+        document.title = translations[lang]['page-title'] || document.title;
+        document.documentElement.lang = lang;
+        document.getElementById('lang-select').value = lang;
+      }
+
+      setLanguage('en');
+
+      document.getElementById('lang-select').addEventListener('change', function() {
+        setLanguage(this.value);
+      });
+
+      // Function to handle image uploads
+      function handleImageUpload(inputId) {
+        const input = document.getElementById(inputId);
+        const label = document.querySelector(`label[for="${inputId}"]`);
+        const container = label.closest('.upload-container');
+
+        input.addEventListener('change', function() {
+          if (this.files.length > 1) {
+            alert(translations[document.getElementById('lang-select').value]['upload-limit-single'] || 'Please upload only one image per input!');
+            this.value = '';
+            return;
+          }
+          if (this.files.length === 1) {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              // Clear existing content
+              label.innerHTML = '';
+              label.classList.add('image-label');
+              // Create image
+              const img = document.createElement('img');
+              img.src = e.target.result;
+              img.alt = 'Uploaded Image';
+              label.appendChild(img);
+              // Add remove button
+              let removeBtn = container.querySelector('.remove-btn');
+              if (!removeBtn) {
+                removeBtn = document.createElement('span');
+                removeBtn.className = 'remove-btn';
+                removeBtn.textContent = '×';
+                container.appendChild(removeBtn);
+              }
+              removeBtn.onclick = function() {
+                const buttonNumber = inputId.match(/\d$/)[0];
+                label.innerHTML = translations[document.getElementById('lang-select').value][`upload-button-${buttonNumber}`] || `Upload ${buttonNumber}`;
+                label.classList.remove('image-label');
+                input.value = '';
+                removeBtn.remove();
+              };
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+
+      // Initialize image upload handlers for each input
+      ['top', 'bottom', 'dress'].forEach(section => {
+        for (let i = 1; i <= 3; i++) {
+          handleImageUpload(`${section}-upload-${i}`);
+        }
+      });
+
+      document.getElementById('create-look').addEventListener('click', function() {
+        const style = document.getElementById('style-select').value;
+        const styleText = document.getElementById('style-text').value.trim();
+        const topImages = [];
+        const bottomImages = [];
+        const dressImages = [];
+
+        ['top', 'bottom', 'dress'].forEach(section => {
+          for (let i = 1; i <= 3; i++) {
+            const label = document.querySelector(`label[for="${section}-upload-${i}"]`);
+            const img = label.querySelector('img');
+            if (img) {
+              if (section === 'top') topImages.push(img.src);
+              if (section === 'bottom') bottomImages.push(img.src);
+              if (section === 'dress') dressImages.push(img.src);
+            }
+          }
+        });
+
+        if (!style) {
+          alert(translations[document.getElementById('lang-select').value]['select-style-alert'] || 'Please select a style!');
+          return;
+        }
+
+        if (topImages.length > 3 || bottomImages.length > 3 || dressImages.length > 3) {
+          alert(translations[document.getElementById('lang-select').value]['upload-limit'] || 'You can upload up to 3 images per category!');
+          return;
+        }
+
+        // Simulate outfit matching
+        console.log('Style:', style);
+        console.log('Style Description:', styleText);
+        console.log('Top Images:', topImages);
+        console.log('Bottom Images:', bottomImages);
+        console.log('Dress Images:', dressImages);
+        alert(translations[document.getElementById('lang-select').value]['outfit-created'] || 'Outfit created! Check the console for details.');
+      });
+    </script>
+</body>
+</html>

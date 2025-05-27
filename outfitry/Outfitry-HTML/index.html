@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Clothing - Outfitry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body & Font */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefef9;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Topbar Navigation */
+    .topbar {
+      background-color: #85df80;
+      color: white;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      min-width: 0;
+      margin-left: -12px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex: 2;
+      min-width: 0;
+    }
+
+    .nav-center a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 10px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.2;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-center a i {
+      margin-right: 10px;
+      font-size: 25px;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .nav-center a.active {
+      color: #EABB84;
+      background-color: white;
+      border-radius: 8px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-right .cta {
+      background-color: #a7e2ef;
+      color: black;
+      font-weight: 800;
+      padding: 6px 18px;
+      white-space: nowrap;
+      min-width: 140px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .lang-select {
+      background: #fff !important;
+      color: #333 !important;
+      border: 1px solid #ccc !important;
+      padding: 6px 28px 6px 10px !important;
+      border-radius: 4px !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      min-width: 95px !important;
+      appearance: none !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 10px center !important;
+      background-size: 14px !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lang-select:hover {
+      border-color: #999 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .lang-select:focus {
+      outline: none !important;
+      border-color: #EABB84 !important;
+      box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+    }
+
+    .nav-center a:hover {
+      color: #EABB84;
+      background-color: white;
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-right a:hover {
+      background-color: white;
+      color: #EABB84;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+    }
+
+    .nav-right .cta:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 767px) {
+      .topbar {
+        height: auto;
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 0;
+      }
+
+      .nav-left {
+        margin-bottom: 10px;
+        margin-left: 0;
+        font-size: 20px;
+      }
+
+      .nav-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      .nav-center {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .nav-center a {
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 20px;
+        margin-right: 6px;
+      }
+
+      .nav-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .nav-right a {
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 120px;
+        font-size: 12px;
+      }
+
+      .lang-select {
+        min-width: 85px !important;
+        padding: 4px 20px 4px 6px !important;
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        background-size: 10px !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .nav-container {
+        max-width: 1200px;
+        padding: 0 15px;
+      }
+
+      .nav-left {
+        font-size: 22px;
+      }
+
+      .nav-logo {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-center {
+        gap: 8px;
+      }
+
+      .nav-center a {
+        padding: 8px 14px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 21px;
+        margin-right: 8px;
+      }
+
+      .nav-right a {
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 130px;
+        font-size: 13px;
+      }
+
+      .lang-select {
+        min-width: 90px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+      }
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #fefef9;
+      padding: 20px;
+      padding-top: 100px;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero-overlay h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero-overlay p {
+      font-size: 20px;
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .hero-cta {
+      background-color: #a7e2ef;
+      color: black;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-cta:hover {
+      background-color: #ffd6a4;
+      transform: scale(1.05);
+    }
+
+    /* About Section */
+    .about-section {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .about-section h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+
+    .about-cta {
+      background-color: #85df80;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .about-cta:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .how-it-works h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      background-color: #d6f5ff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .step-card:hover {
+      transform: scale(1.03);
+    }
+
+    .step-card i {
+      font-size: 40px;
+      color: #85df80;
+      margin-bottom: 15px;
+    }
+
+    .step-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      font-size: 16px;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .stats-section h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      padding: 20px;
+      border-radius: 12px;
+      background-color: #f0f8ff;
+      transition: transform 0.2s ease;
+    }
+
+    .stat-card:hover {
+      transform: scale(1.03);
+    }
+
+    .stat-card i {
+      font-size: 36px;
+      color: #85df80;
+      margin-bottom: 15px;
+    }
+
+    .stat-card h3 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .stat-card p {
+      font-size: 16px;
+    }
+
+    /* Featured Styles Section */
+    .featured-styles {
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .featured-styles h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    .styles-carousel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .style-card {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .style-card:hover {
+      transform: scale(1.03);
+    }
+
+    .style-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .style-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .style-card p {
+      font-size: 16px;
+    }
+
+    /* Review Section */
+    .review-section {
+      padding: 30px 15px;
+      text-align: center;
+      margin-bottom: 40px;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-section h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .review-carousel-wrapper {
+      position: relative;
+      max-width: 850px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 0 50px;
+    }
+
+    .review-carousel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      gap: 15px;
+    }
+
+    .review-card {
+      min-width: 100%;
+      padding: 20px;
+      border-radius: 12px;
+      background-color: #f0f8ff;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(133, 223, 128, 0.3);
+    }
+
+    .reviewer-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      border: 2px solid #85df80;
+    }
+
+    .reviewer-details h4 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .reviewer-details p {
+      font-size: 18px;
+      color: #ffd700;
+      letter-spacing: 2px;
+    }
+
+    .review-card p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #444;
+      text-align: left;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #85df80;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      z-index: 10;
+    }
+
+    .arrow:hover {
+      background-color: #ffd6a4;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .arrow.left {
+      left: 5px;
+    }
+
+    .arrow.right {
+      right: 5px;
+    }
+
+    /* Newsletter Section */
+    .newsletter-section {
+      padding: 30px 15px;
+      text-align: center;
+      background-color: #f0f8ff;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .newsletter-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    .newsletter-content {
+      flex: 1;
+      text-align: left;
+      max-width: 450px;
+    }
+
+    .newsletter-content h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .newsletter-content p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      align-items: center;
+    }
+
+    .newsletter-form input {
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      flex: 1;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: #85df80;
+      box-shadow: 0 0 0 2px rgba(133, 223, 128, 0.3);
+    }
+
+    .newsletter-form button {
+      padding: 12px 24px;
+      background-color: #85df80;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 120px;
+    }
+
+    .newsletter-form button:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    .newsletter-success {
+      color: #85df80;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 8px;
+      background-color: rgba(133, 223, 128, 0.1);
+      border-radius: 8px;
+    }
+
+    .newsletter-image img {
+      width: 280px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .newsletter-image img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 40px 20px;
+      background-color: #85df80;
+      color: white;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    .footer-brand h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #ffd6a4;
+    }
+
+    .footer-columns {
+      display: flex;
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .footer-col p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .footer-col p:hover {
+      color: #ffd6a4;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 767px) {
+      .main-content {
+        padding: 10px;
+        padding-top: 220px;
+      }
+
+      .hero {
+        height: 300px;
+      }
+
+      .hero-overlay h1 {
+        font-size: 28px;
+      }
+
+      .hero-overlay p {
+        font-size: 16px;
+      }
+
+      .hero-cta {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      .about-section, .how-it-works, .stats-section, .featured-styles, .review-section, .newsletter-section, .site-footer {
+        padding: 20px 10px;
+      }
+
+      .about-section h2, .how-it-works h2, .stats-section h2, .featured-styles h2, .review-section h2, .newsletter-content h2 {
+        font-size: 24px;
+      }
+
+      .review-section {
+        padding: 20px 10px;
+      }
+
+      .review-carousel-wrapper {
+        padding: 0 35px;
+      }
+
+      .review-card {
+        padding: 15px;
+      }
+
+      .reviewer-img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .reviewer-details h4 {
+        font-size: 18px;
+      }
+
+      .reviewer-details p {
+        font-size: 16px;
+      }
+
+      .review-card p {
+        font-size: 15px;
+      }
+
+      .arrow {
+        padding: 8px 12px;
+      }
+
+      .arrow.left {
+        left: 5px;
+      }
+
+      .arrow.right {
+        right: 5px;
+      }
+
+      .newsletter-section {
+        padding: 20px 10px;
+      }
+
+      .newsletter-container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+      }
+
+      .newsletter-content {
+        max-width: 100%;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .newsletter-form input {
+        padding: 10px 12px;
+      }
+
+      .newsletter-form button {
+        padding: 10px 18px;
+        min-width: 100%;
+      }
+
+      .newsletter-image img {
+        width: 100%;
+        height: auto;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-columns {
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .hero {
+        height: 400px;
+      }
+
+      .hero-overlay h1 {
+        font-size: 36px;
+      }
+
+      .review-section {
+        padding: 25px 15px;
+      }
+
+      .review-carousel-wrapper {
+        padding: 0 45px;
+      }
+
+      .reviewer-img {
+        width: 60px;
+        height: 60px;
+      }
+
+      .newsletter-section {
+        padding: 25px 15px;
+      }
+
+      .newsletter-container {
+        gap: 15px;
+        padding: 10px;
+      }
+
+      .newsletter-image img {
+        width: 240px;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="images/logo.jpg" alt="Outfitry Logo" class="nav-logo">
+        <span data-translate="brand">OUTFITRY</span>
+      </div>
+      <div class="nav-center">
+        <a href="index.html">🏠<span data-translate="home">Home</span></a>
+        <a href="matching.html">👗<span data-translate="matching">Matching</span></a>
+        <a href="content.html">📄<span data-translate="content">Content</span></a>
+        <a href="community.html">👥<span data-translate="community">Community</span></a>
+        <a href="custom.html" class="active">🧵<span data-translate="custom">Custom</span></a>
+        <a href="price.html">💰<span data-translate="pricing">Pricing</span></a>
+      </div>
+      <div class="nav-right">
+        <a href="login.html" data-translate="login">Login</a>
+        <a href="signup.html" class="cta" data-translate="cta">Get Outfitry Free</a>
+        <select class="lang-select" aria-label="Select language" onchange="changeLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="th">Thai</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1 data-lang-key="hero-title">Discover Your Style with AI</h1>
+        <p data-lang-key="hero-subtitle">Transform your wardrobe into chic looks with just your phone</p>
+        <a href="matching.html" class="hero-cta" data-lang-key="try-now">Try Matching Now</a>
+      </div>
+      <video autoplay muted loop class="hero-video">
+        <source src="opening.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+      <h2 data-lang-key="about-title">What is Outfitry?</h2>
+      <p data-lang-key="about-description">Outfitry is your AI stylist that transforms your wardrobe into chic looks tailored to your style! With just your phone, discover sustainable fashion and confidence.</p>
+      <a href="matching.html" class="about-cta" data-lang-key="start-styling">Start Styling</a>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <h2 data-lang-key="how-it-works-title">Easy to Use in 3 Steps</h2>
+      <div class="steps-container">
+        <div class="step-card">
+          <i class="fas fa-camera"></i>
+          <h3 data-lang-key="step-1">Upload Clothes</h3>
+          <p data-lang-key="step-1-desc">Take photos of your wardrobe with your phone</p>
+        </div>
+        <div class="step-card">
+          <i class="fas fa-paint-brush"></i>
+          <h3 data-lang-key="step-2">Choose Style</h3>
+          <p data-lang-key="step-2-desc">Select your desired style, like minimal or street</p>
+        </div>
+        <div class="step-card">
+          <i class="fas fa-magic"></i>
+          <h3 data-lang-key="step-3">Get Recommendations</h3>
+          <p data-lang-key="step-3-desc">AI creates chic looks for you instantly</p>
+        </div>
+      </div>
+    </section>
+
+  
+    <section class="stats-section">
+      <h2 data-lang-key="stats-title">Why Outfitry?</h2>
+      <div class="stats-container">
+        <div class="stat-card">
+          <i class="fas fa-users"></i>
+          <h3 data-lang-key="stat-users">10,000+</h3>
+          <p data-lang-key="stat-users-desc">Users Worldwide</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-tshirt"></i>
+          <h3 data-lang-key="stat-looks">50,000+</h3>
+          <p data-lang-key="stat-looks-desc">Looks Created by AI</p>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-leaf"></i>
+          <h3 data-lang-key="stat-impact">50%</h3>
+          <p data-lang-key="stat-impact-desc">Reduced New Clothing Purchases</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="featured-styles">
+      <h2 data-lang-key="featured-styles-title">Explore Popular Styles</h2>
+      <div class="styles-carousel">
+        <div class="style-card">
+          <img src="images/minimal.jpg" alt="Minimal Style" loading="lazy" />
+          <h3 data-lang-key="minimal-style">Minimal Style</h3>
+          <p data-lang-key="minimal-desc">Simple yet striking, perfect for any occasion</p>
+        </div>
+        <div class="style-card">
+          <img src="images/street.jpg" alt="Street Style" loading="lazy" />
+          <h3 data-lang-key="street-style">Street Style</h3>
+          <p data-lang-key="street-desc">Cool and unique, reflecting your individuality</p>
+        </div>
+        <div class="style-card">
+          <img src="images/formal.jpg" alt="Formal Style" loading="lazy" />
+          <h3 data-lang-key="formal-style">Formal Style</h3>
+          <p data-lang-key="formal-desc">Elegant and confident for important events</p>
+        </div>
+      </div>
+    </section>
+
+   
+    <section class="review-section">
+      <h2 data-lang-key="review">REVIEW</h2>
+      <div class="review-carousel-wrapper">
+        <button class="arrow left" onclick="scrollSlide(-1)" aria-label="Previous review">❮</button>
+        <div class="review-carousel">
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/mila.jpg" alt="Mila Everly" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>Mila Everly</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p data-lang-key="review-mila">This app helped me discover new ways to style my clothes—like having a whole new wardrobe without shopping!</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/praewa.jpg" alt="Praewa Boondee" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>Praewa Boondee</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p data-lang-key="review-praewa">I feel more like myself because the AI suggests new styles I’ve never tried before!</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/nont.jpg" alt="Nont Phuwadet" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>Nont Phuwadet</h4>
+                <p>⭐⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p data-lang-key="review-nont">I don’t like spending time choosing outfits, but with Outfitry, every morning has become super easy!</p>
+          </div>
+          <div class="review-card">
+            <div class="reviewer-info">
+              <img src="images/alex.jpg" alt="Alex Hayes" class="reviewer-img" />
+              <div class="reviewer-details">
+                <h4>Alex Hayes</h4>
+                <p>⭐⭐⭐⭐</p>
+              </div>
+            </div>
+            <p data-lang-key="review-alex">I love how personalized the suggestions are! It's like a fashion friend who knows my closet better than I do.</p>
+          </div>
+        </div>
+        <button class="arrow right" onclick="scrollSlide(1)" aria-label="Next review">❯</button>
+      </div>
+    </section>
+
+    
+    <section class="newsletter-section">
+      <div class="newsletter-container">
+        <div class="newsletter-content">
+          <h2 data-lang-key="newsletter-title">Get Fashion Tips & Updates</h2>
+          <p data-lang-key="newsletter-desc">Subscribe to our newsletter for inspiration and news from Outfitry!</p>
+          <div class="newsletter-form" aria-label="Newsletter Subscription">
+            <input type="email" data-lang-key="newsletter-placeholder" placeholder="Enter your email" required aria-label="Email Address" />
+            <button type="button" data-lang-key="newsletter-subscribe" onclick="handleNewsletterSubmit()">Subscribe</button>
+          </div>
+          <div class="newsletter-success" id="newsletter-success" style="display: none;">
+            <p data-lang-key="newsletter-success">Thank you for subscribing! You'll receive updates in your inbox.</p>
+          </div>
+        </div>
+        <div class="newsletter-image">
+          <img src="images/newsletter.jpg" alt="Fashion inspiration for Outfitry newsletter" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+  
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h3>OUTFITRY</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <h4 data-lang-key="download">Download</h4>
+            <p data-lang-key="ios-android">iOS & Android</p>
+            <p data-lang-key="mac-windows">Mac & Windows</p>
+          </div>
+          <div class="footer-col">
+            <h4 data-lang-key="resources">Resources</h4>
+            <p data-lang-key="help-centre">Help Centre</p>
+            <p data-lang-key="faq">FAQ</p>
+            <p data-lang-key="affiliates">Affiliates</p>
+          </div>
+          <div class="footer-col">
+            <h4 data-lang-key="company-footer">Company</h4>
+            <p data-lang-key="about-us">About Us</p>
+            <p data-lang-key="term-privacy">Term & Privacy</p>
+            <p data-lang-key="security">Security</p>
+            <p data-lang-key="careers">Careers</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Language dictionary
+    const translations = {
+      en: {
+        brand: "OUTFITRY",
+        home: "Home",
+        matching: "Matching",
+        content: "Content",
+        community: "Community",
+        custom: "Custom",
+        pricing: "Pricing",
+        login: "Login",
+        cta: "Get Outfitry Free",
+        review: "REVIEW",
+        "review-mila": "This app helped me discover new ways to style my clothes—like having a whole new wardrobe without shopping!",
+        "review-praewa": "I feel more like myself because the AI suggests new styles I’ve never tried before!",
+        "review-nont": "I don’t like spending time choosing outfits, but with Outfitry, every morning has become super easy!",
+        "review-alex": "I love how personalized the suggestions are! It's like a fashion friend who knows my closet better than I do.",
+        download: "Download",
+        "ios-android": "iOS & Android",
+        "mac-windows": "Mac & Windows",
+        resources: "Resources",
+        "help-centre": "Help Centre",
+        faq: "FAQ",
+        affiliates: "Affiliates",
+        "company-footer": "Company",
+        "about-us": "About Us",
+        "term-privacy": "Term & Privacy",
+        security: "Security",
+        careers: "Careers",
+        "hero-title": "Discover Your Style with AI",
+        "hero-subtitle": "Transform your wardrobe into chic looks with just your phone",
+        "try-now": "Try Matching Now",
+        "about-title": "What is Outfitry?",
+        "about-description": "Outfitry is your AI stylist that transforms your wardrobe into chic looks tailored to your style! With just your phone, discover sustainable fashion and confidence.",
+        "start-styling": "Start Styling",
+        "how-it-works-title": "Easy to Use in 3 Steps",
+        "step-1": "Upload Clothes",
+        "step-1-desc": "Take photos of your wardrobe with your phone",
+        "step-2": "Choose Style",
+        "step-2-desc": "Select your desired style, like minimal or street",
+        "step-3": "Get Recommendations",
+        "step-3-desc": "AI creates chic looks for you instantly",
+        "stats-title": "Why Outfitry?",
+        "stat-users": "10,000+",
+        "stat-users-desc": "Users Worldwide",
+        "stat-looks": "50,000+",
+        "stat-looks-desc": "Looks Created by AI",
+        "stat-impact": "50%",
+        "stat-impact-desc": "Reduced New Clothing Purchases",
+        "featured-styles-title": "Explore Popular Styles",
+        "minimal-style": "Minimal Style",
+        "minimal-desc": "Simple yet striking, perfect for any occasion",
+        "street-style": "Street Style",
+        "street-desc": "Cool and unique, reflecting your individuality",
+        "formal-style": "Formal Style",
+        "formal-desc": "Elegant and confident for important events",
+        "newsletter-title": "Get Fashion Tips & Updates",
+        "newsletter-desc": "Subscribe to our newsletter for inspiration and news from Outfitry!",
+        "newsletter-placeholder": "Enter your email",
+        "newsletter-subscribe": "Subscribe",
+        "newsletter-success": "Thank you for subscribing! You'll receive updates in your inbox.",
+        "newsletter-error": "Please enter a valid email address"
+      },
+      th: {
+        brand: "OUTFITRY",
+        home: "หน้าแรก",
+        matching: "จับคู่",
+        content: "เนื้อหา",
+        community: "ชุมชน",
+        custom: "ปรับแต่ง",
+        pricing: "ราคา",
+        login: "เข้าสู่ระบบ",
+        cta: "รับ Outfitry ฟรี",
+        review: "รีวิว",
+        "review-mila": "แอปนี้ช่วยฉันค้นพบวิธีใหม่ๆ ในการแต่งตัว—เหมือนมีตู้เสื้อผ้าใหม่โดยไม่ต้องช้อปปิ้ง!",
+        "review-praewa": "รู้สึกเป็นตัวเองมากขึ้นเพราะ AI ช่วยแนะนำแนวการแต่งตัวใหม่ๆ ที่ไม่เคยลองมาก่อน",
+        "review-nont": "ผมไม่ชอบเสียเวลาเลือกชุด แต่พอใช้ Outfitry แล้ว ทุกเช้ากลายเป็นเรื่องง่ายสุด ๆ",
+        "review-alex": "ฉันชอบที่คำแนะนำมันเป็นส่วนตัวมาก! เหมือนมีเพื่อนแฟชั่นที่รู้จักตู้เสื้อผ้าของฉันดีกว่าฉันเอง",
+        download: "ดาวน์โหลด",
+        "ios-android": "iOS และ Android",
+        "mac-windows": "Mac และ Windows",
+        resources: "แหล่งข้อมูล",
+        "help-centre": "ศูนย์ช่วยเหลือ",
+        faq: "คำถามที่พบบ่อย",
+        affiliates: "พันธมิตร",
+        "company-footer": "บริษัท",
+        "about-us": "เกี่ยวกับเรา",
+        "term-privacy": "ข้อกำหนดและความเป็นส่วนตัว",
+        security: "ความปลอดภัย",
+        careers: "อาชีพ",
+        "hero-title": "ค้นพบสไตล์ของคุณด้วย AI",
+        "hero-subtitle": "เปลี่ยนตู้เสื้อผ้าของคุณให้เป็นลุคสุดชิค ง่ายๆ ด้วยโทรศัพท์เครื่องเดียว",
+        "try-now": "ลองจับคู่เลย",
+        "about-title": "Outfitry คืออะไร?",
+        "about-description": "Outfitry คือผู้ช่วย AI ที่เปลี่ยนเสื้อผ้าในตู้ของคุณให้เป็นลุคสุดชิคตามสไตล์ที่คุณต้องการ! เพียงใช้โทรศัพท์ ค้นพบแฟชั่นที่ยั่งยืนและมั่นใจในแบบที่เป็นคุณ",
+        "start-styling": "เริ่มสร้างสไตล์",
+        "how-it-works-title": "ใช้งานง่ายใน 3 ขั้นตอน",
+        "step-1": "ถ่ายภาพเสื้อผ้า",
+        "step-1-desc": "อัปโหลดภาพเสื้อผ้าจากตู้ของคุณด้วยโทรศัพท์",
+        "step-2": "เลือกสไตล์",
+        "step-2-desc": "เลือกสไตล์ที่ต้องการ เช่น มินิมอลหรือสตรีท",
+        "step-3": "รับคำแนะนำ",
+        "step-3-desc": "AI จะจับคู่ลุคสุดชิคให้คุณทันที",
+        "stats-title": "ทำไมต้อง Outfitry?",
+        "stat-users": "10,000+",
+        "stat-users-desc": "ผู้ใช้ทั่วโลก",
+        "stat-looks": "50,000+",
+        "stat-looks-desc": "ลุคที่ AI สร้าง",
+        "stat-impact": "50%",
+        "stat-impact-desc": "ลดการซื้อเสื้อผ้าใหม่",
+        "featured-styles-title": "สำรวจสไตล์ยอดนิยม",
+        "minimal-style": "สไตล์มินิมอล",
+        "minimal-desc": "เรียบง่ายแต่โดดเด่น เหมาะกับทุกโอกาส",
+        "street-style": "สไตล์สตรีท",
+        "street-desc": "เท่และมีสไตล์ สะท้อนตัวตนที่ไม่เหมือนใคร",
+        "formal-style": "สไตล์ทางการ",
+        "formal-desc": "สง่างามและมั่นใจสำหรับงานสำคัญ",
+        "newsletter-title": "รับเคล็ดลับแฟชั่นและอัปเดต",
+        "newsletter-desc": "สมัครรับจดหมายข่าวเพื่อรับแรงบันดาลใจด้านสไตล์และข่าวสารล่าสุดจาก Outfitry!",
+        "newsletter-placeholder": "กรอกอีเมลของคุณ",
+        "newsletter-subscribe": "สมัคร",
+        "newsletter-success": "ขอบคุณที่สมัคร! คุณจะได้รับอัปเดตจากเราสู่กล่องจดหมายของคุณ",
+        "newsletter-error": "กรุณากรอกอีเมลที่ถูกต้อง"
+      }
+    };
+
+    // Function to change language
+    function changeLanguage(lang) {
+      if (!translations[lang]) {
+        console.warn(`Language "${lang}" not found, falling back to English`);
+        lang = 'en';
+      }
+
+      document.querySelectorAll("[data-lang-key]").forEach(element => {
+        const key = element.getAttribute("data-lang-key");
+        if (translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        } else {
+          console.warn(`Translation missing for key "${key}" in language "${lang}"`);
+        }
+      });
+
+      document.querySelectorAll("input[data-lang-key]").forEach(input => {
+        const key = input.getAttribute("data-lang-key");
+        if (translations[lang][key]) {
+          input.placeholder = translations[lang][key];
+        } else {
+          console.warn(`Translation missing for placeholder key "${key}" in language "${lang}"`);
+        }
+      });
+
+      document.documentElement.lang = lang;
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Carousel functionality
+    let currentSlide = 0;
+    const carousel = document.querySelector('.review-carousel');
+    const cards = document.querySelectorAll('.review-card');
+
+    function scrollSlide(direction) {
+      const totalSlides = cards.length;
+      currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+      carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    setInterval(() => scrollSlide(1), 5000);
+
+    // Newsletter form submission
+    function handleNewsletterSubmit() {
+      const form = document.querySelector('.newsletter-form');
+      const email = form.querySelector('input[type="email"]').value;
+      const currentLang = document.documentElement.lang || 'en';
+      const successDiv = document.getElementById('newsletter-success');
+      if (/^\S+@\S+\.\S+$/.test(email)) {
+        successDiv.style.display = 'block';
+        setTimeout(() => {
+          successDiv.style.display = 'none';
+        }, 3000);
+        form.querySelector('input[type="email"]').value = '';
+        if (typeof gtag === 'function') {
+          gtag('event', 'newsletter_signup', { 'event_category': 'engagement' });
+        }
+      } else {
+        alert(translations[currentLang]['newsletter-error']);
+      }
+    }
+
+    // Set initial language
+    const storedLang = localStorage.getItem('preferredLanguage');
+    const userLang = navigator.language || navigator.userLanguage;
+    const defaultLang = storedLang || (userLang.startsWith("th") ? "th" : "en");
+    document.querySelector(".lang-select").value = defaultLang;
+    changeLanguage(defaultLang);
+
+    // Debug language change
+    document.querySelector(".lang-select").addEventListener("change", (e) => {
+      console.log("Language changed to:", e.target.value);
+      changeLanguage(e.target.value);
+    });
+  </script>
+</body>
+</html>

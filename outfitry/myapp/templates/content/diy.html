@@ -1,0 +1,799 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page-title">DIY & Upcycling Clothes: Transform Your Wardrobe Sustainably</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body & Font */
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Topbar Navigation */
+    .topbar {
+      background-color: #85df80;
+      color: white;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      min-width: 0;
+      margin-left: -12px;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex: 2;
+      min-width: 0;
+    }
+
+    .nav-center a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 10px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .nav-center a i {
+      margin-right: 10px;
+      font-size: 25px;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .nav-right .cta {
+      background-color: #a7e2ef;
+      color: black;
+      font-weight: 800;
+      padding: 6px 18px;
+      white-space: nowrap;
+      min-width: 140px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .lang-select {
+      background: #fff !important;
+      color: #333 !important;
+      border: 1px solid #ccc !important;
+      padding: 6px 28px 6px 10px !important;
+      border-radius: 4px !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      min-width: 95px !important;
+      appearance: none !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 10px center !important;
+      background-size: 14px !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .lang-select:hover {
+      border-color: #999 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .lang-select:focus {
+      outline: none !important;
+      border-color: #EABB84 !important;
+      box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+    }
+
+    .nav-center a:hover {
+      color: #EABB84;
+      background-color: white;
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-right a:hover {
+      background-color: white;
+      color: #EABB84;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+    }
+
+    .nav-right .cta:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 767px) {
+      .topbar {
+        height: auto;
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 0;
+      }
+
+      .nav-left {
+        margin-bottom: 10px;
+        margin-left: 0;
+        font-size: 20px;
+      }
+
+      .nav-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      .nav-center {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .nav-center a {
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 20px;
+        margin-right: 6px;
+      }
+
+      .nav-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .nav-right a {
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 120px;
+        font-size: 12px;
+      }
+
+      .lang-select {
+        min-width: 85px !important;
+        padding: 4px 20px 4px 6px !important;
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        background-size: 10px !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .nav-container {
+        max-width: 1200px;
+        padding: 0 15px;
+      }
+
+      .nav-left {
+        font-size: 22px;
+      }
+
+      .nav-logo {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-center {
+        gap: 8px;
+      }
+
+      .nav-center a {
+        padding: 8px 14px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 21px;
+        margin-right: 8px;
+      }
+
+      .nav-right a {
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 130px;
+        font-size: 13px;
+      }
+
+      .lang-select {
+        min-width: 90px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Comment Card */
+    .comment-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .comment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .reply-form {
+      display: none;
+      margin-top: 10px;
+    }
+    .reply-form.active {
+      display: block;
+    }
+    .hidden-comment {
+      display: none;
+    }
+    .show-all-comments .hidden-comment {
+      display: block;
+    }
+    .article-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+    .likes:hover {
+      cursor: pointer;
+      color: #ff69b4;
+    }
+    .section-divider {
+      border-top: 2px solid #fed7aa;
+      margin: 24px 0;
+    }
+    .comment-avatar {
+      border: 2px solid #e5e7eb;
+      transition: transform 0.2s ease;
+    }
+    .comment-avatar:hover {
+      transform: scale(1.1);
+    }
+    .reply {
+      margin-left: 2rem;
+      padding-left: 1rem;
+      border-left: 3px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="topbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="{% static 'images/logo.jpg' %}" alt="Outfitry Brand Logo" class="nav-logo">
+        <span data-i18n="nav-title">OUTFITRY</span>
+      </div>
+      <div class="nav-center">
+        <a href="/" data-i18n="nav-home">🏠 Home</a>
+        <a href="/matching/" data-i18n="nav-matching">👗 Matching</a>
+        <a href="/content/" data-i18n="nav-content">📄 Content</a>
+        <a href="/community/" data-i18n="nav-community">👥 Community</a>
+        <a href="/custom/" data-i18n="nav-custom">🧵 Custom</a>
+        <a href="/pricing/" data-i18n="nav-pricing">💰 Pricing</a>
+      </div>
+      <div class="nav-right">
+        <a href="/login/" data-i18n="login">Login</a>
+        <a href="/signup/" class="cta" data-i18n="cta">Get Outfitry Free</a>
+        <select class="lang-select" id="lang-select">
+          <option value="en" selected>English</option>
+          <option value="th">ไทย</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Back Button -->
+  <div class="container mx-auto px-4 py-6 mt-20">
+    <a href="/content/" class="inline-flex items-center text-amber-600 hover:text-amber-700 text-lg font-medium slide-in" data-i18n="back">← Back</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 max-w-4xl pb-16">
+    <article class="bg-white rounded-xl shadow-md p-8 slide-in">
+      <div class="article-header text-center mb-8">
+        <img src="{% static 'images/diy_upcycle.jpg' %}" alt="DIY upcycled clothing" class="article-image">
+        <h1 class="text-4xl font-semibold text-gray-800 mb-4 fade-in" data-i18n="article-title">
+          DIY & Upcycling Clothes: Transform Your Wardrobe Sustainably
+        </h1>
+        <div class="flex justify-between items-center text-gray-600 mb-4 text-base">
+          <span data-i18n="author">By Outfitry Team</span>
+          <div>
+            <span class="likes" id="article-likes">❤️ <span class="like-count">8</span></span>
+            <span class="comments">💬 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose prose-lg text-gray-800 leading-relaxed font-light">
+        <p class="mb-6">In a world where fast fashion dominates, DIY and upcycling clothes offer a refreshing alternative that's not only budget-friendly but also environmentally conscious. The art of transforming old, forgotten garments into stylish, unique pieces has gained tremendous popularity in recent years. Let's dive into the creative world of clothing upcycling and discover how you can breathe new life into your wardrobe.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Why Upcycle?</h2>
+        <p class="mb-4">Before we get our hands dirty with creative projects, let's understand why upcycling matters:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Environmental Impact:</strong> The fashion industry is one of the largest polluters globally. By upcycling, you reduce waste and extend the lifecycle of clothing items.</li>
+          <li><strong>Unique Style:</strong> Nothing beats the satisfaction of wearing something truly one-of-a-kind that reflects your personal style.</li>
+          <li><strong>Budget-Friendly:</strong> Transform clothes you already own instead of buying new ones – your wallet will thank you!</li>
+          <li><strong>Creative Outlet:</strong> Upcycling provides a wonderful creative outlet that can be both therapeutic and rewarding.</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Essential Tools for Your Upcycling Journey</h2>
+        <p class="mb-4">Before diving into projects, gather these basic tools:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Good quality scissors</li>
+          <li>Sewing machine (or needle and thread for hand sewing)</li>
+          <li>Fabric glue</li>
+          <li>Measuring tape</li>
+          <li>Chalk or fabric markers</li>
+          <li>Embroidery hoops and needles</li>
+          <li>Iron-on patches</li>
+          <li>Buttons, ribbons, and other embellishments</li>
+          <li>Fabric paint or dye</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">5 Beginner-Friendly Upcycling Projects</h2>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">1. Transform Old Jeans into a Stylish Tote Bag</h3>
+        <p class="mb-4">Those worn-out jeans with holes in the knees can become your new favorite shopping bag! Cut off the legs, sew the bottom shut, add fabric for the lining, and attach sturdy straps. Voilà – a durable, unique tote that tells a story.</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">2. T-Shirt Transformation</h3>
+        <p class="mb-4">Oversized t-shirts offer endless possibilities:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Crop and tie the bottom for a modern look</li>
+          <li>Cut the sleeves and neckline for a trendy tank top</li>
+          <li>Create t-shirt yarn and knit or crochet it into household items</li>
+          <li>Make a no-sew pillow cover by simply tying the edges together</li>
+        </ul>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">3. Button-Up Shirt Makeover</h3>
+        <p class="mb-4">That old button-up collecting dust can become:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>A cute summer dress (by adding fabric to the bottom)</li>
+          <li>An open front cardigan (by adjusting the cut)</li>
+          <li>A stylish off-shoulder top (by repositioning the collar)</li>
+        </ul>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">4. Embellishment Magic</h3>
+        <p class="mb-4">Sometimes, simple additions make the biggest difference:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Add patches to cover holes or stains</li>
+          <li>Embroider patterns on plain garments</li>
+          <li>Attach buttons, sequins, or beads for extra flair</li>
+          <li>Use fabric paint to create custom designs</li>
+        </ul>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">5. Denim Jacket Revival</h3>
+        <p class="mb-4">Give new life to old denim jackets by:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Adding fabric panels for a patchwork effect</li>
+          <li>Embroidering personalized designs</li>
+          <li>Attaching pins, patches, or studs</li>
+          <li>Tie-dying or bleaching for a completely new look</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Advanced Upcycling Techniques</h2>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Garment Reconstruction</h3>
+        <p class="mb-4">Learn to completely deconstruct and rebuild clothing items. This could mean transforming a maxi dress into a two-piece set or combining elements from multiple garments into an entirely new creation.</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Textile Dyeing</h3>
+        <p class="mb-4">Natural dyeing using ingredients like turmeric, avocado pits, or red cabbage can transform white or light-colored fabrics into beautiful, earth-toned masterpieces. Techniques like tie-dye, ombré, or shibori create stunning patterns.</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Sustainable Embellishments</h3>
+        <p class="mb-4">Create your own embellishments from recycled materials:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Transform plastic bottles into sequins</li>
+          <li>Make buttons from coconut shells</li>
+          <li>Create appliqués from fabric scraps</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Building a Sustainable Wardrobe</h2>
+        <p class="mb-4">Upcycling is just one aspect of creating a more sustainable relationship with clothing. Here are additional tips:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Shop Second-Hand:</strong> Thrift stores, vintage shops, and online marketplaces offer pre-loved clothing ready for your upcycling magic.</li>
+          <li><strong>Clothing Swaps:</strong> Organize exchanges with friends to refresh your wardrobe without buying new items.</li>
+          <li><strong>Repair First:</strong> Learn basic mending techniques to extend the life of your clothes before considering upcycling.</li>
+          <li><strong>Quality Over Quantity:</strong> When buying new, invest in well-made pieces that will last longer.</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Sharing Your Upcycling Journey</h2>
+        <p class="mb-4">The upcycling community is supportive and inspiring. Consider:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Starting a social media account dedicated to your projects</li>
+          <li>Joining online groups and forums to exchange ideas</li>
+          <li>Hosting workshops to teach friends your favorite techniques</li>
+          <li>Selling your creations on platforms like Etsy or at local markets</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Final Thoughts</h2>
+        <p class="mb-4">Upcycling clothes isn't just a crafty hobby – it's a mindful approach to fashion that challenges the disposable nature of contemporary consumer culture. Each stitch, cut, and creative decision represents a small but meaningful step toward a more sustainable world.</p>
+        <p class="mb-6">Remember, there are no mistakes in upcycling, only unexpected design opportunities! So gather those forgotten garments, unleash your creativity, and transform your wardrobe one piece at a time. The planet, your wallet, and your unique sense of style will all benefit from your sustainable fashion journey.</p>
+        <p class="mb-6">Happy upcycling!</p>
+
+        <div class="flex flex-wrap gap-3 mt-6">
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#DIYFashion</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#UpcyclingClothes</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#SustainableFashion</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#EcoFriendlyStyle</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#TransformYourWardrobe</a>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="mt-12" id="comments-section">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6" data-i18n="comments-title">Comments 💬</h3>
+
+        <!-- Comment 1 -->
+        <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="1">
+          <div class="flex gap-4">
+            <img src="{% static 'images/ดาวน์โหลด (62).jpg' %}" alt="EcoCrafter Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">EcoCrafter</strong>
+                  <p class="text-gray-800 text-base leading-relaxed" data-i18n="comment-1">I turned an old pair of jeans into a tote bag using your guide, and it’s my favorite bag now! So sustainable and stylish! 🌿</p>
+                  <span class="text-sm italic text-gray-500">2025/05/14</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('1')">❤️ <span class="like-count">5</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-cyan-500 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-1"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment 2 -->
+        <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="2">
+          <div class="flex gap-4">
+            <img src="{% static 'images/ดาวน์โหลด (60).jpg' %}" alt="ThriftWizard Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">ThriftWizard</strong>
+                  <p class="text-gray-800 text-base leading-relaxed" data-i18n="comment-2">Embroidered my denim jacket with floral patterns, and it looks amazing! Upcycling feels so rewarding! 🌸</p>
+                  <span class="text-sm italic text-gray-500">2025/05/14</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('2')">❤️ <span class="like-count">3</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-cyan-500 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment Form -->
+        <div class="mt-8">
+          <h4 class="text-xl font-medium text-gray-800 mb-4" data-i18n="submit-comment">Submit Comment</h4>
+          <form id="comment-form" class="flex flex-col gap-3">
+            <textarea id="comment-text" class="w-full p-3 border border-gray-300 rounded-lg text-base" rows="4" placeholder="Write your comment..." required></textarea>
+            <button type="submit" class="bg-cyan-400 text-white px-6 py-2 rounded-lg hover:bg-blue-700 text-sm font-medium">Submit</button>
+          </form>
+        </div>
+
+        <!-- New Comments -->
+        <div id="new-comments" class="mt-6"></div>
+
+        <!-- Load More Comments -->
+        <a href="#" id="load-more-comments" class="inline-block mt-6 text-amber-600 hover:text-amber-700 font-medium text-base" data-i18n="load-more">Load More Comments ➡️</a>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        "page-title": "DIY & Upcycling Clothes: Transform Your Wardrobe Sustainably",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 Home",
+        "nav-matching": "👗 Matching",
+        "nav-content": "📄 Content",
+        "nav-community": "👥 Community",
+        "nav-custom": "🧵 Custom",
+        "nav-pricing": "💰 Pricing",
+        "login": "Login",
+        "cta": "Get Outfitry Free",
+        "back": "← Back",
+        "article-title": "DIY & Upcycling Clothes: Transform Your Wardrobe Sustainably",
+        "author": "By Outfitry Team",
+        "comments-title": "Comments 💬",
+        "comment-1": "I turned an old pair of jeans into a tote bag using your guide, and it’s my favorite bag now! So sustainable and stylish! 🌿",
+        "comment-2": "Embroidered my denim jacket with floral patterns, and it looks amazing! Upcycling feels so rewarding! 🌸",
+        "submit-comment": "Submit Comment",
+        "load-more": "Load More Comments ➡️",
+        "load-less": "Show Less Comments ⬅️"
+      },
+      th: {
+        "page-title": "DIY และการอัพไซเคิลเสื้อผ้า: เปลี่ยนตู้เสื้อผ้าของคุณอย่างยั่งยืน",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 หน้าแรก",
+        "nav-matching": "👗 การจับคู่",
+        "nav-content": "📄 เนื้อหา",
+        "nav-community": "👥 ชุมชน",
+        "nav-custom": "🧵 ปรับแต่ง",
+        "nav-pricing": "💰 ราคา",
+        "login": "เข้าสู่ระบบ",
+        "cta": "รับ Outfitry ฟรี",
+        "back": "← ย้อนกลับ",
+        "article-title": "DIY และการอัพไซเคิลเสื้อผ้า: เปลี่ยนตู้เสื้อผ้าของคุณอย่างยั่งยืน",
+        "author": "โดยทีม Outfitry",
+        "comments-title": "ความคิดเห็น 💬",
+        "comment-1": "ฉันเปลี่ยนกางเกงยีนส์เก่าเป็นกระเป๋าโท้ทโดยใช้คำแนะนำของคุณ ตอนนี้มันเป็นกระเป๋าโปรดของฉัน! ยั่งยืนและมีสไตล์มาก! 🌿",
+        "comment-2": "ฉันปักลายดอกไม้บนแจ็คเก็ตยีนส์ มันดูน่าทึ่งมาก! การอัพไซเคิลรู้สึกคุ้มค่าจริงๆ! 🌸",
+        "submit-comment": "ส่งความคิดเห็น",
+        "load-more": "โหลดความคิดเห็นเพิ่มเติม ➡️",
+        "load-less": "แสดงความคิดเห็นน้อยลง ⬅️"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        element.textContent = translations[lang][key] || element.textContent;
+      });
+
+      document.title = translations[lang]['page-title'] || document.title;
+      document.documentElement.lang = lang;
+      document.getElementById('lang-select').value = lang;
+    }
+
+    setLanguage('en');
+
+    document.getElementById('lang-select').addEventListener('change', function() {
+      setLanguage(this.value);
+    });
+
+    let comments = [];
+
+    function likeComment(commentId) {
+      const comment = document.querySelector(`[data-comment-id="${commentId}"]`);
+      const likeCountElement = comment.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      comment.querySelector('.likes').style.color = '#ff69b4';
+    }
+
+    document.getElementById('article-likes').addEventListener('click', function() {
+      const likeCountElement = this.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      this.style.color = '#ff69b4';
+    });
+
+    document.getElementById('comment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const text = document.getElementById('comment-text').value.trim();
+      if (text) {
+        const commentId = comments.length + 3; // Account for 2 static comments
+        const newComment = {
+          id: commentId,
+          username: 'Anonymous',
+          text: text,
+          date: new Date().toLocaleDateString('en-CA'),
+          likes: 0
+        };
+        comments.push(newComment);
+
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in';
+        commentDiv.setAttribute('data-comment-id', commentId);
+        commentDiv.innerHTML = `
+          <div class="flex gap-4">
+            <img src="images/user3.jpg" alt="Anonymous Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">Anonymous</strong>
+                  <p class="text-gray-800 text-base leading-relaxed">${text}</p>
+                  <span class="text-sm italic text-gray-500">${newComment.date}</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('${commentId}')">❤️ <span class="like-count">${newComment.likes}</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-cyan-500 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-${commentId}"></div>
+            </div>
+          </div>
+        `;
+        document.getElementById('new-comments').insertBefore(commentDiv, document.getElementById('new-comments').firstChild);
+        this.reset();
+        alert("Your comment has been submitted! Thank you for sharing 😊");
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('reply-btn')) {
+        const commentCard = e.target.closest('.comment-card');
+        const replyForm = commentCard.querySelector('.reply-form');
+        replyForm.classList.toggle('active');
+      }
+    });
+
+    document.addEventListener('submit', function(e) {
+      if (e.target.querySelector('.reply-submit')) {
+        e.preventDefault();
+        const commentCard = e.target.closest('.comment-card');
+        const commentId = commentCard.getAttribute('data-comment-id');
+        const replyText = e.target.querySelector('.reply-text').value.trim();
+        if (replyText) {
+          const replyDiv = document.createElement('div');
+          replyDiv.className = 'reply flex gap-3 bg-gray-100 rounded-lg p-4 mt-3';
+          replyDiv.innerHTML = `
+            <img src="images/user3.jpg" alt="Anonymous Profile" class="w-8 h-8 rounded-full comment-avatar">
+            <div class="flex-1">
+              <strong class="text-gray-800 text-base">Anonymous</strong>
+              <p class="text-gray-800 text-sm leading-relaxed">${replyText}</p>
+              <span class="text-xs italic text-gray-500">${new Date().toLocaleDateString('en-CA')}</span>
+              <span class="likes text-sm" onclick="likeReply(this)">❤️ <span class="like-count">0</span></span>
+            </div>
+          `;
+          document.getElementById(`replies-${commentId}`).appendChild(replyDiv);
+          e.target.querySelector('.reply-text').value = '';
+          e.target.closest('.reply-form').classList.remove('active');
+        }
+      }
+    });
+
+    function likeReply(likeElement) {
+      const likeCountElement = likeElement.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      likeElement.style.color = '#ff69b4';
+    }
+
+    document.getElementById('load-more-comments').addEventListener('click', function(e) {
+      e.preventDefault();
+      const commentsSection = document.getElementById('comments-section');
+      if (!commentsSection.classList.contains('show-all-comments')) {
+        commentsSection.classList.add('show-all-comments');
+        this.textContent = translations[document.getElementById('lang-select').value]['load-less'] || 'Show Less Comments ⬅️';
+      } else {
+        commentsSection.classList.remove('show-all-comments');
+        this.textContent = translations[document.getElementById('lang-select').value]['load-more'] || 'Load More Comments ➡️';
+      }
+    });
+  </script>
+</body>
+</html>

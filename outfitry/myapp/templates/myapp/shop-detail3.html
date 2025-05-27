@@ -1,0 +1,392 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="title_woven_love">ทอรัก ปักใจ - ตัวอย่างผลงาน</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .dot {
+      transition: background-color 0.3s ease;
+    }
+    .dot.active {
+      background-color: #f59e0b;
+    }
+    .review-card {
+      transition: transform 0.2s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+    .hidden-review {
+      display: none;
+    }
+    .show-all .hidden-review {
+      display: block;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-amber-50 to-white">
+  <!-- Back Button -->
+  <div class="container mx-auto px-4 py-6">
+    <a href="custom.html" class="inline-flex items-center text-amber-600 hover:text-amber-700 text-lg font-medium slide-in">
+      ← ย้อนกลับ
+    </a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="shop-detail-container container mx-auto px-4 max-w-4xl pb-16">
+    <h2 class="section-title text-3xl font-semibold text-gray-800 text-center mb-8 fade-in" data-translate="portfolio">ตัวอย่างผลงาน</h2>
+
+    <!-- Main Image -->
+    <div class="image-wrapper relative mb-8 fade-in">
+      <img src="{% static 'images/ทอรัก ปักใจ.jpg' %}" alt="ทอรัก ปักใจ" class="w-full h-96 object-cover rounded-xl shadow-lg">
+      <div class="dots absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        <span class="dot active w-3 h-3 rounded-full bg-amber-500 cursor-pointer"></span>
+        <span class="dot w-3 h-3 rounded-full bg-gray-300 cursor-pointer"></span>
+        <span class="dot w-3 h-3 rounded-full bg-gray-300 cursor-pointer"></span>
+      </div>
+    </div>
+
+    <!-- Shop Info -->
+    <div class="shop-info-card bg-white rounded-xl shadow-md p-6 mb-8 slide-in">
+      <h3 class="text-2xl font-bold text-gray-800 mb-2" data-translate="shop_woven_love">ทอรัก ปักใจ</h3>
+      <p class="text-gray-600 mb-2" data-translate="location_khlong_luang">📍 คลองหลวง ปทุมธานี</p>
+      <p class="text-amber-600 font-medium mb-4" data-translate="promo_woven_love">ลด 10% สำหรับคำสั่งซื้อเกิน 2,000 บาท</p>
+      <div class="shop-stats flex flex-wrap gap-4 text-sm text-gray-700">
+        <div class="flex items-center">
+          <span class="text-amber-500 mr-1" data-translate="rating_4_8_99">4.8</span> 🌟
+        </div>
+        <div data-translate="shop_type_general">ร้านทั่วไป</div>
+        <div data-translate="response_rate">100% การตอบกลับ</div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section flex justify-between items-center mb-6 slide-in">
+      <h3 class="text-xl font-semibold text-gray-800" data-translate="reviews_rating">⭐ 4.8 คะแนน (99)</h3>
+      <a href="#" id="show-all-reviews" class="text-amber-600 hover:text-amber-700 font-medium" data-translate="view_all">ดูทั้งหมด</a>
+    </div>
+
+    <!-- Reviews Container -->
+    <div id="reviews-container">
+      <!-- Review 1 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user1.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_1_name">สุพิชญา ใจงาม</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_1_text">
+          ร้านนี้ตัดชุดได้สวยสุด ๆ! งานละเอียดมาก ช่างให้คำแนะนำดีเยี่ยม ปลื้มมากค่ะ! ❤️
+        </p>
+        <img src="{% static 'images/portfolio-woven-love-1.jpg' %}" alt="ตัวอย่างงาน" class="review-photo w-full max-w-xs rounded-lg object-cover">
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user2.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_2_name">อนุชา สายทอง</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_2_text">
+          งานตัดเย็บคุณภาพเยี่ยม ตรงตามที่สั่งทุกจุด ช่างเป็นมิตร รอไม่นานเลย!
+        </p>
+        <img src="{% static 'images/portfolio-woven-love-2.jpg' %}" alt="ตัวอย่างงาน" class="review-photo w-full max-w-xs rounded-lg object-cover">
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user3.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_3_name">กานต์พิชชา ดาวสว่าง</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_3_text">
+          ชุดที่สั่งตัดใส่ได้พอดีเป๊ะ งานสวยเกินคาด ช่างออกแบบได้ถูกใจมาก ต้องกลับมาอีก!
+        </p>
+        <img src="{% static 'images/portfolio-woven-love-3.jpg' %}" alt="ตัวอย่างงาน" class="review-photo w-full max-w-xs rounded-lg object-cover">
+      </div>
+
+      <!-- Hidden Reviews (shown when clicking "ดูทั้งหมด") -->
+      <div class="hidden-review">
+        <!-- Review 4 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="{% static 'images/user4.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800" data-translate="reviewer_4_name">ณัฐพล สุขสันต์</strong><br>
+              <span class="text-amber-500">★★★★☆</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-translate="review_4_text">
+            งานตัดเย็บดีมาก ฝีมือช่างเยี่ยม ราคาคุ้มค่า รอนานนิดหน่อยแต่ผลงานสวย!
+          </p>
+          <img src="{% static 'images/portfolio-woven-love-4.jpg' %}" alt="ตัวอย่างงาน" class="review-photo w-full max-w-xs rounded-lg object-cover">
+        </div>
+
+        <!-- Review 5 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="{% static 'images/user5.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800" data-translate="reviewer_5_name">วรนุช พิมพ์ใจ</strong><br>
+              <span class="text-amber-500">★★★★☆</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-translate="review_5_text">
+            ชอบชุดที่ตัดมาก สวยถูกใจ! ช่างเก่งแต่ตอบข้อความช้าไปนิด โดยรวมแล้วดีมาก
+          </p>
+        </div>
+
+        <!-- Review 6 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="{% static 'images/user6.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800" data-translate="reviewer_6_name">สมเกียรติ ทองคำ</strong><br>
+              <span class="text-amber-500">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-translate="review_6_text">
+          งานตัดเย็บสุดยอด! ชุดใส่แล้วมั่นใจมาก ช่างใจดี ใส่ใจลูกค้า คุ้มทุกบาท!
+        </p>
+        <img src="{% static 'images/portfolio-woven-love-5.jpg' %}" alt="ตัวอย่างงาน" class="review-photo w-full max-w-xs rounded-lg object-cover">
+      </div>
+
+      <!-- Review 7 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user7.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_7_name">ศุภนิดา จันทร์ฉาย</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_7_text">
+          ร้านนี้คือที่สุด! ชุดสวย งานปราณีต ช่างแนะนำดีมาก ดีใจที่ได้ตัดชุดที่นี่!
+        </p>
+      </div>
+
+      <!-- Review 8 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user8.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_8_name">ชัชวาลย์ สายลม</strong><br>
+            <span class="text-amber-500">★★★★☆</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_8_text">
+          งานตัดเย็บดี ฝีมือช่างเยี่ยม อยากให้มีตัวเลือกผ้าเยอะกว่านี้ แต่โดยรวมชอบมาก
+        </p>
+      </div>
+
+      <!-- Review 9 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user9.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_9_name">ภัทรา สุขศรี</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_9_text">
+          สั่งตัดชุดไปงานสำคัญ สวยเกินคาด! ช่างออกแบบให้เข้ากับตัว ประทับใจสุด ๆ!
+        </p>
+      </div>
+
+      <!-- Review 10 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user10.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_10_name">อภิญญา แสงทอง</strong><br>
+            <span class="text-amber-500">★★★★☆</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_10_text">
+          งานดีมาก ฝีมือช่างสุดยอด รอนานหน่อยเพราะคิวเยอะ แต่ผลงานคุ้มค่า!
+        </p>
+      </div>
+
+      <!-- Review 11 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user11.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_11_name">วรเชษฐ์ ใจดี</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_11_text">
+          ชุดสวย ใส่สบาย งานละเอียดมาก ช่างเป็นกันเอง ต้องมาอุดหนุนอีกแน่นอน!
+        </p>
+      </div>
+
+      <!-- Review 12 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="{% static 'images/user12.jpg' %}" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800" data-translate="reviewer_12_name">สุธาสินี ลมเย็น</strong><br>
+            <span class="text-amber-500">★★★★☆</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-translate="review_12_text">
+          งานตัดเย็บดี ราคาสมเหตุสมผล รอนานนิดหน่อยแต่ชุดสวยถูกใจมาก!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Language translations
+    const translations = {
+      en: {
+        title_woven_love: "Woven Love - Portfolio",
+        back: "Back",
+        portfolio: "Portfolio",
+        shop_woven_love: "Woven Love",
+        location_khlong_luang: "Khlong Luang, Pathum Thani",
+        promo_woven_love: "10% off for orders over 2,000 THB",
+        rating_4_8_99: "4.8",
+        shop_type_general: "General Shop",
+        response_rate: "100% Response Rate",
+        reviews_rating: "⭐ 4.8 Rating (99)",
+        view_all: "View All",
+        show_less: "Show Less",
+        reviewer_1_name: "Supitchaya Jaingam",
+        review_1_text: "This shop’s tailoring is amazing! The work is so detailed, and the tailor gave excellent advice. Absolutely thrilled! ❤️",
+        reviewer_2_name: "Anucha Saithong",
+        review_2_text: "Top-quality tailoring, exactly as ordered. The tailor was friendly, and it didn’t take long at all!",
+        reviewer_3_name: "Kanpitcha Daosawang",
+        review_3_text: "The outfit fits perfectly, and the work is beyond expectations. The tailor designed it to suit my style. Will return!",
+        reviewer_4_name: "Nattapol Suksan",
+        review_4_text: "Great tailoring, excellent craftsmanship, and good value. Waited a bit, but the result was beautiful!",
+        reviewer_5_name: "Woranuch Phimjai",
+        review_5_text: "Loved the tailored outfit, it’s perfect! The tailor is skilled, but responses were a bit slow. Overall, very good.",
+        reviewer_6_name: "Somkiat Thongkham",
+        review_6_text: "Amazing tailoring! The outfit made me feel confident. The tailor was kind and attentive. Worth every penny!",
+        reviewer_7_name: "Supanida Chanchai",
+        review_7_text: "This shop is the best! Beautiful outfit, meticulous work, and great advice from the tailor. So happy!",
+        reviewer_8_name: "Chatchawan Sailom",
+        review_8_text: "Good tailoring, excellent craftsmanship. Would love more fabric options, but overall really like it.",
+        reviewer_9_name: "Phatthara Suksri",
+        review_9_text: "Ordered a dress for an important event, and it was stunning! The tailor designed it to fit me perfectly. So impressed!",
+        reviewer_10_name: "Aphinya Saengthong",
+        review_10_text: "Very good work, amazing craftsmanship. Waited a bit due to a busy queue, but the result was worth it!",
+        reviewer_11_name: "Worachet Jaidee",
+        review_11_text: "Beautiful and comfortable outfit, very detailed work. The tailor was friendly. Will definitely return!",
+        reviewer_12_name: "Suthasinee Lomyen",
+        review_12_text: "Good tailoring, reasonable price. Waited a bit, but the outfit was beautiful and satisfying!"
+      },
+      th: {
+        title_woven_love: "ทอรัก ปักใจ - ตัวอย่างผลงาน",
+        back: "ย้อนกลับ",
+        portfolio: "ตัวอย่างผลงาน",
+        shop_woven_love: "ทอรัก ปักใจ",
+        location_khlong_luang: "คลองหลวง ปทุมธานี",
+        promo_woven_love: "ลด 10% สำหรับคำสั่งซื้อเกิน 2,000 บาท",
+        rating_4_8_99: "4.8",
+        shop_type_general: "ร้านทั่วไป",
+        response_rate: "100% การตอบกลับ",
+        reviews_rating: "⭐ 4.8 คะแนน (99)",
+        view_all: "ดูทั้งหมด",
+        show_less: "แสดงน้อยลง",
+        reviewer_1_name: "สุพิชญา ใจงาม",
+        review_1_text: "ร้านนี้ตัดชุดได้สวยสุด ๆ! งานละเอียดมาก ช่างให้คำแนะนำดีเยี่ยม ปลื้มมากค่ะ! ❤️",
+        reviewer_2_name: "อนุชา สายทอง",
+        review_2_text: "งานตัดเย็บคุณภาพเยี่ยม ตรงตามที่สั่งทุกจุด ช่างเป็นมิตร รอไม่นานเลย!",
+        reviewer_3_name: "กานต์พิชชา ดาวสว่าง",
+        review_3_text: "ชุดที่สั่งตัดใส่ได้พอดีเป๊ะ งานสวยเกินคาด ช่างออกแบบได้ถูกใจมาก ต้องกลับมาอีก!",
+        reviewer_4_name: "ณัฐพล สุขสันต์",
+        review_4_text: "งานตัดเย็บดีมาก ฝีมือช่างเยี่ยม ราคาคุ้มค่า รอนานนิดหน่อยแต่ผลงานสวย!",
+        reviewer_5_name: "วรนุช พิมพ์ใจ",
+        review_5_text: "ชอบชุดที่ตัดมาก สวยถูกใจ! ช่างเก่งแต่ตอบข้อความช้าไปนิด โดยรวมแล้วดีมาก",
+        reviewer_6_name: "สมเกียรติ ทองคำ",
+        review_6_text: "งานตัดเย็บสุดยอด! ชุดใส่แล้วมั่นใจมาก ช่างใจดี ใส่ใจลูกค้า คุ้มทุกบาท!",
+        reviewer_7_name: "ศุภนิดา จันทร์ฉาย",
+        review_7_text: "ร้านนี้คือที่สุด! ชุดสวย งานปราณีต ช่างแนะนำดีมาก ดีใจที่ได้ตัดชุดที่นี่!",
+        reviewer_8_name: "ชัชวาลย์ สายลม",
+        review_8_text: "งานตัดเย็บดี ฝีมือช่างเยี่ยม อยากให้มีตัวเลือกผ้าเยอะกว่านี้ แต่โดยรวมชอบมาก",
+        reviewer_9_name: "ภัทรา สุขศรี",
+        review_9_text: "สั่งตัดชุดไปงานสำคัญ สวยเกินคาด! ช่างออกแบบให้เข้ากับตัว ประทับใจสุด ๆ!",
+        reviewer_10_name: "อภิญญา แสงทอง",
+        review_10_text: "งานดีมาก ฝีมือช่างสุดยอด รอนานหน่อยเพราะคิวเยอะ แต่ผลงานคุ้มค่า!",
+        reviewer_11_name: "วรเชษฐ์ ใจดี",
+        review_11_text: "ชุดสวย ใส่สบาย งานละเอียดมาก ช่างเป็นกันเอง ต้องมาอุดหนุนอีกแน่นอน!",
+        reviewer_12_name: "สุธาสินี ลมเย็น",
+        review_12_text: "งานตัดเย็บดี ราคาสมเหตุสมผล รอนานนิดหน่อยแต่ชุดสวยถูกใจมาก!"
+      }
+    };
+
+    // Function to change language
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = translations[lang][key];
+      });
+      // Update the "View All" / "Show Less" link based on container state
+      const showAllLink = document.getElementById('show-all-reviews');
+      const container = document.getElementById('reviews-container');
+      showAllLink.textContent = container.classList.contains('show-all') ? translations[lang].show_less : translations[lang].view_all;
+    }
+
+    // Dot navigation for image carousel (placeholder)
+    document.querySelectorAll('.dot').forEach(dot => {
+      dot.addEventListener('click', function() {
+        document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Toggle reviews visibility
+    document.getElementById('show-all-reviews').addEventListener('click', function(e) {
+      e.preventDefault();
+      const container = document.getElementById('reviews-container');
+      const link = this;
+      if (container.classList.contains('show-all')) {
+        container.classList.remove('show-all');
+        link.textContent = translations[document.documentElement.lang].view_all;
+      } else {
+        container.classList.add('show-all');
+        link.textContent = translations[document.documentElement.lang].show_less;
+      }
+    });
+
+    // Initialize language
+    document.addEventListener('DOMContentLoaded', () => {
+      const langSelect = document.querySelector('.lang-select') || { value: 'th' }; // Fallback to Thai if no select
+      changeLanguage(langSelect.value);
+    });
+  </script>
+</body>
+</html>

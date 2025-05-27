@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Clothing - Outfitry</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body & Font */
+    body {
+      font-family: 'Prompt', sans-serif;
+      background-color: #fefef9;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Topbar Navigation */
+    .topbar {
+      background-color: #85df80;
+      color: white;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      min-width: 0;
+      margin-left: -12px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex: 2;
+      min-width: 0;
+    }
+
+    .nav-center a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 10px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.2;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-center a i {
+      margin-right: 10px;
+      font-size: 25px;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .nav-center a.active {
+      color: #EABB84;
+      background-color: white;
+      border-radius: 8px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 800;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-right .cta {
+      background-color: #a7e2ef;
+      color: black;
+      font-weight: 800;
+      padding: 6px 18px;
+      white-space: nowrap;
+      min-width: 140px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .lang-select {
+      background: #fff !important;
+      color: #333 !important;
+      border: 1px solid #ccc !important;
+      padding: 6px 28px 6px 10px !important;
+      border-radius: 4px !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      min-width: 95px !important;
+      appearance: none !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 10px center !important;
+      background-size: 14px !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lang-select:hover {
+      border-color: #999 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .lang-select:focus {
+      outline: none !important;
+      border-color: #EABB84 !important;
+      box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+    }
+
+    .nav-center a:hover {
+      color: #EABB84;
+      background-color: white;
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-right a:hover {
+      background-color: white;
+      color: #EABB84;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+    }
+
+    .nav-right .cta:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 767px) {
+      .topbar {
+        height: auto;
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 0;
+      }
+
+      .nav-left {
+        margin-bottom: 10px;
+        margin-left: 0;
+        font-size: 20px;
+      }
+
+      .nav-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      .nav-center {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .nav-center a {
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 20px;
+        margin-right: 6px;
+      }
+
+      .nav-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .nav-right a {
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 120px;
+        font-size: 12px;
+      }
+
+      .lang-select {
+        min-width: 85px !important;
+        padding: 4px 20px 4px 6px !important;
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        background-size: 10px !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .nav-container {
+        max-width: 1200px;
+        padding: 0 15px;
+      }
+
+      .nav-left {
+        font-size: 22px;
+      }
+
+      .nav-logo {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-center {
+        gap: 8px;
+      }
+
+      .nav-center a {
+        padding: 8px 14px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 21px;
+        margin-right: 8px;
+      }
+
+      .nav-right a {
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 130px;
+        font-size: 13px;
+      }
+
+      .lang-select {
+        min-width: 90px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+      }
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: #fefef9;
+      padding: 20px;
+      padding-top: 120px; /* Space below topbar */
+    }
+
+    .header {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px; /* Space below header */
+    }
+
+    .tab-menu {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-start; /* Align to left edge */
+      max-width: 800px; /* Match shop-list width */
+      margin: 0 auto 30px; /* Bottom margin for space above shop list */
+      font-size: 16px;
+    }
+
+    .tab-menu button {
+      padding: 6px 12px;
+      background-color: #fff;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      color: #333;
+      font-family: 'Prompt', sans-serif;
+      font-size: 16px;
+    }
+
+    .tab-menu button.active {
+      background-color: #a5d6a7;
+      font-weight: bold;
+    }
+
+    .tab-menu button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .type-submenu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .type-submenu-toggle {
+      display: flex;
+      align-items: center;
+    }
+
+    .type-submenu-toggle::after {
+      content: '▼';
+      margin-left: 5px;
+      font-size: 12px;
+    }
+
+    .type-submenu-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 100px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+
+    .type-submenu-content.show {
+      display: block;
+    }
+
+    .type-submenu-content button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: none;
+      border-radius: 0;
+      padding: 8px 12px;
+    }
+
+    .type-submenu-content button:hover {
+      background-color: #f0f0f0;
+    }
+
+    .shop-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .shop-card {
+      background-color: #d6f5ff;
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: black;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      height: 140px; /* Fixed height for uniformity */
+    }
+
+    .shop-card:hover {
+      transform: scale(1.02);
+    }
+
+    .shop-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .shop-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100px; /* Ensure consistent text area height */
+    }
+
+    .shop-info h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .shop-info p {
+      margin: 3px 0;
+      font-size: 15px;
+      line-height: 1.3;
+    }
+
+    .shop-info .promotion {
+      color: #d32f2f;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .shop-info .placeholder {
+      visibility: hidden;
+      font-size: 14px;
+      margin: 3px 0;
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .shop-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .main-content {
+        padding: 10px;
+        padding-top: 220px; /* Space below topbar for mobile */
+      }
+
+      .header {
+        margin-bottom: 20px; /* Reduced for mobile */
+      }
+
+      .tab-menu {
+        justify-content: flex-start;
+        margin: 0 auto 20px; /* Bottom margin for mobile */
+      }
+
+      .shop-list {
+        grid-template-columns: 1fr;
+      }
+
+      .shop-card {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto; /* Allow height to adjust on mobile */
+      }
+
+      .shop-img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+      }
+
+      .shop-info {
+        min-height: auto; /* Reset for mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="images/logo.jpg" alt="Outfitry Logo" class="nav-logo">
+        <span data-translate="brand">OUTFITRY</span>
+      </div>
+      <div class="nav-center">
+        <a href="index.html">🏠<span data-translate="home">Home</span></a>
+        <a href="matching.html">👗<span data-translate="matching">Matching</span></a>
+        <a href="content.html">📄<span data-translate="content">Content</span></a>
+        <a href="community.html">👥<span data-translate="community">Community</span></a>
+        <a href="custom.html" class="active">🧵<span data-translate="custom">Custom</span></a>
+        <a href="price.html">💰<span data-translate="pricing">Pricing</span></a>
+      </div>
+      <div class="nav-right">
+        <a href="login.html" data-translate="login">Login</a>
+        <a href="signup.html" class="cta" data-translate="cta">Get Outfitry Free</a>
+        <select class="lang-select" aria-label="Select language" onchange="changeLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="th">ไทย</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header" data-translate="custom_clothing">Custom Clothing</div>
+
+    <div class="tab-menu">
+      <button data-filter="all" class="active" data-translate="popular">Popular</button>
+      <button data-filter="promotion" data-translate="promotion">Promotion</button>
+      <div class="type-submenu">
+        <button class="type-submenu-toggle" data-translate="type">Type</button>
+        <div class="type-submenu-content">
+          <button data-filter="general" data-translate="general">ทั่วไป</button>
+          <button data-filter="tailoring" data-translate="tailoring">ตัดเย็บ</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop-list">
+      <a href="shop-detail1.html" class="shop-card" data-type="general" data-promotion="true">
+        <img src="images/ผ้าสร้างฝัน.jpg" alt="ผ้าสร้างฝัน" class="shop-img">
+        <div class="shop-info">
+          <h3 data-translate="shop_dream_fabric">ผ้าสร้างฝัน</h3>
+          <p data-translate="location_lam_luk_ka">Lam Luk Ka, Pathum Thani</p>
+          <p data-translate="rating_4_8">⭐ 4.8 (10)</p>
+          <p class="promotion" data-translate="promo_dream_fabric">ลด 20% สำหรับชุดสั่งตัดครั้งแรก</p>
+        </div>
+      </a>
+
+      <a href="shop-detail2.html" class="shop-card" data-type="tailoring">
+        <img src="images/flowing fabric.jpg" alt="Flowing Fabric" class="shop-img">
+        <div class="shop-info">
+          <h3 data-translate="shop_flowing_fabric">Flowing Fabric</h3>
+          <p data-translate="location_sathorn">Sathorn, BKK</p>
+          <p data-translate="rating_4_6">⭐ 4.6 (9)</p>
+          <p class="placeholder">Placeholder</p>
+        </div>
+      </a>
+
+      <a href="shop-detail3.html" class="shop-card" data-type="general">
+        <img src="images/ทอรัก ปักใจ.jpg" alt="ทอรัก ปักใจ" class="shop-img">
+        <div class="shop-info">
+          <h3 data-translate="shop_woven_love">ทอรัก ปักใจ</h3>
+          <p data-translate="location_khlong_luang">Khlong Luang, Pathum Thani</p>
+          <p data-translate="rating_4_8_99">⭐ 4.8 (12)</p>
+          <p class="placeholder">Placeholder</p>
+        </div>
+      </a>
+
+      <a href="shop-detail4.html" class="shop-card" data-type="tailoring" data-promotion="true">
+        <img src="images/tailors touch.jpg" alt="Tailor's Touch" class="shop-img">
+        <div class="shop-info">
+          <h3 data-translate="shop_tailors_touch">Tailor's Touch</h3>
+          <p data-translate="location_bangna">Bangna BKK</p>
+          <p data-translate="rating_4_7">⭐ 4.7 (10)</p>
+          <p class="promotion" data-translate="promo_tailors_touch">แถมผ้าพันคอเมื่อสั่งตัดชุดมูลค่า 500 บาทขึ้นไป</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Language translations
+    const translations = {
+      en: {
+        brand: "OUTFITRY",
+        home: "Home",
+        matching: "Matching",
+        content: "Content",
+        community: "Community",
+        custom: "Custom",
+        pricing: "Pricing",
+        login: "Login",
+        cta: "Get Outfitry Free",
+        custom_clothing: "Custom Clothing",
+        popular: "Popular",
+        promotion: "Promotion",
+        type: "Type",
+        general: "General",
+        tailoring: "Tailoring",
+        shop_dream_fabric: "Pha Sang Fan",
+        location_lam_luk_ka: "Lam Luk Ka, Pathum Thani",
+        rating_4_8: "⭐ 4.8 (10)",
+        promo_dream_fabric: "20% off first custom order",
+        shop_flowing_fabric: "Flowing Fabric",
+        location_sathorn: "Sathorn, Bangkok",
+        rating_4_6: "⭐ 4.6 (9)",
+        shop_woven_love: "Tho Rak Pak Jai",
+        location_khlong_luang: "Khlong Luang, Pathum Thani",
+        rating_4_8_99: "⭐ 4.8 (12)",
+        shop_tailors_touch: "Tailor's Touch",
+        location_bangna: "Bangna, Bangkok",
+        rating_4_7: "⭐ 4.7 (10)",
+        promo_tailors_touch: "Free scarf with custom order over 500 THB"
+      },
+      th: {
+        brand: "OUTFITRY",
+        home: "หน้าแรก",
+        matching: "จับคู่เสื้อผ้า",
+        content: "เนื้อหา",
+        community: "ชุมชน",
+        custom: "ตัดแต่งเสื้อผ้า",
+        pricing: "ราคา",
+        login: "เข้าสู่ระบบ",
+        cta: "รับ Outfitry ฟรี",
+        custom_clothing: "ตัดแต่งเสื้อผ้า",
+        popular: "ยอดนิยม",
+        promotion: "โปรโมชัน",
+        type: "ประเภท",
+        general: "ทั่วไป",
+        tailoring: "ตัดเย็บ",
+        shop_dream_fabric: "ผ้าสร้างฝัน",
+        location_lam_luk_ka: "ลำลูกกา ปทุมธานี",
+        rating_4_8: "⭐ 4.8 (10)",
+        promo_dream_fabric: "ลด 20% สำหรับชุดสั่งตัดครั้งแรก",
+        shop_flowing_fabric: "Flowing Fabric",
+        location_sathorn: "สาทร กรุงเทพฯ",
+        rating_4_6: "⭐ 4.6 (9)",
+        shop_woven_love: "ทอรัก ปักใจ",
+        location_khlong_luang: "คลองหลวง ปทุมธานี",
+        rating_4_8_99: "⭐ 4.8 (12)",
+        shop_tailors_touch: "Tailor's Touch",
+        location_bangna: "บางนา กรุงเทพฯ",
+        rating_4_7: "⭐ 4.7 (10)",
+        promo_tailors_touch: "แถมผ้าพันคอเมื่อสั่งตัดชุดมูลค่า 500 บาทขึ้นไป"
+      }
+    };
+
+    // Function to change language
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = translations[lang][key];
+      });
+    }
+
+    // Initialize language and tab functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      const langSelect = document.querySelector('.lang-select');
+      changeLanguage(langSelect.value);
+
+      // Tab menu functionality
+      const buttons = document.querySelectorAll('.tab-menu button');
+      const shopCards = document.querySelectorAll('.shop-card');
+      const typeSubmenu = document.querySelector('.type-submenu');
+      const typeSubmenuToggle = document.querySelector('.type-submenu-toggle');
+      const typeSubmenuContent = document.querySelector('.type-submenu-content');
+
+      // Toggle Type submenu on click
+      typeSubmenuToggle.addEventListener('click', () => {
+        typeSubmenuContent.classList.toggle('show');
+      });
+
+      // Close submenu when clicking outside
+      document.addEventListener('click', (event) => {
+        if (!typeSubmenu.contains(event.target)) {
+          typeSubmenuContent.classList.remove('show');
+        }
+      });
+
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Handle Type submenu buttons
+          if (button.parentElement.classList.contains('type-submenu-content')) {
+            typeSubmenuToggle.setAttribute('data-translate', button.getAttribute('data-translate'));
+            typeSubmenuToggle.textContent = translations[document.documentElement.lang][button.getAttribute('data-translate')];
+            typeSubmenuContent.classList.remove('show');
+          }
+
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          if (button.parentElement.classList.contains('type-submenu-content')) {
+            typeSubmenuToggle.classList.add('active');
+          }
+
+          const filter = button.getAttribute('data-filter');
+
+          shopCards.forEach(card => {
+            if (filter === 'all') {
+              card.style.display = 'flex';
+            } else if (filter === 'promotion') {
+              card.style.display = card.hasAttribute('data-promotion') ? 'flex' : 'none';
+            } else {
+              card.style.display = card.getAttribute('data-type') === filter ? 'flex' : 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

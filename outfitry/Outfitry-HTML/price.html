@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outfitry - Pricing Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Prompt:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset for Navigation */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body & Font for Navigation */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefef9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Topbar Navigation */
+        .topbar {
+            background-color: #85df80;
+            color: white;
+            padding: 12px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            font-size: 26px;
+            font-weight: 800;
+            min-width: 0;
+            margin-left: -12px;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            margin-right: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex: 2;
+            min-width: 0;
+        }
+
+        .nav-center a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 10px;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            font-size: 17px;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .nav-center a i {
+            margin-right: 10px;
+            font-size: 25px;
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .nav-right .cta {
+            background-color: #a7e2ef;
+            color: black;
+            font-weight: 800;
+            padding: 6px 18px;
+            white-space: nowrap;
+            min-width: 140px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .lang-select {
+            background: #fff !important;
+            color: #333 !important;
+            border: 1px solid #ccc !important;
+            padding: 6px 28px 6px 10px !important;
+            border-radius: 4px !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            font-size: 16px !important;
+            font-weight: 800 !important;
+            cursor: pointer !important;
+            min-width: 95px !important;
+            appearance: none !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 10px center !important;
+            background-size: 14px !important;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .lang-select:hover {
+            border-color: #999 !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .lang-select:focus {
+            outline: none !important;
+            border-color: #EABB84 !important;
+            box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+        }
+
+        .nav-center a:hover {
+            color: #EABB84;
+            background-color: white;
+            transform: scale(1.05);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-right a:hover {
+            background-color: white;
+            color: #EABB84;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .nav-right .cta:hover {
+            background-color: #ffd6a4;
+            color: black;
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 767px) {
+            .topbar {
+                height: auto;
+                padding: 10px 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 0;
+            }
+
+            .nav-left {
+                margin-bottom: 10px;
+                margin-left: 0;
+                font-size: 20px;
+            }
+
+            .nav-logo {
+                width: 32px;
+                height: 32px;
+                margin-right: 12px;
+            }
+
+            .nav-center {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 6px;
+            }
+
+            .nav-center a {
+                padding: 6px 10px;
+                font-size: 16px;
+                font-weight: 800;
+            }
+
+            .nav-center a i {
+                font-size: 20px;
+                margin-right: 6px;
+            }
+
+            .nav-right {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .nav-right a {
+                padding: 4px 8px;
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .nav-right .cta {
+                min-width: 120px;
+                font-size: 12px;
+            }
+
+            .lang-select {
+                min-width: 85px !important;
+                padding: 4px 20px 4px 6px !important;
+                font-size: 12px !important;
+                font-weight: 800 !important;
+                background-size: 10px !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .nav-container {
+                max-width: 1200px;
+                padding: 0 15px;
+            }
+
+            .nav-left {
+                font-size: 22px;
+            }
+
+            .nav-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .nav-center {
+                gap: 8px;
+            }
+
+            .nav-center a {
+                padding: 8px 14px;
+                font-size: 17px;
+                font-weight: 800;
+            }
+
+            .nav-center a i {
+                font-size: 21px;
+                margin-right: 8px;
+            }
+
+            .nav-right a {
+                padding: 4px 10px;
+                font-size: 13px;
+                font-weight: 800;
+            }
+
+            .nav-right .cta {
+                min-width: 130px;
+                font-size: 13px;
+            }
+
+            .lang-select {
+                min-width: 90px !important;
+                font-size: 13px !important;
+                font-weight: 800 !important;
+            }
+        }
+
+        /* Content Styles from Previous price.html */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: #fefef9;
+            color: #333;
+        }
+
+        .container {
+            min-height: 100vh;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding-top: 120px; /* Increased for spacing */
+        }
+
+        .content {
+            padding: 30px;
+            padding-top: 0;
+            text-align: center;
+        }
+
+        .plans {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .plan {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .free { border: 2px solid #6c757d; }
+        .fashionista { background: linear-gradient(135deg, #e6f3e6 0%, #c3e6cb 100%); border: 2px solid #28a745; }
+        .supernova { background: linear-gradient(135deg, #f0f5f9 0%, #e9ecef 100%); border: 2px solid #17a2b8; }
+
+        .plan h3 { margin: 0 0 10px; font-size: 1.5em; color: #333; }
+        .plan h4 { margin: 0 0 10px; font-size: 2em; color: #28a745; }
+        .plan p { margin: 5px 0; color: #666; }
+        .plan ul { list-style: none; padding: 0; text-align: left; }
+        .plan ul li { margin: 10px 0; color: #555; }
+        .plan ul li:before {
+            content: "👗";
+            color: #28a745;
+            margin-right: 10px;
+        }
+        .plan ul li:nth-child(2):before { content: "🚫"; }
+        .plan ul li:nth-child(3):before { content: "🔓"; }
+        .plan ul li:nth-child(4):before { content: "📖"; }
+        .plan ul li:nth-child(5):before { content: "👕"; }
+
+        .plan button {
+            background: #0066cc;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .plan button:hover {
+            background: #004d99;
+        }
+
+        .faq {
+            margin-top: 40px;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq h3 { color: #0066cc; }
+        .faq p { color: #666; }
+
+        .support {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .support a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .support a:hover {
+            color: #004d99;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding-top: 230px; /* Increased for mobile */
+            }
+
+            .content {
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <img src="images/logo.jpg" alt="Outfitry Logo" class="nav-logo">
+                <span data-translate="brand">OUTFITRY</span>
+            </div>
+            <div class="nav-center">
+                <a href="index.html">🏠<span data-translate="home">Home</span></a>
+                <a href="matching.html">👗<span data-translate="matching">Matching</span></a>
+                <a href="content.html">📄<span data-translate="content">Content</span></a>
+                <a href="community.html">👥<span data-translate="community">Community</span></a>
+                <a href="custom.html">🧵<span data-translate="custom">Custom</span></a>
+                <a href="price.html" class="active">💰<span data-translate="pricing">Pricing</span></a>
+            </div>
+            <div class="nav-right">
+                <a href="login.html" data-translate="login">Login</a>
+                <a href="signup.html" class="cta" data-translate="cta">Get Outfitry Free</a>
+                <select class="lang-select" aria-label="Select language" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="th">ไทย</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h2 data-translate="pricing_plans">PRICING PLANS</h2>
+            <p data-translate="pricing_subtitle">Get the Outfitry for Your Needs</p>
+            <div class="plans">
+                <div class="plan free">
+                    <h3 data-translate="outfitry_rising">Outfitry Rising</h3>
+                    <h4 data-translate="free">FREE</h4>
+                    <p data-translate="free_description">forever free for individuals</p>
+                    <ul>
+                        <li data-translate="up_to_3_outfits">Up to 3 outfit</li>
+                        <li data-translate="access_outfitry_1">Access to outfitry 1.0</li>
+                    </ul>
+                    <a href="signup.html"><button data-translate="start_free">Start for free</button></a>          
+                </div>
+
+                <div class="plan fashionista">
+                    <h3 data-translate="fashionista">Fashionista</h3>
+                    <h4>129 ฿</h4>
+                    <p data-translate="fashionista_description">per user/month, billed monthly</p>
+                    <ul>
+                        <li data-translate="up_to_7_outfits">Up to 7 outfit</li>
+                        <li data-translate="no_ads">No ads</li>
+                        <li data-translate="access_outfitry_2">Access to outfitry 2.0</li>
+                    </ul>
+                    <a href="fashionista.html"><button data-translate="get_fashionista">Get Fashionista</button></a>
+                </div>
+                <div class="plan supernova">
+                    <h3 data-translate="supernova">Supernova</h3>
+                    <h4>399 ฿</h4>
+                    <p data-translate="supernova_description">per user/month, billed monthly</p>
+                    <ul>
+                        <li data-translate="up_to_10_outfits">Up to 10 outfit</li>
+                        <li data-translate="no_ads">No ads</li>
+                        <li data-translate="access_outfitry_2">Access to outfitry 2.0</li>
+                        <li data-translate="accessory_guide">Accessory Styling Guide</li>
+                        <li data-translate="my_closet">My closet</li>
+                    </ul>
+                    <a href="supernova.html"><button data-translate="get_supernova">Get Supernova</button></a>
+                </div>
+            </div>
+            <div class="faq">
+                <h3 data-translate="faq">Frequently Asked Questions</h3>
+                <p><strong data-translate="cancel_subscription_q">Can I cancel my subscription?</strong> <span data-translate="cancel_subscription_a">Yes, you can cancel anytime through your account settings.</span></p>
+                <p><strong data-translate="change_plan_q">How do I change my plan?</strong> <span data-translate="change_plan_a">Go to the pricing page and select your new plan to upgrade or downgrade.</span></p>
+                <p><strong data-translate="payment_methods_q">What payment methods are accepted?</strong> <span data-translate="payment_methods_a">We accept credit cards and PayPal.</span></p>
+            </div>
+            <div class="support">
+                <p data-translate="support_text">Have questions? <a href="mailto:support@outfitry.com" data-translate="contact_support">Contact our support team</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                brand: "OUTFITRY",
+                home: "Home",
+                matching: "Matching",
+                content: "Content",
+                community: "Community",
+                custom: "Custom",
+                pricing: "Pricing",
+                login: "Login",
+                cta: "Get Outfitry Free",
+                pricing_plans: "PRICING PLANS",
+                pricing_subtitle: "Get the Outfitry for Your Needs",
+                outfitry_rising: "Outfitry Rising",
+                free: "FREE",
+                free_description: "forever free for individuals",
+                up_to_3_outfits: "Up to 3 outfit",
+                access_outfitry_1: "Access to outfitry 1.0",
+                start_free: "Start for free",
+                fashionista: "Fashionista",
+                fashionista_description: "per user/month, billed monthly",
+                up_to_7_outfits: "Up to 7 outfit",
+                no_ads: "No ads",
+                access_outfitry_2: "Access to outfitry 2.0",
+                get_fashionista: "Get Fashionista",
+                supernova: "Supernova",
+                supernova_description: "per user/month, billed monthly",
+                up_to_10_outfits: "Up to 10 outfit",
+                accessory_guide: "Accessory Styling Guide",
+                my_closet: "My closet",
+                get_supernova: "Get Supernova",
+                faq: "Frequently Asked Questions",
+                cancel_subscription_q: "Can I cancel my subscription?",
+                cancel_subscription_a: "Yes, you can cancel anytime through your account settings.",
+                change_plan_q: "How do I change my plan?",
+                change_plan_a: "Go to the pricing page and select your new plan to upgrade or downgrade.",
+                payment_methods_q: "What payment methods are accepted?",
+                payment_methods_a: "We accept credit cards and PayPal.",
+                
+            },
+            th: {
+                brand: "OUTFITRY",
+                home: "หน้าแรก",
+                matching: "จับคู่เสื้อผ้า",
+                content: "เนื้อหา",
+                community: "ชุมชน",
+                custom: "ตัดแต่งเสื้อผ้า",
+                pricing: "ราคา",
+                login: "เข้าสู่ระบบ",
+                cta: "รับ Outfitry ฟรี",
+                pricing_plans: "แผนราคา",
+                pricing_subtitle: "รับ Outfitry ที่เหมาะกับความต้องการของคุณ",
+                outfitry_rising: "Outfitry Rising",
+                free: "ฟรี",
+                free_description: "ฟรีตลอดไปสำหรับบุคคลทั่วไป",
+                up_to_3_outfits: "สูงสุด 3 ชุด",
+                access_outfitry_1: "เข้าถึง Outfitry 1.0",
+                start_free: "เริ่มต้นฟรี",
+                fashionista: "แฟชั่นนิสต้า",
+                fashionista_description: "ต่อผู้ใช้/เดือน, ชำระรายเดือน",
+                up_to_7_outfits: "สูงสุด 7 ชุด",
+                no_ads: "ไม่มีโฆษณา",
+                access_outfitry_2: "เข้าถึง Outfitry 2.0",
+                get_fashionista: "รับแฟชั่นนิสต้า",
+                supernova: "ซูเปอร์โนวา",
+                supernova_description: "ต่อผู้ใช้/เดือน, ชำระรายเดือน",
+                up_to_10_outfits: "สูงสุด 10 ชุด",
+                accessory_guide: "คู่มือการจัดแต่งเครื่องประดับ",
+                my_closet: "ตู้เสื้อผ้าของฉัน",
+                get_supernova: "รับซูเปอร์โนวา",
+                faq: "คำถามที่พบบ่อย",
+                cancel_subscription_q: "ฉันสามารถยกเลิกการสมัครสมาชิกได้หรือไม่?",
+                cancel_subscription_a: "ได้ คุณสามารถยกเลิกได้ทุกเมื่อผ่านการตั้งค่าบัญชีของคุณ",
+                change_plan_q: "ฉันจะเปลี่ยนแผนได้อย่างไร?",
+                change_plan_a: "ไปที่หน้าตั้งราคาและเลือกแผนใหม่เพื่ออัปเกรดหรือดาวน์เกรด",
+                payment_methods_q: "ยอมรับวิธีการชำระเงินใดบ้าง?",
+                payment_methods_a: "เรายอมรับบัตรเครดิตและ PayPal",
+                
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                element.textContent = translations[lang][key];
+            });
+        }
+
+        // Initialize language based on default selection
+        document.addEventListener('DOMContentLoaded', () => {
+            const langSelect = document.querySelector('.lang-select');
+            changeLanguage(langSelect.value);
+        });
+    </script>
+</body>
+</html>

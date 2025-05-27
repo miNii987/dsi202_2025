@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page-title">Tailor's Touch - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body & Font */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fefef9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Topbar Navigation */
+    .topbar {
+      background-color: #85df80;
+      color: white;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      min-width: 0;
+      margin-left: -12px;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex: 2;
+      min-width: 0;
+    }
+
+    .nav-center a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 10px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .nav-center a i {
+      margin-right: 10px;
+      font-size: 25px;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .nav-right .cta {
+      background-color: #a7e2ef;
+      color: black;
+      font-weight: 800;
+      padding: 6px 18px;
+      white-space: nowrap;
+      min-width: 140px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .lang-select {
+      background: #fff !important;
+      color: #333 !important;
+      border: 1px solid #ccc !important;
+      padding: 6px 28px 6px 10px !important;
+      border-radius: 4px !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      min-width: 95px !important;
+      appearance: none !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 10px center !important;
+      background-size: 14px !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .lang-select:hover {
+      border-color: #999 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .lang-select:focus {
+      outline: none !important;
+      border-color: #EABB84 !important;
+      box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+    }
+
+    .nav-center a:hover {
+      color: #EABB84;
+      background-color: white;
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-right a:hover {
+      background-color: white;
+      color: #EABB84;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+    }
+
+    .nav-right .cta:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 767px) {
+      .topbar {
+        height: auto;
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 0;
+      }
+
+      .nav-left {
+        margin-bottom: 10px;
+        margin-left: 0;
+        font-size: 20px;
+      }
+
+      .nav-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      .nav-center {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .nav-center a {
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 20px;
+        margin-right: 6px;
+      }
+
+      .nav-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .nav-right a {
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 120px;
+        font-size: 12px;
+      }
+
+      .lang-select {
+        min-width: 85px !important;
+        padding: 4px 20px 4px 6px !important;
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        background-size: 10px !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .nav-container {
+        max-width: 1200px;
+        padding: 0 15px;
+      }
+
+      .nav-left {
+        font-size: 22px;
+      }
+
+      .nav-logo {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-center {
+        gap: 8px;
+      }
+
+      .nav-center a {
+        padding: 8px 14px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 21px;
+        margin-right: 8px;
+      }
+
+      .nav-right a {
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 130px;
+        font-size: 13px;
+      }
+
+      .lang-select {
+        min-width: 90px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+      }
+    }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+    }
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .dot {
+      transition: background-color 0.3s ease;
+    }
+    .dot.active {
+      background-color: #f59e0b;
+    }
+    .review-card {
+      transition: transform 0.2s ease;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+    .hidden-review {
+      display: none;
+    }
+    .show-all .hidden-review {
+      display: block;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-amber-50 to-white">
+  <!-- Top Navigation Bar -->
+  <nav class="topbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="images/logo.jpg" alt="Outfitry Logo" class="nav-logo">
+        <span data-i18n="nav-title">OUTFITRY</span>
+      </div>
+      <div class="nav-center">
+        <a href="index.html" data-i18n="nav-home">🏠 Home</a>
+        <a href="matching.html" data-i18n="nav-matching">👗 Matching</a>
+        <a href="content.html" data-i18n="nav-content">📄 Content</a>
+        <a href="community.html" data-i18n="nav-community">👥 Community</a>
+        <a href="custom.html" data-i18n="nav-custom">🧵 Custom</a>
+        <a href="price.html" data-i18n="nav-pricing">💰 Pricing</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" data-i18n="login">Login</a>
+        <a href="#" class="cta" data-i18n="cta">Get Outfitry Free</a>
+        <select class="lang-select" id="lang-select">
+          <option value="en" selected>English</option>
+          <option value="th">ไทย</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Back Button -->
+  <div class="container mx-auto px-4 py-6 mt-20">
+    <a href="custom.html" class="inline-flex items-center text-amber-600 hover:text-amber-700 text-lg font-medium slide-in" data-i18n="back">← Back</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="shop-detail-container container mx-auto px-4 max-w-4xl pb-16">
+    <h2 class="section-title text-3xl font-semibold text-gray-800 text-center mb-8 fade-in" data-i18n="section-title">Portfolio</h2>
+
+    <!-- Main Image -->
+    <div class="image-wrapper relative mb-8 fade-in">
+      <img src="images/ผลงาน4.jpg" alt="Tailor's Touch" class="w-full h-96 object-cover rounded-xl shadow-lg">
+    </div>
+
+    <!-- Shop Info -->
+    <div class="shop-info-card bg-white rounded-xl shadow-md p-6 mb-8 slide-in">
+      <h3 class="text-2xl font-bold text-gray-800 mb-2" data-i18n="shop-name">Tailor's Touch</h3>
+      <p class="text-gray-600 mb-2" data-i18n="shop-location">📍 Bang Na, Bangkok</p>
+      <p class="text-amber-600 font-medium mb-4" data-i18n="shop-discount">Free scarf with custom order over 500 THB</p>
+      <div class="shop-stats flex flex-wrap gap-4 text-sm text-gray-700">
+        <div class="flex items-center">
+          <span class="text-amber-500 mr-1">4.7</span> 🌟
+        </div>
+        <div data-i18n="shop-type">General Shop</div>
+        <div data-i18n="shop-response">100% Response Rate</div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section flex justify-between items-center mb-6 slide-in">
+      <h3 class="text-xl font-semibold text-gray-800" data-i18n="reviews-title">⭐ 4.7 Rating (10)</h3>
+      <a href="#" id="show-all-reviews" class="text-amber-600 hover:text-amber-700 font-medium" data-i18n="show-all">See All</a>
+    </div>
+
+    <!-- Reviews Container -->
+    <div id="reviews-container">
+      <!-- Review 1 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="images/ดาวน์โหลด (57).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800">รวิวรรณ สายธาร</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-i18n="review-1">
+          This shop tailors amazing outfits! The work is so detailed, and the tailor gave excellent advice. Absolutely thrilled! ❤️
+        </p>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="images/ดาวน์โหลด (56).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800">ธนวัฒน์ จันทร์สว่าง</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-i18n="review-2">
+          High-quality tailoring, exactly as I wanted. The tailor was friendly, and it didn’t take long at all!
+        </p>
+        <img src="images/15.jpg" alt="Sample Work" class="review-photo w-full max-w-xs rounded-lg object-cover">
+      </div>
+
+      <!-- Review 3 -->
+      <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+        <div class="review-header flex items-center gap-4">
+          <img src="images/ดาวน์โหลด (58).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+          <div>
+            <strong class="text-gray-800">ชลธิชา แสงทอง</strong><br>
+            <span class="text-amber-500">★★★★★</span>
+          </div>
+        </div>
+        <p class="review-text text-gray-600" data-i18n="review-3">
+          The outfit fits perfectly, and the work is beyond expectations. The tailor designed it to match my style. Will return!
+        </p>
+      </div>
+
+      <!-- Hidden Reviews (shown when clicking "See All") -->
+      <div class="hidden-review">
+        <!-- Review 4 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="images/ดาวน์โหลด (55).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800">ศุภกร สุขดี</strong><br>
+              <span class="text-amber-500">★★★★☆</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-i18n="review-4">
+            Great tailoring, excellent craftsmanship. Waited a bit due to a busy queue, but the result was worth it!
+          </p>
+          <img src="images/14.jpg" alt="Sample Work" class="review-photo w-full max-w-xs rounded-lg object-cover">
+        </div>
+
+        <!-- Review 5 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="images/ดาวน์โหลด (59).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800">ปานวาด ใจงาม</strong><br>
+              <span class="text-amber-500">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-i18n="review-5">
+            Loved it! The outfit is beautiful, meticulous work, and the tailor gave great advice. Happy I chose this shop!
+          </p>
+          <img src="images/17.jpg" alt="Sample Work" class="review-photo w-full max-w-xs rounded-lg object-cover">
+        </div>
+
+        <!-- Review 6 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="images/ดาวน์โหลด (54).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800">กวินท์ สายลม</strong><br>
+              <span class="text-amber-500">★★★★☆</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-i18n="review-6">
+            Great tailoring, but communication was a bit slow. Once we talked, everything went smoothly, and the result was beautiful!
+          </p>
+        </div>
+
+        <!-- Review 7 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="images/ดาวน์โหลด (60).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800">วรรณภา ดวงจันทร์</strong><br>
+              <span class="text-amber-500">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-i18n="review-7">
+            This shop is amazing! The tailored outfit makes me feel confident. Flawless work, kind tailor, worth every penny!
+          </p>
+        </div>
+
+        <!-- Review 8 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="images/ดาวน์โหลด (53).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800">สรายุทธ สุขสันต์</strong><br>
+              <span class="text-amber-500">★★★★☆</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-i18n="review-8">
+            Good tailoring, excellent craftsmanship. Would love more fabric options, but overall very satisfied!
+          </p>
+          <img src="images/16.jpg" alt="Sample Work" class="review-photo w-full max-w-xs rounded-lg object-cover">
+        </div>
+
+        <!-- Review 9 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="images/ดาวน์โหลด (61).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800">อรนุช ลมเย็น</strong><br>
+              <span class="text-amber-500">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-i18n="review-9">
+            Ordered a dress for an event, and it was stunning! The tailor designed it to fit me perfectly. So thrilled!
+          </p>
+        </div>
+
+        <!-- Review 10 -->
+        <div class="review-card bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 slide-in mb-4">
+          <div class="review-header flex items-center gap-4">
+            <img src="images/ดาวน์โหลด (62).jpg" alt="User" class="user-img w-12 h-12 rounded-full object-cover border-2 border-gray-200">
+            <div>
+              <strong class="text-gray-800">นภัสวรรณ ดาวเด่น</strong><br>
+              <span class="text-amber-500">★★★★★</span>
+            </div>
+          </div>
+          <p class="review-text text-gray-600" data-i18n="review-10">
+            Beautiful and comfortable outfit, very detailed work. The tailor was friendly. Will definitely return!
+          </p>
+          <img src="images/13.jpg" alt="Sample Work" class="review-photo w-full max-w-xs rounded-lg object-cover">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        "page-title": "Tailor's Touch - Portfolio",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 Home",
+        "nav-matching": "👗 Matching",
+        "nav-content": "📄 Content",
+        "nav-community": "👥 Community",
+        "nav-custom": "🧵 Custom",
+        "nav-pricing": "💰 Pricing",
+        "login": "Login",
+        "cta": "Get Outfitry Free",
+        "back": "← Back",
+        "section-title": "Portfolio",
+        "shop-name": "Tailor's Touch",
+        "shop-location": "📍 Bang Na, Bangkok",
+        "shop-discount": "Free scarf with custom order over 500 THB",
+        "shop-type": "General Shop",
+        "shop-response": "100% Response Rate",
+        "reviews-title": "⭐ 4.7 Rating (10)",
+        "show-all": "See All",
+        "review-1": "This shop tailors amazing outfits! The work is so detailed, and the tailor gave excellent advice. Absolutely thrilled! ❤️",
+        "review-2": "High-quality tailoring, exactly as I wanted. The tailor was friendly, and it didn’t take long at all!",
+        "review-3": "The outfit fits perfectly, and the work is beyond expectations. The tailor designed it to match my style. Will return!",
+        "review-4": "Great tailoring, excellent craftsmanship. Waited a bit due to a busy queue, but the result was worth it!",
+        "review-5": "Loved it! The outfit is beautiful, meticulous work, and the tailor gave great advice. Happy I chose this shop!",
+        "review-6": "Great tailoring, but communication was a bit slow. Once we talked, everything went smoothly, and the result was beautiful!",
+        "review-7": "This shop is amazing! The tailored outfit makes me feel confident. Flawless work, kind tailor, worth every penny!",
+        "review-8": "Good tailoring, excellent craftsmanship. Would love more fabric options, but overall very satisfied!",
+        "review-9": "Ordered a dress for an event, and it was stunning! The tailor designed it to fit me perfectly. So thrilled!",
+        "review-10": "Beautiful and comfortable outfit, very detailed work. The tailor was friendly. Will definitely return!"
+      },
+      th: {
+        "page-title": "Tailor's Touch - ตัวอย่างผลงาน",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 หน้าแรก",
+        "nav-matching": "👗 การจับคู่",
+        "nav-content": "📄 เนื้อหา",
+        "nav-community": "👥 ชุมชน",
+        "nav-custom": "🧵 ปรับแต่ง",
+        "nav-pricing": "💰 ราคา",
+        "login": "เข้าสู่ระบบ",
+        "cta": "รับ Outfitry ฟรี",
+        "back": "← ย้อนกลับ",
+        "section-title": "ตัวอย่างผลงาน",
+        "shop-name": "Tailor's Touch",
+        "shop-location": "📍 บางนา กรุงเทพมหานคร",
+        "shop-discount": "แถมผ้าพันคอเมื่อสั่งตัดชุดมูลค่า 500 บาทขึ้นไป",
+        "shop-type": "ร้านทั่วไป",
+        "shop-response": "100% การตอบกลับ",
+        "reviews-title": "⭐ 4.7 คะแนน (10)",
+        "show-all": "ดูทั้งหมด",
+        "review-1": "ร้านนี้ตัดชุดสวยสุดยอด! งานละเอียดมาก ช่างให้คำแนะนำดีเยี่ยม ประทับใจสุด ๆ ค่ะ! ❤️",
+        "review-2": "งานตัดเย็บคุณภาพสูง ตรงตามแบบที่ต้องการ ช่างเป็นมิตร รอไม่นานเลย!",
+        "review-3": "ชุดที่สั่งตัดใส่พอดีเป๊ะ งานสวยเกินคาด ช่างออกแบบให้เข้ากับสไตล์ ต้องกลับมาอีก!",
+        "review-4": "งานตัดเย็บดีมาก ฝีมือช่างเยี่ยม รอนานนิดหน่อยเพราะคิวเยอะ แต่ผลงานคุ้มค่า!",
+        "review-5": "ชอบมาก! ชุดสวย งานปราณีต ช่างให้คำแนะนำดีมาก ดีใจที่เลือกที่นี่!",
+        "review-6": "งานตัดเย็บดีมาก แต่การสื่อสารช้าไปนิด พอได้คุยแล้วทุกอย่างราบรื่น ผลงานสวย!",
+        "review-7": "ร้านนี้สุดยอด! ชุดที่ตัดมาใส่แล้วมั่นใจมาก งานเนี๊ยบ ช่างใจดี คุ้มทุกบาท!",
+        "review-8": "งานตัดเย็บดี ฝีมือช่างเยี่ยม อยากให้มีตัวเลือกผ้าเยอะกว่านี้ แต่โดยรวมพอใจมาก!",
+        "review-9": "สั่งตัดชุดไปงาน สวยเกินคาด! ช่างช่วยออกแบบให้เข้ากับตัว ปลื้มสุด ๆ ค่ะ!",
+        "review-10": "ชุดสวย ใส่สบาย งานละเอียดมาก ช่างเป็นกันเอง ต้องมาอุดหนุนอีกแน่นอน!"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (key === 'show-all') {
+          // Special handling for show-all link to preserve toggle text
+          if (document.getElementById('reviews-container').classList.contains('show-all')) {
+            element.textContent = lang === 'en' ? 'Show Less' : 'แสดงน้อยลง';
+          } else {
+            element.textContent = translations[lang][key] || element.textContent;
+          }
+        } else {
+          element.textContent = translations[lang][key] || element.textContent;
+        }
+      });
+
+      // Update page title
+      document.title = translations[lang]['page-title'] || document.title;
+
+      // Update HTML lang attribute
+      document.documentElement.lang = lang;
+
+      // Update select element to reflect current language
+      document.getElementById('lang-select').value = lang;
+    }
+
+    // Initialize language
+    setLanguage('en');
+
+    // Language change handler
+    document.getElementById('lang-select').addEventListener('change', function() {
+      setLanguage(this.value);
+    });
+
+    // Dot navigation for image carousel (placeholder)
+    document.querySelectorAll('.dot').forEach(dot => {
+      dot.addEventListener('click', function() {
+        document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Toggle reviews visibility
+    document.getElementById('show-all-reviews').addEventListener('click', function(e) {
+      e.preventDefault();
+      const container = document.getElementById('reviews-container');
+      const link = this;
+      const lang = document.getElementById('lang-select').value;
+      if (container.classList.contains('show-all')) {
+        container.classList.remove('show-all');
+        link.textContent = translations[lang]['show-all'];
+      } else {
+        container.classList.add('show-all');
+        link.textContent = lang === 'en' ? 'Show Less' : 'แสดงน้อยลง';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,630 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content - Outfitry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Prompt:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body & Font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefef9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Topbar Navigation */
+        .topbar {
+            background-color: #85df80;
+            color: white;
+            padding: 12px 30px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            font-size: 26px;
+            font-weight: 800;
+            min-width: 0;
+            margin-left: -12px;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            margin-right: 18px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex: 2;
+            min-width: 0;
+        }
+
+        .nav-center a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 10px;
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            font-size: 17px;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .nav-center a i {
+            margin-right: 10px;
+            font-size: 25px;
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: flex-end;
+            min-width: 0;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .nav-right .cta {
+            background-color: #a7e2ef;
+            color: black;
+            font-weight: 800;
+            padding: 6px 18px;
+            white-space: nowrap;
+            min-width: 140px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .lang-select {
+            background: #fff !important;
+            color: #333 !important;
+            border: 1px solid #ccc !important;
+            padding: 6px 28px 6px 10px !important;
+            border-radius: 4px !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            font-size: 16px !important;
+            font-weight: 800 !important;
+            cursor: pointer !important;
+            min-width: 95px !important;
+            appearance: none !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+            background-repeat: no-repeat !important;
+            background-position: right 10px center !important;
+            background-size: 14px !important;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+        }
+
+        .lang-select:hover {
+            border-color: #999 !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .lang-select:focus {
+            outline: none !important;
+            border-color: #EABB84 !important;
+            box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+        }
+
+        .nav-center a:hover {
+            color: #EABB84;
+            background-color: white;
+            transform: scale(1.05);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-right a:hover {
+            background-color: white;
+            color: #EABB84;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+
+        .nav-right .cta:hover {
+            background-color: #ffd6a4;
+            color: black;
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Navigation */
+        @media (max-width: 767px) {
+            .topbar {
+                height: auto;
+                padding: 10px 15px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 0;
+            }
+
+            .nav-left {
+                margin-bottom: 10px;
+                margin-left: 0;
+                font-size: 20px;
+            }
+
+            .nav-logo {
+                width: 32px;
+                height: 32px;
+                margin-right: 12px;
+            }
+
+            .nav-center {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 6px;
+            }
+
+            .nav-center a {
+                padding: 6px 10px;
+                font-size: 16px;
+                font-weight: 800;
+            }
+
+            .nav-center a i {
+                font-size: 20px;
+                margin-right: 6px;
+            }
+
+            .nav-right {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .nav-right a {
+                padding: 4px 8px;
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .nav-right .cta {
+                min-width: 120px;
+                font-size: 12px;
+            }
+
+            .lang-select {
+                min-width: 85px !important;
+                padding: 4px 20px 4px 6px !important;
+                font-size: 12px !important;
+                font-weight: 800 !important;
+                background-size: 10px !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .nav-container {
+                max-width: 1200px;
+                padding: 0 15px;
+            }
+
+            .nav-left {
+                font-size: 22px;
+            }
+
+            .nav-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .nav-center {
+                gap: 8px;
+            }
+
+            .nav-center a {
+                padding: 8px 14px;
+                font-size: 17px;
+                font-weight: 800;
+            }
+
+            .nav-center a i {
+                font-size: 21px;
+                margin-right: 8px;
+            }
+
+            .nav-right a {
+                padding: 4px 10px;
+                font-size: 13px;
+                font-weight: 800;
+            }
+
+            .nav-right .cta {
+                min-width: 130px;
+                font-size: 13px;
+            }
+
+            .lang-select {
+                min-width: 90px !important;
+                font-size: 13px !important;
+                font-weight: 800 !important;
+            }
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 90px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (max-width: 767px) {
+            .main-content {
+                padding-top: 200px;
+            }
+        }
+
+        /* Content Section */
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .content-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            color: #222;
+        }
+
+        /* Tabs */
+        .content-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .content-tabs button {
+            background: none;
+            border: none;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            color: #555;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative;
+        }
+
+        .content-tabs button:hover {
+            color: #ff5c8a;
+            transform: translateY(-2px);
+        }
+
+        .content-tabs button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .content-tabs button.active {
+            color: #ff5c8a;
+            font-weight: 700;
+        }
+
+        .content-tabs button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #ff5c8a;
+            border-radius: 2px;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .content-card {
+            background: #eaf9ff;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .content-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .content-card p {
+            font-family: 'Prompt', sans-serif;
+            padding: 1.2rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #333;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .content-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .content-card:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 92, 138, 0.3);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 767px) {
+            .main-content {
+                padding-top: 200px;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .content-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .content-tabs {
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .content-tabs button {
+                font-size: 1rem;
+                padding: 0.6rem 1rem;
+            }
+
+            .content-grid {
+                gap: 1.5rem;
+                grid-template-columns: 1fr;
+            }
+
+            .content-card img {
+                height: 160px;
+            }
+
+            .content-card p {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .content-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <img src="{% static 'images/logo.jpg' %}" alt="Outfitry Logo" class="nav-logo">
+                <span data-translate="brand">OUTFITRY</span>
+            </div>
+            <div class="nav-center">
+                <a href="/">🏠<span data-translate="home">Home</span></a>
+                <a href="/matching/">👗<span data-translate="matching">Matching</span></a>
+                <a href="/content/" class="active">📄<span data-translate="content">Content</span></a>
+                <a href="/community/">👥<span data-translate="community">Community</span></a>
+                <a href="/custom/">🧵<span data-translate="custom">Custom</span></a>
+                <a href="/price/">💰<span data-translate="pricing">Pricing</span></a>
+            </div>
+            <div class="nav-right">
+                <a href="/login/" data-translate="login">Login</a>
+                <a href="/signup/" class="cta" data-translate="cta">Get Outfitry Free</a>
+                <select class="lang-select" aria-label="Select language" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="th">ไทย</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-container">
+            <h1 class="content-title" data-translate="content">Content</h1>
+            <div class="content-tabs" role="tablist">
+                <button role="tab" aria-selected="true" class="active" data-category="all" data-translate="all">All</button>
+                <button role="tab" aria-selected="false" data-category="fashion" data-translate="fashion">Fashion</button>
+                <button role="tab" aria-selected="false" data-category="mind" data-translate="mental_health">Mental health</button>
+                <button role="tab" aria-selected="false" data-category="eco" data-translate="environment">Environment</button>
+            </div>
+            <div class="content-grid">
+                <div class="content-card fashion" tabindex="0" onclick="window.location.href='colortone.html';">
+                    <img src="{% static 'images/tone.jpg' %}" alt="Illustration of color tones and emotions" loading="lazy">
+                    <p data-translate="color_tones">Color tones and emotions</p>
+                </div>
+
+                <div class="content-card eco" tabindex="0" onclick="window.location.href='diy.html';">
+                    <img src="{% static 'images/diy.jpg' %}" alt="DIY and upcycling clothes project" loading="lazy">
+                    <p data-translate="diy_upcycling">DIY & Upcycling Clothes</p>
+                </div>
+
+                <div class="content-card eco" tabindex="0" onclick="window.location.href='gogreener.html';">
+                    <img src="{% static 'images/earth.jpg' %}" alt="Guide to being a go-greener fashionista" loading="lazy">
+                    <p data-translate="go_greener">How to be a go-greener fashionista</p>
+                </div>
+
+                <div class="content-card mind" tabindex="0" onclick="window.location.href='poweroutfit.html';">
+                    <img src="{% static 'images/power.jpg' %}" alt="Power outfit to boost confidence" loading="lazy">
+                    <p data-translate="power_outfit">Power Outfit to boost your confidence</p>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                brand: "OUTFITRY",
+                home: "Home",
+                matching: "Matching",
+                content: "Content",
+                community: "Community",
+                custom: "Custom",
+                pricing: "Pricing",
+                login: "Login",
+                cta: "Get Outfitry Free",
+                all: "All",
+                fashion: "Fashion",
+                mental_health: "Mental health",
+                environment: "Environment",
+                color_tones: "Color tones and emotions",
+                diy_upcycling: "DIY & Upcycling Clothes",
+                go_greener: "How to be a go-greener fashionista",
+                power_outfit: "Power Outfit to boost your confidence"
+            },
+            th: {
+                brand: "OUTFITRY",
+                home: "หน้าแรก",
+                matching: "จับคู่เสื้อผ้า",
+                content: "เนื้อหา",
+                community: "ชุมชน",
+                custom: "ตัดแต่งเสื้อผ้า",
+                pricing: "ราคา",
+                login: "เข้าสู่ระบบ",
+                cta: "รับ Outfitry ฟรี",
+                all: "ทั้งหมด",
+                fashion: "แฟชั่น",
+                mental_health: "สุขภาพจิต",
+                environment: "สิ่งแวดล้อม",
+                color_tones: "โทนสีและอารมณ์",
+                diy_upcycling: "DIY และรีไซเคิลเสื้อผ้า",
+                go_greener: "วิธีเป็นแฟชั่นนิสต้าที่รักษ์โลก",
+                power_outfit: "ชุดเพิ่มความมั่นใจ"
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                element.textContent = translations[lang][key];
+            });
+
+            // Update alt attributes for images
+            document.querySelectorAll('.content-card img').forEach(img => {
+                const parent = img.parentElement;
+                const key = parent.querySelector('p').getAttribute('data-translate');
+                img.alt = translations[lang][key];
+            });
+        }
+
+        // Initialize language based on default selection
+        document.addEventListener('DOMContentLoaded', () => {
+            const langSelect = document.querySelector('.lang-select');
+            changeLanguage(langSelect.value);
+        });
+
+        // Updated script for tab functionality
+        const buttons = document.querySelectorAll('.content-tabs button');
+        const contentGrid = document.querySelector('.content-grid');
+        const cards = document.querySelectorAll('.content-card');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+
+                const category = btn.dataset.category;
+                cards.forEach(card => {
+                    if (category === 'all' || card.classList.contains(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Adjust grid layout based on category
+                if (category === 'all') {
+                    contentGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(250px, 1fr))';
+                } else {
+                    contentGrid.style.gridTemplateColumns = 'repeat(2, minmax(250px, 1fr))';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

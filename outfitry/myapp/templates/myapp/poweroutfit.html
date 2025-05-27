@@ -1,0 +1,861 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page-title">Power Outfit to Boost Your Confidence: Dress for Success, Feel Your Best</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body & Font */
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Topbar Navigation */
+    .topbar {
+      background-color: #85df80;
+      color: white;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      min-width: 0;
+      margin-left: -12px;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex: 2;
+      min-width: 0;
+    }
+
+    .nav-center a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 10px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .nav-center a i {
+      margin-right: 10px;
+      font-size: 25px;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .nav-right .cta {
+      background-color: #a7e2ef;
+      color: black;
+      font-weight: 800;
+      padding: 6px 18px;
+      white-space: nowrap;
+      min-width: 140px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .lang-select {
+      background: #fff !important;
+      color: #333 !important;
+      border: 1px solid #ccc !important;
+      padding: 6px 28px 6px 10px !important;
+      border-radius: 4px !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      min-width: 95px !important;
+      appearance: none !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 10px center !important;
+      background-size: 14px !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .lang-select:hover {
+      border-color: #999 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .lang-select:focus {
+      outline: none !important;
+      border-color: #EABB84 !important;
+      box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+    }
+
+    .nav-center a:hover {
+      color: #EABB84;
+      background-color: white;
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-right a:hover {
+      background-color: white;
+      color: #EABB84;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+    }
+
+    .nav-right .cta:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 767px) {
+      .topbar {
+        height: auto;
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 0;
+      }
+
+      .nav-left {
+        margin-bottom: 10px;
+        margin-left: 0;
+        font-size: 20px;
+      }
+
+      .nav-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      .nav-center {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .nav-center a {
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 20px;
+        margin-right: 6px;
+      }
+
+      .nav-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .nav-right a {
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 120px;
+        font-size: 12px;
+      }
+
+      .lang-select {
+        min-width: 85px !important;
+        padding: 4px 20px 4px 6px !important;
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        background-size: 10px !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .nav-container {
+        max-width: 1200px;
+        padding: 0 15px;
+      }
+
+      .nav-left {
+        font-size: 22px;
+      }
+
+      .nav-logo {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-center {
+        gap: 8px;
+      }
+
+      .nav-center a {
+        padding: 8px 14px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 21px;
+        margin-right: 8px;
+      }
+
+      .nav-right a {
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 130px;
+        font-size: 13px;
+      }
+
+      .lang-select {
+        min-width: 90px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Comment Card */
+    .comment-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .comment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .reply-form {
+      display: none;
+      margin-top: 10px;
+    }
+    .reply-form.active {
+      display: block;
+    }
+    .hidden-comment {
+      display: none;
+    }
+    .show-all-comments .hidden-comment {
+      display: block;
+    }
+    .article-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+    .likes:hover {
+      cursor: pointer;
+      color: #ff69b4;
+    }
+    .section-divider {
+      border-top: 2px solid #fed7aa;
+      margin: 24px 0;
+    }
+    .comment-avatar {
+      border: 2px solid #e5e7eb;
+      transition: transform 0.2s ease;
+    }
+    .comment-avatar:hover {
+      transform: scale(1.1);
+    }
+    .reply {
+      margin-left: 2rem;
+      padding-left: 1rem;
+      border-left: 3px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="topbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="{% static 'images/logo.jpg' %}" alt="Outfitry Brand Logo" class="nav-logo">
+        <span data-i18n="nav-title">OUTFITRY</span>
+      </div>
+      <div class="nav-center">
+        <a href="/" data-i18n="nav-home">🏠 Home</a>
+        <a href="/matching/" data-i18n="nav-matching">👗 Matching</a>
+        <a href="/content/" data-i18n="nav-content">📄 Content</a>
+        <a href="/community/" data-i18n="nav-community">👥 Community</a>
+        <a href="/custom/" data-i18n="nav-custom">🧵 Custom</a>
+        <a href="/pricing/" data-i18n="nav-pricing">💰 Pricing</a>
+      </div>
+      <div class="nav-right">
+        <a href="/login/" data-i18n="login">Login</a>
+        <a href="/signup/" class="cta" data-i18n="cta">Get Outfitry Free</a>
+        <select class="lang-select" id="lang-select">
+          <option value="en" selected>English</option>
+          <option value="th">ไทย</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Back Button -->
+  <div class="container mx-auto px-4 py-6 mt-20">
+    <a href="/content/" class="inline-flex items-center text-amber-600 hover:text-amber-700 text-lg font-medium slide-in" data-i18n="back">← Back</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 max-w-4xl pb-16">
+    <article class="bg-white rounded-xl shadow-md p-8 slide-in">
+      <div class="article-header text-center mb-8">
+        <img src="{% static 'images/power_outfit.jpg' %}" alt="Person in a power outfit" class="article-image">
+        <h1 class="text-4xl font-semibold text-gray-800 mb-4 fade-in" data-i18n="article-title">
+          Power Outfit to Boost Your Confidence: Dress for Success, Feel Your Best
+        </h1>
+        <div class="flex justify-between items-center text-gray-600 mb-4 text-base">
+          <span data-i18n="author">By Outfitry Team</span>
+          <div>
+            <span class="likes" id="article-likes">❤️ <span class="like-count">13</span></span>
+            <span class="comments">💬 3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose prose-lg text-gray-800 leading-relaxed font-light">
+        <p class="mb-6">Ever had that magical day when you put on an outfit and suddenly felt like you could conquer the world? That's not just coincidence—it's the psychology of clothing at work! What we wear has a profound impact on how we feel, how others perceive us, and even how we perform. Let's dive into the art of creating your perfect power outfit to skyrocket your confidence when you need it most!</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">The Science Behind Power Dressing 🧠</h2>
+        <p class="mb-4">Before we jump into wardrobe tips, let's talk science for a second. "Enclothed cognition" is the fancy term researchers use to describe how our clothes influence our psychological processes. Studies have shown that wearing certain outfits can literally change how we think and perform:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>People in formal business attire show enhanced abstract thinking</li>
+          <li>Wearing a lab coat described as a "doctor's coat" increases attention and focus</li>
+          <li>Sports uniforms can boost team performance through psychological alignment</li>
+        </ul>
+        <p class="mb-6">The bottom line? Your clothes aren't just fabric—they're mood-altering, confidence-boosting tools when used correctly!</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Building Blocks of a Power Outfit ✨</h2>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">1. The Perfect Fit: Non-Negotiable</h3>
+        <p class="mb-4">Nothing—and I mean NOTHING—undermines confidence like ill-fitting clothes. Too tight and you'll be self-conscious and uncomfortable; too loose and you might appear sloppy. Here's the golden rule:</p>
+        <blockquote class="border-l-4 border-gray-300 pl-4 italic mb-4">Your power outfit should feel like a second skin—noticeable when you put it on, but forgotten when you're wearing it.</blockquote>
+        <p class="mb-6">Worth the investment: Get your signature pieces tailored. Even an inexpensive outfit looks expensive when it fits perfectly.</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">2. Your Power Color</h3>
+        <p class="mb-4">Colors affect mood and perception in powerful ways:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Red:</strong> Commands attention, signals power and passion (perfect for presentations or when you need to stand out)</li>
+          <li><strong>Navy Blue:</strong> Communicates reliability and trustworthiness (ideal for interviews and serious negotiations)</li>
+          <li><strong>Black:</strong> Timeless authority and sophistication (the classic choice for formal situations)</li>
+          <li><strong>White:</strong> Precision and clarity (works beautifully in creative leadership positions)</li>
+          <li><strong>Deep Purple:</strong> Creativity with authority (great for creative fields when you need to be taken seriously)</li>
+        </ul>
+        <p class="mb-6">But here's the personal touch: Your TRUE power color is the one that makes YOU feel unstoppable when you wear it. For me, it's a deep emerald green. When I wear it, I instantly stand taller. What's yours?</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">3. The Statement Piece</h3>
+        <p class="mb-4">Every power outfit needs one element that serves as a conversation starter or signature item. This could be:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>A distinctive watch or piece of jewelry</li>
+          <li>An unexpected pop of color (like vibrant shoes with an otherwise conservative outfit)</li>
+          <li>A uniquely textured blazer or jacket</li>
+          <li>A signature accessory that becomes "your thing"</li>
+        </ul>
+        <p class="mb-6">These elements do double duty: they express personality while giving you a confidence anchor to focus on.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Power Outfit Formulas for Different Scenarios 👔👗</h2>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">For Corporate Dominance</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Well-tailored blazer in your power color</li>
+          <li>Crisp shirt/blouse (white is classic, but subtle patterns work too)</li>
+          <li>Perfectly fitted trousers/skirt that allows comfortable movement</li>
+          <li>Quality leather shoes (comfortable enough for all-day wear)</li>
+          <li>Minimal, but intentional accessories (think quality over quantity)</li>
+        </ul>
+        <p class="mb-6">Pro tip: The structured blazer is your armor. When you need an instant confidence boost, simply standing up and buttoning your blazer creates a psychological shift to "business mode."</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">For Creative Leadership</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Statement jacket with interesting texture or pattern</li>
+          <li>Simple, high-quality basics underneath</li>
+          <li>One unexpected element (architectural jewelry, bold shoes, etc.)</li>
+          <li>Comfortable yet polished pants or skirt</li>
+          <li>Accessories that tell a story</li>
+        </ul>
+        <p class="mb-6">Pro tip: Creative fields allow more self-expression, but leadership still requires polish. Balance unique elements with professional execution.</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">For Presentations & Public Speaking</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Your brightest power color (visibility matters)</li>
+          <li>Outfits that allow free movement and gesture</li>
+          <li>Nothing too complicated or fussy (you need to focus!)</li>
+          <li>Comfortable shoes you can stand confidently in</li>
+          <li>A detail that connects to your audience or message</li>
+        </ul>
+        <p class="mb-6">Pro tip: Test your outfit beforehand by moving, reaching up, sitting down—avoid wardrobe malfunctions that could derail your confidence.</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">For Important Interviews</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Research company culture, then dress one notch above</li>
+          <li>Conservative but not boring (show personality within appropriate boundaries)</li>
+          <li>Quality over flash (subtle details show attention to detail)</li>
+          <li>Immaculate grooming (the details matter)</li>
+          <li>Something memorable but appropriate (helps you stand out)</li>
+        </ul>
+        <p class="mb-6">Pro tip: When in doubt, choose polished over trendy. Interview outfits should prioritize competence first, style second.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-2xl">Building Your Confidence Wardrobe: A Step-by-Step Approach 🛠️</h2>
+        <ul class="list-disc pl-6 mb-0">
+          <li><strong>Audit your current outfits:</strong> Which clothes make you feel powerful? Which make you shrink? Be ruthless about keeping only confidence-boosting pieces.</li>
+          <li><strong>Identify your power color:</strong> Try different colors and note how they affect your mood and confidence. Which one gives you that extra spark?</li>
+          <li><strong>Invest in foundational pieces:</strong> Quality over quantity. One perfect blazer beats five mediocre ones.</li>
+          <li><strong>Create outfit formulas:</strong> Document your winning combinations so getting dressed on important days becomes stress-free.</li>
+          <li><strong>Practice wearing your power outfits:</strong> Don't save them only for big occasions. Wear them regularly so they feel natural.</li>
+        </ul>
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Mind Tricks to Boost the Power of Your Power Outfit 🧘‍♀️</h2>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>The Superhero Stance:</strong> Before big moments, find a private spot, stand with feet apart, hands on hips (like Wonder Woman or Superman) for 2 minutes. Research shows this actually changes your body chemistry!</li>
+          <li><strong>The Anchor Memory:</strong> When wearing your power outfit and feeling confident, create a physical anchor (touch your watch, straighten your cuffs) that you can repeat later to recall that confident state.</li>
+          <li><strong>The Compliment Collection:</strong> Keep a note on your phone with every compliment you've received while wearing specific outfits. Review before wearing them again.</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Real Stories, Real Power</h2>
+        <blockquote class="border-l-4 border-gray-300 pl-4 italic mb-4">"I was terrified about a make-or-break presentation to our company's board. I invested in a perfectly tailored red dress that made me feel unstoppable. During the presentation, whenever I felt nervous, I'd subtly touch the structured shoulder of my dress as an anchor. Not only did I nail it, but three board members commented on how confident I appeared." - Sarah, Marketing Director</blockquote>
+        <blockquote class="border-l-4 border-gray-300 pl-4 italic mb-4">"For my job interviews after college, I couldn't afford expensive suits. Instead, I found an amazing navy blazer at a thrift store and had it tailored to fit perfectly. I paired it with different shirts but always wore the same blazer to interviews—it became my 'lucky jacket.' I landed a job that was considered a reach for my experience level, and my now-boss later told me she was impressed by how confidently I carried myself." - Miguel, Software Engineer</blockquote>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">When to Break the Rules</h2>
+        <p class="mb-4">Power dressing isn't always about conformity. Sometimes, strategic rule-breaking is the most powerful move of all:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Steve Jobs' black turtleneck became iconic precisely because it broke CEO dressing norms</li>
+          <li>Architect Zaha Hadid used avant-garde fashion to signal her revolutionary design approach</li>
+          <li>Michelle Obama elevated the cardigan from casual to power dressing through impeccable execution</li>
+        </ul>
+        <p class="mb-6">The key is intention—breaking rules randomly looks clueless, breaking them purposefully looks visionary.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">The Sustainable Power Wardrobe</h2>
+        <p class="mb-4">Fast fashion and constant trends can actually undermine confidence by keeping you chasing what's "in" rather than what works for you. Consider:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Investing in fewer, better pieces that last years</li>
+          <li>Choosing classic silhouettes with modern details</li>
+          <li>Building a cohesive color palette where most items work together</li>
+          <li>Focusing on exceptional fit rather than exceptional quantity</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Confidence Checklist</h2>
+        <p class="mb-4">To further enhance your power dressing experience, use this checklist before heading out:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Check the mirror: Does the fit feel right from all angles?</li>
+          <li>Test movement: Can you sit, stand, and gesture comfortably?</li>
+          <li>Feel the vibe: Does this outfit align with your mood and the occasion?</li>
+          <li>Final touch: Add your confidence anchor (e.g., a watch or accessory).</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">The Bottom Line: It's Not About Fashion, It's About Strategy</h2>
+        <p class="mb-4">Your power outfit isn't about being the most stylish person in the room—it's about strategically using clothing to boost your confidence and capability. The best power outfit is one that makes you forget about your clothes entirely, freeing your mind to focus on crushing your goals.</p>
+        <p class="mb-6">What's your go-to power outfit? Has a specific outfit ever changed how you performed in a high-stakes situation? Share your story in the comments! ✨</p>
+
+        <div class="flex flex-wrap gap-3 mt-6">
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#PowerDressing</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#ConfidenceBoost</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#CareerStyle</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#ProfessionalWardrobe</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#DressForSuccess</a>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="mt-12" id="comments-section">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6" data-i18n="comments-title">Comments 💬</h3>
+
+        <!-- Comment 1 -->
+        <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="1">
+          <div class="flex gap-4">
+            <img src="images/user9.jpg" alt="ConfidentSarah Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">ConfidentSarah</strong>
+                  <p class="text-gray-800 text-base leading-relaxed" data-i18n="comment-1">I love wearing a navy blazer for interviews—it really makes me feel reliable and prepared! The tailored fit was a game-changer. ✨</p>
+                  <span class="text-sm italic text-gray-500">2025/05/14</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('1')">❤️ <span class="like-count">4</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-cyan-500 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-1"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment 2 -->
+        <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="2">
+          <div class="flex gap-4">
+            <img src="images/user8.jpg" alt="BoldMiguel Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">BoldMiguel</strong>
+                  <p class="text-gray-800 text-base leading-relaxed" data-i18n="comment-2">My go-to power outfit is a red shirt with a black blazer—it gives me the confidence to lead meetings! Tried the superhero stance, and it works! 💪</p>
+                  <span class="text-sm italic text-gray-500">2025/05/14</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('2')">❤️ <span class="like-count">6</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-cyan-500 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment 3 -->
+        <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="3">
+          <div class="flex gap-4">
+            <img src="images/user7.jpg" alt="StyleSeeker Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">StyleSeeker</strong>
+                  <p class="text-gray-800 text-base leading-relaxed" data-i18n="comment-3">I tried a deep purple dress for a creative pitch, and it gave me such a confidence boost! Tailoring is key! 🌟</p>
+                  <span class="text-sm italic text-gray-500">2025/05/14</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('3')">❤️ <span class="like-count">3</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <div class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-cyan-500 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-3"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment Form -->
+        <div class="mt-8">
+          <h4 class="text-xl font-medium text-gray-800 mb-4" data-i18n="submit-comment">Submit Comment</h4>
+          <form id="comment-form" class="flex flex-col gap-3">
+            <textarea id="comment-text" class="w-full p-3 border border-gray-300 rounded-lg text-base" rows="4" placeholder="Write your comment..." required></textarea>
+            <button type="submit" class="bg-cyan-400 text-white px-6 py-2 rounded-lg hover:bg-blue-700 text-sm font-medium">Submit</button>
+          </form>
+        </div>
+
+        <!-- New Comments -->
+        <div id="new-comments" class="mt-6"></div>
+
+        <!-- Load More Comments -->
+        <a href="#" id="load-more-comments" class="inline-block mt-6 text-amber-600 hover:text-amber-700 font-medium text-base" data-i18n="load-more">Load More Comments ➡️</a>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        "page-title": "Power Outfit to Boost Your Confidence: Dress for Success, Feel Your Best",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 Home",
+        "nav-matching": "👗 Matching",
+        "nav-content": "📄 Content",
+        "nav-community": "👥 Community",
+        "nav-custom": "🧵 Custom",
+        "nav-pricing": "💰 Pricing",
+        "login": "Login",
+        "cta": "Get Outfitry Free",
+        "back": "← Back",
+        "article-title": "Power Outfit to Boost Your Confidence: Dress for Success, Feel Your Best",
+        "author": "By Outfitry Team",
+        "comments-title": "Comments 💬",
+        "comment-1": "I love wearing a navy blazer for interviews—it really makes me feel reliable and prepared! The tailored fit was a game-changer. ✨",
+        "comment-2": "My go-to power outfit is a red shirt with a black blazer—it gives me the confidence to lead meetings! Tried the superhero stance, and it works! 💪",
+        "comment-3": "I tried a deep purple dress for a creative pitch, and it gave me such a confidence boost! Tailoring is key! 🌟",
+        "submit-comment": "Submit Comment",
+        "load-more": "Load More Comments ➡️",
+        "load-less": "Show Less Comments ⬅️"
+      },
+      th: {
+        "page-title": "ชุดเพิ่มพลังเพื่อเสริมความมั่นใจ: แต่งตัวเพื่อความสำเร็จ รู้สึกดีที่สุด",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 หน้าแรก",
+        "nav-matching": "👗 การจับคู่",
+        "nav-content": "📄 เนื้อหา",
+        "nav-community": "👥 ชุมชน",
+        "nav-custom": "🧵 ปรับแต่ง",
+        "nav-pricing": "💰 ราคา",
+        "login": "เข้าสู่ระบบ",
+        "cta": "รับ Outfitry ฟรี",
+        "back": "← ย้อนกลับ",
+        "article-title": "ชุดเพิ่มพลังเพื่อเสริมความมั่นใจ: แต่งตัวเพื่อความสำเร็จ รู้สึกดีที่สุด",
+        "author": "โดยทีม Outfitry",
+        "comments-title": "ความคิดเห็น 💬",
+        "comment-1": "ฉันชอบใส่เบลเซอร์สีกรมท่าสำหรับการสัมภาษณ์ มันทำให้ฉันรู้สึกน่าเชื่อถือและพร้อม! การตัดเย็บที่พอดีเปลี่ยนเกมเลย ✨",
+        "comment-2": "ชุดเพิ่มพลังของฉันคือเสื้อเชิ้ตสีแดงกับเบลเซอร์สีดำ มันให้ความมั่นใจในการนำการประชุม! ลองท่า superhero แล้วได้ผล! 💪",
+        "comment-3": "ฉันลองใส่ชุดเดรสสีม่วงเข้มสำหรับการนำเสนอไอเดียสร้างสรรค์ มันเพิ่มความมั่นใจให้ฉันมาก! การตัดเย็บคือกุญแจสำคัญ! 🌟",
+        "submit-comment": "ส่งความคิดเห็น",
+        "load-more": "โหลดความคิดเห็นเพิ่มเติม ➡️",
+        "load-less": "แสดงความคิดเห็นน้อยลง ⬅️"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        element.textContent = translations[lang][key] || element.textContent;
+      });
+
+      document.title = translations[lang]['page-title'] || document.title;
+      document.documentElement.lang = lang;
+      document.getElementById('lang-select').value = lang;
+    }
+
+    setLanguage('en');
+
+    document.getElementById('lang-select').addEventListener('change', function() {
+      setLanguage(this.value);
+    });
+
+    let comments = [];
+
+    function likeComment(commentId) {
+      const comment = document.querySelector(`[data-comment-id="${commentId}"]`);
+      const likeCountElement = comment.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      comment.querySelector('.likes').style.color = '#ff69b4';
+    }
+
+    document.getElementById('article-likes').addEventListener('click', function() {
+      const likeCountElement = this.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      this.style.color = '#ff69b4';
+    });
+
+    document.getElementById('comment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const text = document.getElementById('comment-text').value.trim();
+      if (text) {
+        const commentId = comments.length + 4; // Updated to account for 3 static comments
+        const newComment = {
+          id: commentId,
+          username: 'Anonymous',
+          text: text,
+          date: new Date().toLocaleDateString('en-CA'),
+          likes: 0
+        };
+        comments.push(newComment);
+
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in';
+        commentDiv.setAttribute('data-comment-id', commentId);
+        commentDiv.innerHTML = `
+          <div class="flex gap-4">
+            <img src="images/user3.jpg" alt="Anonymous Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">Anonymous</strong>
+                  <p class="text-gray-800 text-base leading-relaxed">${text}</p>
+                  <span class="text-sm italic text-gray-500">${newComment.date}</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('${commentId}')">❤️ <span class="like-count">${newComment.likes}</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-cyan-500 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-${commentId}"></div>
+            </div>
+          </div>
+        `;
+        document.getElementById('new-comments').insertBefore(commentDiv, document.getElementById('new-comments').firstChild);
+        this.reset();
+        alert("Your comment has been submitted! Thank you for sharing 😊");
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('reply-btn')) {
+        const commentCard = e.target.closest('.comment-card');
+        const replyForm = commentCard.querySelector('.reply-form');
+        replyForm.classList.toggle('active');
+      }
+    });
+
+    document.addEventListener('submit', function(e) {
+      if (e.target.querySelector('.reply-submit')) {
+        e.preventDefault();
+        const commentCard = e.target.closest('.comment-card');
+        const commentId = commentCard.getAttribute('data-comment-id');
+        const replyText = e.target.querySelector('.reply-text').value.trim();
+        if (replyText) {
+          const replyDiv = document.createElement('div');
+          replyDiv.className = 'reply flex gap-3 bg-gray-100 rounded-lg p-4 mt-3';
+          replyDiv.innerHTML = `
+            <img src="images/user3.jpg" alt="Anonymous Profile" class="w-8 h-8 rounded-full comment-avatar">
+            <div class="flex-1">
+              <strong class="text-gray-800 text-base">Anonymous</strong>
+              <p class="text-gray-800 text-sm leading-relaxed">${replyText}</p>
+              <span class="text-xs italic text-gray-500">${new Date().toLocaleDateString('en-CA')}</span>
+              <span class="likes text-sm" onclick="likeReply(this)">❤️ <span class="like-count">0</span></span>
+            </div>
+          `;
+          document.getElementById(`replies-${commentId}`).appendChild(replyDiv);
+          e.target.querySelector('.reply-text').value = '';
+          e.target.closest('.reply-form').classList.remove('active');
+        }
+      }
+    });
+
+    function likeReply(likeElement) {
+      const likeCountElement = likeElement.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      likeElement.style.color = '#ff69b4';
+    }
+
+    document.getElementById('load-more-comments').addEventListener('click', function(e) {
+      e.preventDefault();
+      const commentsSection = document.getElementById('comments-section');
+      if (!commentsSection.classList.contains('show-all-comments')) {
+        commentsSection.classList.add('show-all-comments');
+        this.textContent = translations[document.getElementById('lang-select').value]['load-less'] || 'Show Less Comments ⬅️';
+      } else {
+        commentsSection.classList.remove('show-all-comments');
+        this.textContent = translations[document.getElementById('lang-select').value]['load-more'] || 'Load More Comments ➡️';
+      }
+    });
+  </script>
+</body>
+</html>

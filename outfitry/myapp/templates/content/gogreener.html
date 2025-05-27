@@ -1,0 +1,940 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="page-title">How to Be a Go-Greener Fashionista</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body & Font */
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Topbar Navigation */
+    .topbar {
+      background-color: #85df80;
+      color: white;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      min-width: 0;
+      margin-left: -12px;
+    }
+
+    .nav-logo {
+      width: 36px;
+      height: 36px;
+      margin-right: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .nav-center {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex: 2;
+      min-width: 0;
+    }
+
+    .nav-center a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 10px;
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .nav-center a i {
+      margin-right: 10px;
+      font-size: 25px;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .nav-right .cta {
+      background-color: #a7e2ef;
+      color: black;
+      font-weight: 800;
+      padding: 6px 18px;
+      white-space: nowrap;
+      min-width: 140px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .lang-select {
+      background: #fff !important;
+      color: #333 !important;
+      border: 1px solid #ccc !important;
+      padding: 6px 28px 6px 10px !important;
+      border-radius: 4px !important;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      min-width: 95px !important;
+      appearance: none !important;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='18px' height='18px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 10px center !important;
+      background-size: 14px !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+    }
+
+    .lang-select:hover {
+      border-color: #999 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .lang-select:focus {
+      outline: none !important;
+      border-color: #EABB84 !important;
+      box-shadow: 0 0 0 2px rgba(234, 187, 132, 0.3) !important;
+    }
+
+    .nav-center a:hover {
+      color: #EABB84;
+      background-color: white;
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-right a:hover {
+      background-color: white;
+      color: #EABB84;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+    }
+
+    .nav-right .cta:hover {
+      background-color: #ffd6a4;
+      color: black;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive Navigation */
+    @media (max-width: 767px) {
+      .topbar {
+        height: auto;
+        padding: 10px 15px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 0;
+      }
+
+      .nav-left {
+        margin-bottom: 10px;
+        margin-left: 0;
+        font-size: 20px;
+      }
+
+      .nav-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 12px;
+      }
+
+      .nav-center {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .nav-center a {
+        padding: 6px 10px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 20px;
+        margin-right: 6px;
+      }
+
+      .nav-right {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .nav-right a {
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 120px;
+        font-size: 12px;
+      }
+
+      .lang-select {
+        min-width: 85px !important;
+        padding: 4px 20px 4px 6px !important;
+        font-size: 12px !important;
+        font-weight: 800 !important;
+        background-size: 10px !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .nav-container {
+        max-width: 1200px;
+        padding: 0 15px;
+      }
+
+      .nav-left {
+        font-size: 22px;
+      }
+
+      .nav-logo {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-center {
+        gap: 8px;
+      }
+
+      .nav-center a {
+        padding: 8px 14px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .nav-center a i {
+        font-size: 21px;
+        margin-right: 8px;
+      }
+
+      .nav-right a {
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .nav-right .cta {
+        min-width: 130px;
+        font-size: 13px;
+      }
+
+      .lang-select {
+        min-width: 90px !important;
+        font-size: 13px !important;
+        font-weight: 800 !important;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.6s ease-in;
+    }
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-10px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Comment Card */
+    .comment-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .comment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .reply-form {
+      display: none;
+      margin-top: 10px;
+    }
+    .reply-form.active {
+      display: block;
+    }
+    .hidden-comment {
+      display: none;
+    }
+    .show-all-comments .hidden-comment {
+      display: block;
+    }
+    .article-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 16px;
+    }
+    .likes:hover {
+      cursor: pointer;
+      color: #ff69b4;
+    }
+    .section-divider {
+      border-top: 2px solid #fed7aa;
+      margin: 24px 0;
+    }
+    .comment-avatar {
+      border: 2px solid #e5e7eb;
+      transition: transform 0.2s ease;
+    }
+    .comment-avatar:hover {
+      transform: scale(1.1);
+    }
+    .reply {
+      margin-left: 2rem;
+      padding-left: 1rem;
+      border-left: 3px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="topbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <img src="{% static 'images/logo.jpg' %}" alt="Outfitry Brand Logo" class="nav-logo">
+        <span data-i18n="nav-title">OUTFITRY</span>
+      </div>
+      <div class="nav-center">
+        <a href="/" data-i18n="nav-home">🏠 Home</a>
+        <a href="/matching/" data-i18n="nav-matching">👗 Matching</a>
+        <a href="/content/" data-i18n="nav-content">📄 Content</a>
+        <a href="/community/" data-i18n="nav-community">👥 Community</a>
+        <a href="/custom/" data-i18n="nav-custom">🧵 Custom</a>
+        <a href="/pricing/l" data-i18n="nav-pricing">💰 Pricing</a>
+      </div>
+      <div class="nav-right">
+        <a href="/login/" data-i18n="login">Login</a>
+        <a href="/signup/" class="cta" data-i18n="cta">Get Outfitry Free</a>
+        <select class="lang-select" id="lang-select">
+          <option value="en" selected>English</option>
+          <option value="th">ไทย</option>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Back Button -->
+  <div class="container mx-auto px-4 py-6 mt-20">
+    <a href="/content/" class="inline-flex items-center text-amber-600 hover:text-amber-700 text-lg font-medium slide-in" data-i18n="back">← Back</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 max-w-4xl pb-16">
+    <article class="bg-white rounded-xl shadow-md p-8 slide-in">
+      <div class="article-header text-center mb-8">
+        <img src="{% static 'images/sustainable_fashion.jpg' %}" alt="Sustainable fashion" class="article-image">
+        <h1 class="text-4xl font-semibold text-gray-800 mb-4 fade-in" data-i18n="article-title">
+          How to Be a Go-Greener Fashionista
+        </h1>
+        <div class="flex justify-between items-center text-gray-600 mb-4 text-base">
+          <span data-i18n="author">By Outfitry Team</span>
+          <div>
+            <span class="likes" id="article-likes">❤️ <span class="like-count">19</span></span>
+            <span class="comments">💬 5</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose prose-lg text-gray-800 leading-relaxed font-light">
+        <p class="mb-6">In today's climate-conscious world, being stylish and sustainable aren't mutually exclusive. The fashion industry is one of the world's largest polluters, but a new wave of eco-conscious fashionistas is proving that you can look fabulous while treading lightly on the planet. Here's your comprehensive guide to becoming a go-greener fashionista without compromising on style.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Embrace Mindful Consumption</h2>
+        <p class="mb-4">The most sustainable garment is the one already in your closet. Before anything else, consider these mindful approaches:</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Audit Your Wardrobe</h3>
+        <p class="mb-4">Begin your sustainable fashion journey by getting acquainted with what you already own. Empty your entire closet and sort items into categories:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Love and wear regularly</li>
+          <li>Like but rarely wear</li>
+          <li>Forgotten pieces with potential</li>
+          <li>Items to upcycle or donate</li>
+        </ul>
+        <p class="mb-6">This exercise reveals shopping patterns, identifies gaps, and reconnects you with forgotten treasures. You'll be surprised how many "new" outfits you can create from what you already have!</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Adopt the 30-Wear Test</h3>
+        <p class="mb-4">Before purchasing anything new, ask yourself: "Will I wear this at least 30 times?" This simple question eliminates impulse buys and encourages investment in versatile pieces that withstand changing trends.</p>
+
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Quality Over Quantity</h3>
+        <p class="mb-4">Invest in well-made garments that last longer. Look for:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Strong, even stitching</li>
+          <li>Natural, durable fabrics</li>
+          <li>Thoughtful construction details</li>
+          <li>Timeless designs over fast-fashion trends</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Choose Eco-Friendly Materials</h2>
+        <p class="mb-4">Not all fabrics are created equal when it comes to environmental impact. Educate yourself about sustainable materials:</p>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Best Choices:</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Organic Cotton:</strong> Grown without pesticides or synthetic fertilizers</li>
+          <li><strong>Hemp:</strong> Requires minimal water and no pesticides</li>
+          <li><strong>Linen:</strong> Biodegradable and made from flax, which grows with little water</li>
+          <li><strong>Tencel/Lyocell:</strong> Produced from sustainably harvested wood pulp using closed-loop processing</li>
+          <li><strong>Recycled Fabrics:</strong> Made from post-consumer plastic or textile waste</li>
+        </ul>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Materials to Minimize:</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Conventional Cotton:</strong> Water-intensive and heavily treated with pesticides</li>
+          <li><strong>Polyester and Nylon:</strong> Petroleum-based and shed microplastics</li>
+          <li><strong>Leather:</strong> Unless ethically sourced or plant-based alternatives</li>
+          <li><strong>Rayon/Viscose:</strong> Unless from verified sustainable sources</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Build a Capsule Wardrobe</h2>
+        <p class="mb-4">A well-curated capsule wardrobe maximizes outfit options while minimizing excess:</p>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Essential Components:</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Versatile Basics:</strong> Organic cotton tees, well-fitted jeans, classic button-ups</li>
+          <li><strong>Statement Pieces:</strong> A few distinctive items that express your personal style</li>
+          <li><strong>Layering Elements:</strong> Cardigans, blazers, and lightweight jackets</li>
+          <li><strong>Seasonal Adaptations:</strong> A few pieces that can be rotated seasonally</li>
+        </ul>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Color Coordination:</h3>
+        <p class="mb-4">Choose a cohesive color palette where most items can be mixed and matched. This typically includes:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Neutrals (black, white, gray, navy, beige)</li>
+          <li>1-2 accent colors that complement your skin tone and personal style</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Shop Sustainably</h2>
+        <p class="mb-4">When adding to your wardrobe, be intentional about where and how you shop:</p>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Secondhand First</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li><strong>Vintage Stores:</strong> For unique, high-quality pieces with character</li>
+          <li><strong>Consignment Shops:</strong> For curated secondhand finds</li>
+          <li><strong>Online Platforms:</strong> Depop, ThredUP, Poshmark, and Vestiaire Collective</li>
+          <li><strong>Clothing Swaps:</strong> Organize exchanges with similarly-sized friends</li>
+        </ul>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Ethical Brands</h3>
+        <p class="mb-4">Research and support companies committed to:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Fair labor practices and transparent supply chains</li>
+          <li>Sustainable materials and production methods</li>
+          <li>Minimal packaging and carbon-neutral shipping</li>
+          <li>Giving back to environmental or social causes</li>
+        </ul>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Rental Services</h3>
+        <p class="mb-4">For special occasions or trend experimentation, consider renting instead of buying. Platforms like Rent the Runway and Nuuly offer designer pieces at a fraction of the purchase price.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Care for Clothes Consciously</h2>
+        <p class="mb-4">Extending the lifespan of your garments is perhaps the greenest fashion choice of all:</p>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Washing Wisely</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Wash clothes less frequently (spot clean when possible)</li>
+          <li>Use cold water and eco-friendly detergents</li>
+          <li>Air dry instead of using energy-intensive dryers</li>
+          <li>Use microplastic-catching bags for synthetic items</li>
+        </ul>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Maintenance Matters</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Learn basic mending skills (or find a good tailor)</li>
+          <li>Polish and protect shoes regularly</li>
+          <li>Store seasonal items properly to prevent damage</li>
+          <li>De-pill sweaters and remove stains promptly</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Style Sustainably</h2>
+        <p class="mb-4">Sustainable fashion isn't just about what you buy—it's about how you wear it:</p>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Master the Art of Layering</h3>
+        <p class="mb-4">Create multiple looks with fewer pieces by learning to layer effectively. A simple dress becomes work-appropriate with a blazer, casual with a denim jacket, or evening-ready with statement jewelry.</p>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Accessories Are Your Friends</h3>
+        <p class="mb-4">Transform basic outfits with sustainable accessories:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Vintage scarves and jewelry</li>
+          <li>Handcrafted bags from natural materials</li>
+          <li>Belts that adjust fit and add interest</li>
+          <li>Locally-made statement pieces</li>
+        </ul>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Document Your Outfits</h3>
+        <p class="mb-4">Keep a digital photo album of successful outfit combinations. This prevents the "nothing to wear" syndrome and helps you recognize which pieces truly earn their keep in your closet.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Become an Advocate</h2>
+        <p class="mb-4">As you develop your sustainable style, share your journey:</p>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Use Your Voice</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Ask brands about their sustainability practices</li>
+          <li>Leave reviews highlighting durability and quality</li>
+          <li>Request better options from your favorite retailers</li>
+          <li>Share knowledge with friends and followers</li>
+        </ul>
+        <h3 class="text-xl font-medium text-gray-800 mt-6">Lead by Example</h3>
+        <ul class="list-disc pl-6 mb-4">
+          <li>Proudly rewear outfits for special events</li>
+          <li>Talk openly about your sustainable fashion choices</li>
+          <li>Share the stories behind vintage or ethically-made pieces</li>
+          <li>Host clothing swaps or mending parties</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">The Go-Greener Fashionista's Pledge</h2>
+        <p class="mb-4">Being a truly green fashionista means committing to ongoing learning and improvement. Consider this your fashion manifesto:</p>
+        <ul class="list-disc pl-6 mb-4">
+          <li>I will value what I already own before seeking something new</li>
+          <li>I will choose quality and longevity over trends and bargains</li>
+          <li>I will research brands before supporting them with my money</li>
+          <li>I will care for my clothes to maximize their lifespan</li>
+          <li>I will consider the full lifecycle of my garments, from production to disposal</li>
+          <li>I will find joy in style that doesn't come at the earth's expense</li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 class="text-2xl font-semibold text-blue-600 bg-gray-100 p-4 rounded-md">Final Thoughts</h2>
+        <p class="mb-4">Becoming a go-greener fashionista isn't about achieving perfection—it's about making progressively better choices. Every sustainable decision, from mending a beloved sweater to skipping an impulse purchase, contributes to a healthier fashion ecosystem.</p>
+        <p class="mb-6">Remember that true style has never been about having the newest or most expensive pieces—it's about expressing yourself authentically while aligning your values with your aesthetic choices. By embracing sustainable fashion practices, you're not sacrificing style; you're elevating it with purpose and consciousness.</p>
+        <p class="mb-6">The most fashionable accessory you can wear is the knowledge that your choices are helping to create a more sustainable future—and that never goes out of style.</p>
+
+        <div class="flex flex-wrap gap-3 mt-6">
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#SustainableFashion</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#EcoFriendlyStyle</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#GoGreenerFashionista</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#MindfulConsumption</a>
+          <a href="#" class="text-sm text-blue-600 hover:text-blue-800 font-medium">#GreenLiving</a>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="mt-12" id="comments-section">
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6" data-i18n="comments-title">Comments 💬</h3>
+
+        <!-- Comment 1 -->
+        <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="1">
+          <div class="flex gap-4">
+            <img src="{% static 'images/ดาวน์โหลด (19).jpg' %}" alt="GreenChic Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">GreenChic</strong>
+                  <p class="text-gray-700 text-base leading-relaxed" data-i18n="comment-1">I love my capsule wardrobe—it’s so versatile! Thanks for the tips! 🌱</p>
+                  <span class="text-sm italic text-gray-500">2025/05/14</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('1')">❤️ <span class="like-count">4</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-1"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment 2 -->
+        <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="2">
+          <div class="flex gap-4">
+            <img src="{% static 'images/ดาวน์โหลด (24).jpg' %}" alt="ThriftTrend Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div>
+                  <strong class="text-gray-800 text-lg">ThriftTrend</strong>
+                  <p class="text-gray-700 text-base leading-relaxed" data-i18n="comment-2">Found amazing vintage pieces at a thrift store. I'm living the sustainable life now! 🛍️💚</p>
+                  <span class="text-sm italic text-gray-500">2025/05/14</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="likes text-base" onclick="likeComment('2')">❤️ <span class="like-count">5</span></span>
+                  <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden Comments -->
+        <div class="hidden-comment">
+          <!-- Comment 3 -->
+          <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="3">
+            <div class="flex gap-4">
+              <img src="{% static 'images/ดาวน์โหลด (32).jpg' %}" alt="EcoStyler Profile" class="w-12 h-12 rounded-full comment-avatar">
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <strong class="text-gray-800 text-lg">EcoStyler</strong>
+                    <p class="text-gray-700 text-base leading-relaxed" data-i18n="comment-3">Swapped clothes with friends and got a ‘new’ wardrobe for free! Sustainable and fun! 🌍</p>
+                    <span class="text-sm italic text-gray-500">2025/05/14</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="likes text-base" onclick="likeComment('3')">❤️ <span class="like-count">3</span></span>
+                    <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                  </div>
+                </div>
+                <div class="reply-form">
+                  <form class="flex flex-col gap-3 mt-4">
+                    <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                    <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 reply-submit text-sm font-medium">Send</button>
+                  </form>
+                </div>
+                <div class="replies" id="replies-3"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comment 4 -->
+          <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="4">
+            <div class="flex gap-4">
+              <img src="{% static 'images/ดาวน์โหลด (39).jpg' %}" alt="GreenVogue Profile" class="w-12 h-12 rounded-full comment-avatar">
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <strong class="text-gray-800 text-lg">GreenVogue</strong>
+                    <p class="text-gray-700 text-base leading-relaxed" data-i18n="comment-4">Started mending my clothes instead of tossing them—feels so rewarding! 🧵</p>
+                    <span class="text-sm italic text-gray-500">2025/05/14</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="likes text-base" onclick="likeComment('4')">❤️ <span class="like-count">5</span></span>
+                    <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                  </div>
+                </div>
+                <div class="reply-form">
+                  <form class="flex flex-col gap-3 mt-4">
+                    <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                    <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 reply-submit text-sm font-medium">Send</button>
+                  </form>
+                </div>
+                <div class="replies" id="replies-4"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comment 5 -->
+          <div class="comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in" data-comment-id="5">
+            <div class="flex gap-4">
+              <img src="{% static 'images/ดาวน์โหลด (26).jpg' %}" alt="SustainableStar Profile" class="w-12 h-12 rounded-full comment-avatar">
+              <div class="flex-1">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <strong class="text-gray-800 text-lg">SustainableStar</strong>
+                    <p class="text-gray-700 text-base leading-relaxed" data-i18n="comment-5">Renting dresses for events has been a game-changer! Stylish and eco-friendly! ✨</p>
+                    <span class="text-sm italic text-gray-500">2025/05/14</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="likes text-base" onclick="likeComment('5')">❤️ <span class="like-count">2</span></span>
+                    <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                  </div>
+                </div>
+                <div class="reply-form">
+                  <form class="flex flex-col gap-3 mt-4">
+                    <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                    <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 reply-submit text-sm font-medium">Send</button>
+                  </form>
+                </div>
+                <div class="replies" id="replies-5"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comment Form -->
+        <div class="mt-8">
+          <h4 class="text-xl font-medium text-gray-800 mb-4" data-i18n="submit-comment">Submit Comment</h4>
+          <form id="comment-form" class="flex flex-col gap-3">
+            <textarea id="comment-text" class="w-full p-3 border border-gray-300 rounded-lg text-base" rows="4" placeholder="Write your comment..." required></textarea>
+            <button type="submit" class="bg-cyan-400 text-white px-6 py-2 rounded-lg hover:bg-blue-700 text-sm font-medium">Submit</button>
+          </form>
+        </div>
+
+        <!-- New Comments -->
+        <div id="new-comments" class="mt-6"></div>
+
+        <!-- Load More Comments -->
+        <a href="#" id="load-more-comments" class="inline-block mt-6 text-amber-600 hover:text-amber-700 font-medium text-base" data-i18n="load-more">Load More Comments ➡️</a>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        "page-title": "How to Be a Go-Greener Fashionista",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 Home",
+        "nav-matching": "👗 Matching",
+        "nav-content": "📄 Content",
+        "nav-community": "👥 Community",
+        "nav-custom": "🧵 Custom",
+        "nav-pricing": "💰 Pricing",
+        "login": "Login",
+        "cta": "Get Outfitry Free",
+        "back": "← Back",
+        "article-title": "How to Be a Go-Greener Fashionista",
+        "author": "By Outfitry Team",
+        "comments-title": "Comments 💬",
+        "comment-1": "I love my capsule wardrobe—it’s so versatile! Thanks for the tips! 🌱",
+        "comment-2": "Found amazing vintage pieces at a thrift store—living the sustainable life! 🛍️",
+        "comment-3": "Swapped clothes with friends and got a ‘new’ wardrobe for free! Sustainable and fun! 🌍",
+        "comment-4": "Started mending my clothes instead of tossing them—feels so rewarding! 🧵",
+        "comment-5": "Renting dresses for events has been a game-changer! Stylish and eco-friendly! ✨",
+        "submit-comment": "Submit Comment",
+        "load-more": "Load More Comments ➡️",
+        "load-less": "Show Less Comments ⬅️"
+      },
+      th: {
+        "page-title": "วิธีเป็นแฟชั่นนิสต้าที่เป็นมิตรต่อสิ่งแวดล้อม",
+        "nav-title": "OUTFITRY",
+        "nav-home": "🏠 หน้าแรก",
+        "nav-matching": "👗 การจับคู่",
+        "nav-content": "📄 เนื้อหา",
+        "nav-community": "👥 ชุมชน",
+        "nav-custom": "🧵 ปรับแต่ง",
+        "nav-pricing": "💰 ราคา",
+        "login": "เข้าสู่ระบบ",
+        "cta": "รับ Outfitry ฟรี",
+        "back": "← ย้อนกลับ",
+        "article-title": "วิธีเป็นแฟชั่นนิสต้าที่เป็นมิตรต่อสิ่งแวดล้อม",
+        "author": "โดยทีม Outfitry",
+        "comments-title": "ความคิดเห็น 💬",
+        "comment-1": "ฉันรักตู้เสื้อผ้าแบบแคปซูลของฉัน—มันใช้งานได้หลากหลายมาก! ขอบคุณสำหรับคำแนะนำ! 🌱",
+        "comment-2": "เจอชิ้นวินเทจสุดยอดที่ร้านมือสอง—ใช้ชีวิตแบบยั่งยืน! 🛍️",
+        "comment-3": "แลกเสื้อผ้ากับเพื่อนและได้ตู้เสื้อผ้า ‘ใหม่’ ฟรี! ยั่งยืนและสนุก! 🌍",
+        "comment-4": "เริ่มซ่อมเสื้อผ้าแทนที่จะทิ้ง—รู้สึกคุ้มค่ามาก! 🧵",
+        "comment-5": "การเช่าชุดสำหรับงานอีเวนต์เปลี่ยนเกมเลย! มีสไตล์และเป็นมิตรต่อสิ่งแวดล้อม! ✨",
+        "submit-comment": "ส่งความคิดเห็น",
+        "load-more": "โหลดความคิดเห็นเพิ่มเติม ➡️",
+        "load-less": "แสดงความคิดเห็นน้อยลง ⬅️"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        element.textContent = translations[lang][key] || element.textContent;
+      });
+
+      document.title = translations[lang]['page-title'] || document.title;
+      document.documentElement.lang = lang;
+      document.getElementById('lang-select').value = lang;
+    }
+
+    setLanguage('en');
+
+    document.getElementById('lang-select').addEventListener('change', function() {
+      setLanguage(this.value);
+    });
+
+    let comments = [];
+
+    function likeComment(commentId) {
+      const comment = document.querySelector(`[data-comment-id="${commentId}"]`);
+      const likeCountElement = comment.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      comment.querySelector('.likes').style.color = '#ff69b4';
+    }
+
+    document.getElementById('article-likes').addEventListener('click', function() {
+      const likeCountElement = this.querySelector('.like-count');
+      let currentLikes = parseInt(likeCountElement.textContent);
+      likeCountElement.textContent = currentLikes + 1;
+      this.style.color = '#ff69b4';
+    });
+
+    document.getElementById('comment-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const text = document.getElementById('comment-text').value.trim();
+      if (text) {
+        const commentId = comments.length + 6; // Account for 5 static comments
+        const newComment = {
+          id: commentId,
+          username: 'Anonymous',
+          text: text,
+          date: new Date().toLocaleDateString('en-CA'),
+          likes: 0
+        };
+        comments.push(newComment);
+
+        const commentDiv = document.createElement('div');
+        commentDiv.className = 'comment-card bg-gray-50 rounded-lg p-6 mb-4 slide-in';
+        commentDiv.setAttribute('data-comment-id', commentId);
+        commentDiv.innerHTML = `
+          <div class="flex gap-4">
+            <img src="images/user3.jpg" alt="Anonymous Profile" class="w-12 h-12 rounded-full comment-avatar">
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <div class="flex">
+                  <div>
+                    <strong class="text-gray-800 text-lg">Anonymous</strong>
+                    <p class="text-gray-800 text-base leading-relaxed">${text}</p>
+                    <span class="text-sm italic text-gray-500">pt>${newComment.date}</span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="likes text-base" onclick="likeComment('">${commentId}')">❤️ <span class="like-count">${newComment.likes}</span></span>
+                    <button class="text-amber-600 hover:text-amber-700 text-sm font-medium reply-btn">Reply</button>
+                  </div>
+                </div>
+              </div>
+              <div class="reply-form">
+                <form class="flex flex-col gap-3 mt-4">
+                  <textarea class="w-full p-3 border border-gray-300 rounded-lg reply-text text-base" rows="2" placeholder="Write your reply..."></textarea>
+                  <button type="submit" class="bg-cyan-400 text-white px-4 py-2 rounded-lg hover:bg-blue-600 reply-submit text-sm font-medium">Send</button>
+                </form>
+              </div>
+              <div class="replies" id="replies"></div>
+              <div id="replies">${commentId}"></div>
+            </div>
+          </div>
+        `;
+        document.getElementById('new-comments').insertBefore(commentDiv, document.getElementById('newComments').firstChild);
+        this.reset();
+        alert("Your comment has been submitted! Thank you for sharing 😊");
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('reply-btn')) {
+        const commentCard = e.target.closest('.comment-card');
+        const replyForm = commentCard.querySelector('.reply-form');
+        replyForm.classList.toggle('active');
+      }
+    });
+
+    document.addEventListener('submit', function(e) {
+      if (e.target.querySelector('.reply-submit')) {
+        e.preventDefault();
+        const commentCard = e.target.closest('.comment-card');
+        const commentId = commentCard.getAttribute('data-comment-id');
+        const replyText = e.target.querySelector('.reply-text').value.trim();
+        if (replyText) {
+          const replyDiv = document.createElement('div');
+          replyDiv.className = 'reply flex gap-3 bg-gray-100 rounded-lg p-4 mt-3';
+            replyDiv.innerHTML = `
+            <img src="images/user3.jpg" alt="Anonymous Profile" class="w-8 h-8 rounded-full comment-avatar">
+            <div class="flex-1">
+              <strong class="text-gray-800 text-base">Anonymous</strong>
+              <p class="text-gray-800 text-sm leading-relaxed">${pt}</p>
+              <span class="text-xs italic text-gray-500">>${Date().toLocaleDateString('en-CA')}</span>
+              <span class="text-sm likes" onclick="likeReply(this)">❤️ <span class="like-count">0</span></span>
+            </div>
+          `;
+            document.getElementById('replies'>`replies-${commentId}`).appendChild(div);
+            e.target.querySelector('.reply-text').value = '';
+            e.target.closest('.reply-form').classList.remove('active');
+          }
+        }
+      });
+
+      function likeReply(likeElement) {
+        const likeCountElement = likeElement.querySelector('.like-count');
+        let currentLikes = parseInt(likeCountElement.textContent);
+        likeCountElement.textContent = currentLikes + 1;
+        likeElement.style.color = '#ff69b4';
+      }
+
+      document.getElementById('load-more-comments').addEventListener('click', function(e) {
+        e.preventDefault();
+        const commentsSection = document.getElementById('comments-section');
+        if (!commentsSection.classList.contains('show-all-comments')) {
+          commentsSection.classList.add('show-all-comments');
+          this.textContent = translations[document.getElementById('lang-select').value]['load-less'] || 'Show Less Comments ⬅️';
+        } else {
+          commentsSection.classList.remove('show-all-comments');
+          this.textContent = translations[document.getElementById('lang-select').value]['load-more'] || 'Load More Comments ➡️';
+        }
+      });
+  </script>
+</body>
+</html>
